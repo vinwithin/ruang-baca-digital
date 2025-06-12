@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+html {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.wrapper {
+    height: 100vh;
+}
+.wrap {
+    background: url("/assets/hero-img.png") no-repeat center center/cover;
+}
+#navigasi {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10rem;
+    align-items: center;
+    padding: 1.5rem 8%;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+#navigasi img {
+    max-width: 9rem;
+}
+#navigasi a {
+    color: white;
+    margin: 0; /* Menghapus margin default */
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    font-size: 0.9rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+}
+#button-login {
+    display: flex;
+    background: rgba(2, 62, 138, 1);
+    width: 7.9rem;
+    height: 2.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+#button-login a {
+    color: rgba(255, 255, 255, 1);
+}
+#hero {
+    height: 90vh;
+    padding: 1.5rem 8%;
+}
+.search-bar {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.search-bar input,
+.search-bar select {
+    background: transparent;
+    border: none;
+    color: white;
+}
+.search-bar input:focus,
+.search-bar select:focus {
+    box-shadow: none;
+    outline: none;
+}
+.search-bar input::placeholder {
+    color: #ddd;
+}
+.search-bar button {
+    border-radius: 2rem;
+    padding: 0.4rem 1.2rem;
+}
+.search-bar .form-select {
+    color: white;
+}
+.hero-title {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 60%;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+.hero-title h1 {
+    color: #fff;
+    font-family: "Plus Jakarta Sans";
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px; /* 131.818% */
+}
+#koleksi{
+    background-color: #A2D2FF;
+}
+.kategori-box {
+    width: 200px;
+    height: 540px;
+    flex-shrink: 0;
+    position: relative;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.kategori-title {
+    writing-mode: vertical-rl;
+    transform: rotate(360deg); /* agar teks dari bawah ke atas */
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.logo-wrapper {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.tugas-akhir {
+    background: linear-gradient(
+        180deg,
+        rgba(237, 91, 49, 0.36) 0%,
+        rgba(237, 91, 49, 0.83) 100%
+    );
+}
+
+.laporan-magang {
+    background: linear-gradient(
+        180deg,
+        rgba(2, 62, 138, 0.36) 0%,
+        rgba(2, 62, 138, 0.83) 100%
+    );
+}
+
+#tentang {
+    height: 90vh;
+    padding: 1.5rem 8%;
+}
