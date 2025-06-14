@@ -151,3 +151,8 @@ html {
     height: 90vh;
     padding: 1.5rem 8%;
 }
+footer {
+    padding: 1.5rem 8%;
+    background: #043471;
+    color:white;
+}

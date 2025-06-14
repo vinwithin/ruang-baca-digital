@@ -182,14 +182,14 @@
         </div>
     </section>
     <section class="vh-100" id="berita">
-        <h1 class="text-dark text-center">BERITA/INFORMASI</h1>
+        <h1 class="text-dark text-center mb-5">BERITA/INFORMASI</h1>
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-5">
                 <!-- Card 1 -->
                 <div class="col-md-4">
                     <div class="news-card position-relative text-white">
-                        <img src="perpus.jpg" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
-                            alt="..." />
+                        <img src="/assets/berita.png"
+                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
                         <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
                         <div
                             class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
@@ -207,8 +207,8 @@
                 <!-- Card 2 (copy) -->
                 <div class="col-md-4">
                     <div class="news-card position-relative text-white">
-                        <img src="perpus.jpg" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
-                            alt="..." />
+                        <img src="/assets/berita.png"
+                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
                         <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
                         <div
                             class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
@@ -226,8 +226,8 @@
                 <!-- Card 3 with arrow -->
                 <div class="col-md-4">
                     <div class="news-card position-relative text-white">
-                        <img src="perpus.jpg" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
-                            alt="..." />
+                        <img src="/assets/berita.png"
+                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
                         <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
                         <div
                             class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
@@ -252,6 +252,59 @@
         </div>
 
     </section>
+    <footer>
+        <div class="d-flex flex-row justify-content-between align-items-start">
+            <div class="d-flex justify-content-center align-items-center gap-3">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
+                </a>
+                <div class="d-flex flex-column">
+                    <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
+                    <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
+                </div>
+            </div>
+            <div>
+                <h3>Tautan</h3>
+                <ul>
+                    <li>
+                        <a href="">Web Unja</a>
+
+                    </li>
+                    <li>
+                        <a href="">Sistem Informasi Akademik</a>
+                    </li>
+                    <li>
+                        <a href="">Tugas Akhir</a>
+                    </li>
+                    <li>
+                        <a href="">Perpustakaan Nasional</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>Kontak</h3>
+                <ul>
+                    <li>
+                        <p>Ruang Baca<br>
+                            Fakultas Sains dan Teknologi UNJA<br>
+                            Gedung A, Lt.2</p>
+                    </li>
+                    <li>
+                        <p>Jl. Raya Jambi - Muara Bulian<br> Km. 15Mendalo Indah, Jambi Luar Kota, <br>Jambi 36361</p>
+                    </li>
+                    <li>
+                       <p>Phone:</p>
+                    </li>
+                    <li>
+                        <p>Email:</p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>Media Sosial</h3>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
