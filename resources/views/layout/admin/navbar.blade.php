@@ -1,8 +1,20 @@
-<nav class="navbar navbar-expand navbar-light navbar-bg">
-    <a class="sidebar-toggle js-sidebar-toggle">
+<style>
+    .navbar-custom {
+        background: #023E8A;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+        padding: 20px 0;
+        height: 220px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+</style>
+<nav class="navbar navbar-expand  navbar-bg navbar-custom">
+    <a class="sidebar-toggle js-sidebar-toggle mx-3">
         <i class="hamburger align-self-center"></i>
     </a>
-
+    <div class="navbar-collapse collapse d-flex flex-column align-items-start">
+        <h1 class="text-white text-start">{{ $title ?? '' }}</h1>
+    </div>
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
@@ -144,7 +156,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mx-2">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
                     data-bs-toggle="dropdown">
                     <i class="align-middle" data-feather="settings"></i>
@@ -152,8 +164,8 @@
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                     data-bs-toggle="dropdown">
-                    <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-                    <span class="text-dark">Charles Hall</span>
+                    {{-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> --}}
+                    <span class="text-white">Charles Hall</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
