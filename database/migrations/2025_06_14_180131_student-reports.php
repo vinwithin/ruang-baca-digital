@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('laporan-mahasiswa', function (Blueprint $table) {
+         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('identifier');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('kata-kunci');
             $table->string('file-path');
+            $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
             $table->timestamps();
         });
 

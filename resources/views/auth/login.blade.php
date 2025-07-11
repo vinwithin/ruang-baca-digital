@@ -25,18 +25,28 @@
             </div>
 
             <div class="card shadow-lg p-4 ">
+                @if (session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <h4 class="text-center fw-bold fs-2 mt-3">Masuk ke akun anda</h4>
-                    <form method="POST" class="pt-4 px-4 mx-auto w-100" action="">
+                    <form method="POST" class="pt-4 px-4 mx-auto w-100" action="{{ route('login') }}">
                         @csrf
-
                         <!-- Email Input -->
                         <div class="form-group mb-3">
                             <label for="email" class="form-label">Nama Pengguna atau NIM</label>
                             <div class="input-group">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                <input type="text" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" value="{{ old('email') }}"
-                                    placeholder="Masukkan Nama Pengguna atau Email" required>
+                                    placeholder="Masukkan Nama Pengguna atau NIM" required>
+
                                 <span class="input-group-text">
                                     <i class="fa-solid fa-user"></i>
                                 </span>

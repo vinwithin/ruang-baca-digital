@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('identifier')->unique();
-            $table->string('program_studi_id')->unique();
+            $table->string('department')->nullable();
+            $table->string('program_studi_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

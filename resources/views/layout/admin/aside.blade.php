@@ -35,22 +35,23 @@
             </li>
 
 
-
+            @role('mahasiswa')
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/unggah-dokumen">
+                <a class="sidebar-link" href="/dokumen">
                    <i class="fa-solid fa-arrow-up-from-bracket"></i><span class="align-middle">Upload Dokumen Anda</span>
                 </a>
             </li>
+            @endrole
 
 
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="">
+                <a class="sidebar-link" href="/dokumen/informasi">
                     <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Informasi Status Upload</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="">
+                <a class="sidebar-link" href="{{route('cari-dokumen')}}">
                    <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Cari Dokumen Bacaan</span>
                 </a>
             </li>

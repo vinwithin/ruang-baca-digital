@@ -1,15 +1,17 @@
 @extends('layout.admin.app')
 @section('title', 'Upload Dokumen Anda')
 @section('content')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
         .form-container {
             background: white;
             padding: 40px;
 
             /* border-radius: 20px;
-            margin: 20px auto;
-            max-width: 900px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); */
+                                                                            margin: 20px auto;
+                                                                            max-width: 900px;
+                                                                            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); */
         }
 
         .form-title {
@@ -171,51 +173,65 @@
     </style>
     <div class="w-100 ">
         <div class="card p-3 border rounded-3 shadow-sm">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm">
+                <form id="inputDokumenForm" method="POST" action="{{ route('unggah-dokumen') }}"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="namaMahasiswa" class="form-label">Nama Mahasiswa</label>
-                                <input type="text" class="form-control" id="namaMahasiswa"
-                                    placeholder="Masukkan Nama Anda">
+                                <input type="text" class="form-control" id="namaMahasiswa" name="nama"
+                                    placeholder="Masukkan Nama Anda" value="{{ auth()->user()->name }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="programStudi" class="form-label">Program Studi</label>
-                                <select class="form-select" id="programStudi">
+                                <select class="form-select" id="programStudi" name="program_studi_id">
                                     <option value="">Pilih Program Studi</option>
-                                    <option value="teknik-informatika">Teknik Informatika</option>
-                                    <option value="sistem-informasi">Sistem Informasi</option>
-                                    <option value="teknik-komputer">Teknik Komputer</option>
-                                    <option value="manajemen">Manajemen</option>
-                                    <option value="akuntansi">Akuntansi</option>
+                                    @foreach ($prodi as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ auth()->user()->program_studi_id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->nama }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
-                                <input type="text" class="form-control" id="nimMahasiswa"
-                                    placeholder="Masukkan Nim Anda">
+                                <input type="text" class="form-control" id="nimMahasiswa" name="identifier"
+                                    placeholder="Masukkan Nim Anda" value="{{ auth()->user()->identifier }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="jenisDokumen" class="form-label">Jenis Dokumen</label>
-                                <select class="form-select" id="jenisDokumen">
+                                <select class="form-select" id="jenisDokumen" name="jenis_dokumen_id">
                                     <option value="">Pilih Jenis Dokumen Anda</option>
-                                    <option value="skripsi">Skripsi</option>
-                                    <option value="tesis">Tesis</option>
-                                    <option value="disertasi">Disertasi</option>
-                                    <option value="proposal">Proposal</option>
-                                    <option value="laporan">Laporan</option>
+                                    @foreach ($jenis_dokumen as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->nama }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -224,16 +240,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="dosenPembimbing1" class="form-label">Dosen Pembimbing 1</label>
-                                <input type="text" class="form-control" id="dosenPembimbing1"
-                                    placeholder="Masukkan Nama Dosen Pembimbing 1">
+                                <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
+                                <select class="dospem form-select" id="dospem1" name="dospem1">
+                                    <option value="">Pilih Pembimbing Anda</option>
+                                    @foreach ($dospem as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="tahun" class="form-label">Tahun</label>
-                                <input type="number" class="form-control" id="tahun" value="2025" min="2020"
-                                    max="2030">
+                                <label for="tahun" class="dospem form-label">Tahun</label>
+                                <input type="number" class="form-control" id="tahun" name="tahun" value="2025"
+                                    min="2020" max="2030">
                             </div>
                         </div>
                     </div>
@@ -241,47 +264,52 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="dosenPembimbing2" class="form-label">Dosen Pembimbing 2</label>
-                                <input type="text" class="form-control" id="dosenPembimbing2"
-                                    placeholder="Masukkan Nama Dosen Pembimbing 2">
+                                <label for="dospem2" class="form-label">Dosen Pembimbing 2</label>
+                                <select class="dospem form-select" id="dospem2" name="dospem2">
+                                    <option value="">Pilih Pembimbing Anda</option>
+                                    @foreach ($dospem as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="judul" class="form-label">Judul</label>
-                                <input type="text" class="form-control" id="judul" placeholder="Masukkan Judul Anda">
+                                <input type="text" class="form-control" id="judul" name="judul"
+                                    placeholder="Masukkan Judul Anda">
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="kataKunci" class="form-label">Kata Kunci</label>
-                                <textarea class="form-control" id="kataKunci" rows="3" placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Unggah File</label>
-                                <div class="file-upload-area" id="fileUploadArea">
-                                    <div class="file-upload-icon">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                    <div class="file-upload-text">Pilih File</div>
-                                    <div class="file-upload-subtext">Belum ada file yang dipilih</div>
-                                    <input type="file" class="d-none" id="fileInput" accept=".pdf,.doc,.docx">
-                                </div>
+
+                                <input type="file" class="form-control" id="fileInput" name="file"
+                                    accept=".pdf,.doc,.docx">
+
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="kataKunci" class="form-label">Kata Kunci</label>
+                                <textarea class="form-control" id="kataKunci" name="kata_kunci"
+                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="checkbox-container">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="dataConfirmation">
+                            <input class="form-check-input" type="checkbox" id="dataConfirmation"
+                                name="dataConfirmation">
                             <label class="form-check-label" for="dataConfirmation">
                                 Saya yakin data dalam formulir ini sudah benar dan sesuai.
                             </label>
@@ -289,7 +317,7 @@
                     </div>
 
                     <div class="button-group">
-                        <button type="button" class="btn btn-secondary">Batal</button>
+                        {{-- <button type="button" class="btn btn-secondary">Batal</button> --}}
                         <button type="submit" class="btn btn-primary">
                             Kirim <i class="fas fa-paper-plane ms-2"></i>
                         </button>
@@ -298,4 +326,10 @@
             </div>
         </div>
     </div>
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.dospem').select2();
+        });
+    </script>
 @endsection
