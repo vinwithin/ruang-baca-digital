@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\InformasiUpload;
+use App\Http\Controllers\KelolaAjuanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
@@ -28,5 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dokumen/favorit', [FavoritController::class, 'index'])->name('dokumen-favorit');
     Route::get('/dokumen/favorit/tambah/{id}', [CariDokumenController::class, 'store'])->name('dokumen-favorit-tambah');
     Route::get('/dokumen/favorit/hapus/{id}', [CariDokumenController::class, 'destroy'])->name('dokumen-favorit-hapus');
+
+
+    Route::get('/dokumen/daftar', [KelolaAjuanController::class, 'index'])->name('dokumen-daftar');
+    Route::get('/dokumen/detail', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
+    Route::get('/dokumen/approve', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
+    Route::get('/dokumen/reject', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
 
 });

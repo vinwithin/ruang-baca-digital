@@ -30,43 +30,59 @@
 
             <li class="sidebar-item ">
                 <a class="sidebar-link" href="/dashboard">
-                   <i class="fa-solid fa-house"></i><span class="align-middle">Dashboard</span>
+                    <i class="fa-solid fa-house"></i><span class="align-middle">Dashboard</span>
                 </a>
             </li>
-
-
-            @role('mahasiswa')
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/dokumen">
-                   <i class="fa-solid fa-arrow-up-from-bracket"></i><span class="align-middle">Upload Dokumen Anda</span>
-                </a>
-            </li>
+            @role('admin')
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dokumen/informasi">
+                        <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Kelola Ajuan Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('cari-dokumen') }}">
+                        <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Kelola Dokumen</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dokumen/favorit">
+                        <i class="fa-regular fa-star"></i> <span class="align-middle">Kelola Informasi/Berita</span>
+                    </a>
+                </li>
             @endrole
 
+            @role('mahasiswa')
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dokumen">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i><span class="align-middle">Upload Dokumen
+                            Anda</span>
+                    </a>
+                </li>
 
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/dokumen/informasi">
-                    <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Informasi Status Upload</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{route('cari-dokumen')}}">
-                   <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Cari Dokumen Bacaan</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/dokumen/favorit">
-                   <i class="fa-regular fa-star"></i> <span class="align-middle">Dokumen Favorit</span>
-                </a>
-            </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dokumen/informasi">
+                        <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Informasi Status Upload</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('cari-dokumen') }}">
+                        <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Cari Dokumen Bacaan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dokumen/favorit">
+                        <i class="fa-regular fa-star"></i> <span class="align-middle">Dokumen Favorit</span>
+                    </a>
+                </li>
+            @endrole
+
             <li class="sidebar-item">
                 <a class="sidebar-link" href="">
-                  <i class="fa-solid fa-wand-sparkles"></i> <span class="align-middle">Panduan</span>
+                    <i class="fa-solid fa-wand-sparkles"></i> <span class="align-middle">Panduan</span>
                 </a>
             </li>
-
-
 
 
         </ul>
