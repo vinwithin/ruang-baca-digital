@@ -12,4 +12,8 @@ class Favorit extends Model
         'user_id',
         'laporan_id',
     ];
+    public function laporan()
+    {
+        return $this->belongsTo(LaporanMahasiswa::class, 'laporan_id');
+    }
 }

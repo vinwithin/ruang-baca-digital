@@ -32,4 +32,8 @@ class LaporanMahasiswa extends Model
     {
         return $this->belongsTo(JenisDokumen::class, 'jenis_dokumen_id');
     }
+    public function favorit()
+    {
+        return $this->hasMany(Favorit::class);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\CariDokumenController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\InformasiUpload;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dokumen/informasi', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
     Route::get('/cari-dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
     Route::get('/dokumen/detail/{id}', [CariDokumenController::class, 'show'])->name('dokumen-detail');
-    Route::get('/dokumen/favorit/tambah/{id}', [CariDokumenController::class, 'store'])->name('dokumen-favorit');
+    Route::get('/dokumen/favorit', [FavoritController::class, 'index'])->name('dokumen-favorit');
+    Route::get('/dokumen/favorit/tambah/{id}', [CariDokumenController::class, 'store'])->name('dokumen-favorit-tambah');
+    Route::get('/dokumen/favorit/hapus/{id}', [CariDokumenController::class, 'destroy'])->name('dokumen-favorit-hapus');
+
 });

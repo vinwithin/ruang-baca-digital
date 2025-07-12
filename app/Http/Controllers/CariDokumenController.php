@@ -70,4 +70,16 @@ class CariDokumenController extends Controller
             return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen ke Favorit.');
         }
     }
+    public function destroy($id)
+    {
+        $result = Favorit::where([
+            'user_id' => Auth::user()->id,
+            'laporan_id' => $id
+        ])->delete();
+        if ($result) {
+            return redirect()->back()->with('success', 'Dokumen Berhasil Dihapus ke Favorit.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal Menghapus Dokumen dari Favorit.');
+        }
+    }
 }

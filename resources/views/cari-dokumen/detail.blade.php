@@ -74,7 +74,7 @@
                             Simpan ke favorit <i class="bi bi-star"></i>
                         </a>
                     @else
-                        <a href="/dokumen/favorit/tambah/{{ $data->id }}" class="btn btn-outline-primary px-4">
+                        <a href="/dokumen/favorit/hapus/{{ $data->id }}" class="btn btn-outline-primary px-4">
                             Hapus ke favorit <i class="bi bi-star"></i>
                         </a>
                     @endif
