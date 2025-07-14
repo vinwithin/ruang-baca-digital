@@ -23,7 +23,7 @@ class KelolaAjuanController extends Controller
     public function approve($id)
     {
         $result = LaporanMahasiswa::where('id', $id)
-            ->update('status', 'Disetujui');
+            ->update(['status' => 'Disetujui']);
         if ($result) {
             return redirect()->back()->with('success', 'Dokumen Berhasil Divalidasi.');
         } else {
@@ -34,7 +34,7 @@ class KelolaAjuanController extends Controller
     public function reject($id)
     {
         $result = LaporanMahasiswa::where('id', $id)
-            ->update('status', 'Revisi');
+            ->update(['status' => 'Revisi']);
         if ($result) {
             return redirect()->back()->with('success', 'Dokumen Berhasil Ditolak.');
         } else {

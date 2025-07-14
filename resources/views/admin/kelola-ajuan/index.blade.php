@@ -16,16 +16,21 @@
             <table class="table table-bordered align-middle rounded-2 overflow-hidden">
                 <thead class="table-light text-start">
                     <tr>
+                        <th>No/th>
+                        <th>Tanggal Ajuan</th>
                         <th>Judul</th>
                         <th>Nama</th>
                         <th>Program Studi</th>
                         <th>Jenis Koleksi</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->created_at }}</td>
                             <td style="max-width: 300px;">
                                 {{ $item->judul }}
                             </td>
@@ -35,10 +40,11 @@
                                 <span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span>
                             </td>
                             <td>
-                                <span class="badge bg-primary">{{ $item->status }}</span>
-                                @if ($item->status === 'Revisi')
-                                    <a class="btn btn-warning" href="">Edit</a>
-                                @endif
+                                {{$item->status}}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="/dokumen/show/{{ $item->id }}">Lihat Detail</a>
+
                             </td>
                         </tr>
                     @endforeach

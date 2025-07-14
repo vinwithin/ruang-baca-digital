@@ -33,8 +33,12 @@
                     <table class="table table-bordered mb-0">
                         <tbody>
                             <tr>
-                                <td class="fw-semibold">Penulis</td>
+                                <td class="fw-semibold">Nama Mahasiswa</td>
                                 <td>{{ $data->nama }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold">NIM</td>
+                                <td>{{ $data->identifier }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Kontributor/Dosen Pembimbing</td>
@@ -56,10 +60,7 @@
                                 <td class="fw-semibold">Kata Kunci</td>
                                 <td>{{ $data->kata_kunci }}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-semibold">Petugas Input/Edit</td>
-                                <td>Nama Admin</td>
-                            </tr>
+
                             <tr>
                                 <td class="fw-semibold">Tanggal Input</td>
                                 <td>{{ $data->created_at }}</td>
@@ -68,27 +69,27 @@
                     </table>
                 </div>
 
+                <button class="btn btn-primary px-4">
+                    Baca Dokumen <i class="bi bi-book"></i>
+                </button>
+
+
                 <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">
-                    @if (!$favorit)
-                        <a href="/dokumen/favorit/tambah/{{ $data->id }}" class="btn btn-outline-primary px-4">
-                            Simpan ke favorit <i class="bi bi-star"></i>
-                        </a>
-                    @else
-                        <a href="/dokumen/favorit/hapus/{{ $data->id }}" class="btn btn-outline-primary px-4">
-                            Hapus ke favorit <i class="bi bi-star"></i>
-                        </a>
-                    @endif
 
-                    <button class="btn btn-primary px-4">
-                        Baca Dokumen <i class="bi bi-book"></i>
-                    </button>
+                    <div>
+                        <a href="#" class="btn btn-dark">
+                            <i class="bi bi-arrow-left-circle"></i> Kembali
+                        </a>
+                    </div>
+                    <div>
+                        <a class="btn btn-sm btn-outline-warning text-dark"
+                            href="/dokumen/reject/{{ $data->id }}">Kirim Revisi</a>
+                        <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                    </div>
+
                 </div>
 
-                <div class="mt-4">
-                    <a href="#" class="btn btn-dark">
-                        <i class="bi bi-arrow-left-circle"></i> Kembali
-                    </a>
-                </div>
+
             </div>
 
 

@@ -32,8 +32,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/dokumen/daftar', [KelolaAjuanController::class, 'index'])->name('dokumen-daftar');
-    Route::get('/dokumen/detail', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
-    Route::get('/dokumen/approve', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
-    Route::get('/dokumen/reject', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
+    Route::get('/dokumen/show/{id}', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
+    Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
+    Route::get('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
 
 });

@@ -10,9 +10,13 @@
         .search-box input::placeholder {
             color: #aaa;
         }
+
+        .btn {
+            position: static !important;
+        }
     </style>
     <div class="w-100">
-        <div class="card p-3 border rounded-3 shadow-sm">
+        <div class="card p-5 border rounded-3 shadow-sm">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -23,13 +27,13 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <div class="container mt-2">
+            <div class="container-fluid mt-2 clearfix">
                 <h4 class="fw-bold text-center mb-4">
                     Analisis Kesesuaian Tugas Sistem Informasi Akademik (SIAKAD) terhadap Kinerja Dosen <br>
                     Menggunakan Metode Task Technology Fit (Studi Kasus Universitas Jambi)
                 </h4>
 
-                <div class="table-responsive rounded-4 border overflow-hidden">
+                <div class="table-responsive rounded-4 border mb-5">
                     <table class="table table-bordered mb-0">
                         <tbody>
                             <tr>
@@ -68,21 +72,26 @@
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">
-                    @if (!$favorit)
-                        <a href="/dokumen/favorit/tambah/{{ $data->id }}" class="btn btn-outline-primary px-4">
-                            Simpan ke favorit <i class="bi bi-star"></i>
-                        </a>
-                    @else
-                        <a href="/dokumen/favorit/hapus/{{ $data->id }}" class="btn btn-outline-primary px-4">
-                            Hapus ke favorit <i class="bi bi-star"></i>
-                        </a>
-                    @endif
-
-                    <button class="btn btn-primary px-4">
-                        Baca Dokumen <i class="bi bi-book"></i>
-                    </button>
+                <div class="row g-2 mt-5">
+                    <div class="col-12 col-md-6">
+                        @if (!$favorit)
+                            <a href="/dokumen/favorit/tambah/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                                Simpan ke favorit <i class="fa-solid fa-star"></i>
+                            </a>
+                        @else
+                            <a href="/dokumen/favorit/hapus/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                                Hapus ke favorit <i class="fa-solid fa-star"></i>
+                            </a>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <button class="btn btn-primary w-100">
+                            Baca Dokumen <i class="bi bi-book"></i>
+                        </button>
+                    </div>
                 </div>
+
+
 
                 <div class="mt-4">
                     <a href="#" class="btn btn-dark">

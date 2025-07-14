@@ -7,11 +7,6 @@
         .form-container {
             background: white;
             padding: 40px;
-
-            /* border-radius: 20px;
-                                                                            margin: 20px auto;
-                                                                            max-width: 900px;
-                                                                            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); */
         }
 
         .form-title {
@@ -34,7 +29,6 @@
             padding: 12px 16px;
             font-size: 14px;
             transition: all 0.3s ease;
-            background-color: #f8f9fa;
         }
 
         .form-control:focus,
@@ -86,8 +80,18 @@
             font-size: 12px;
         }
 
+        .btn-file {
+            min-width: 680px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(58, 119, 191, 1)
+        }
+
         .checkbox-container {
-            background-color: #f8f9fa;
             border-radius: 10px;
             padding: 20px;
             margin: 25px 0;
@@ -172,7 +176,7 @@
         }
     </style>
     <div class="w-100 ">
-        <div class="card p-3 border rounded-3 shadow-sm">
+        <div class="card p-3 border rounded-5 shadow-sm">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -283,18 +287,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-0">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Unggah File</label>
 
                                 <input type="file" class="form-control" id="fileInput" name="file"
                                     accept=".pdf,.doc,.docx">
+                                <div class="mt-2 border p-4 d-none" id="filePreview">
+                                    <p id="fileName">Skripsi</p>
+                                    <div class="btn-file" onclick="inputFile()">
+                                        Edit File
+                                    </div>
+
+                                </div>
 
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="kataKunci" class="form-label">Kata Kunci</label>
@@ -305,23 +315,25 @@
                     </div>
 
 
+                    <div class="d-flex justify-content-between mt-0">
+                        <div class="checkbox-container">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dataConfirmation"
+                                    name="dataConfirmation">
+                                <label class="form-check-label fw-bold" for="dataConfirmation">
+                                    Saya yakin data dalam formulir ini sudah benar dan sesuai.
+                                </label>
+                            </div>
+                        </div>
 
-                    <div class="checkbox-container">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="dataConfirmation"
-                                name="dataConfirmation">
-                            <label class="form-check-label" for="dataConfirmation">
-                                Saya yakin data dalam formulir ini sudah benar dan sesuai.
-                            </label>
+                        <div class="button-group">
+                            {{-- <button type="button" class="btn btn-secondary">Batal</button> --}}
+                            <button type="submit" class="btn btn-primary">
+                                Kirim
+                            </button>
                         </div>
                     </div>
 
-                    <div class="button-group">
-                        {{-- <button type="button" class="btn btn-secondary">Batal</button> --}}
-                        <button type="submit" class="btn btn-primary">
-                            Kirim <i class="fas fa-paper-plane ms-2"></i>
-                        </button>
-                    </div>
                 </form>
             </div>
         </div>
@@ -331,5 +343,21 @@
         $(document).ready(function() {
             $('.dospem').select2();
         });
+    </script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        const fileName = document.getElementById('fileName');
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                filePreview.classList.remove('d-none')
+                fileName.textContent = fileInput.files[0].name;
+            }
+        })
+
+        function inputFile() {
+            document.getElementById('fileInput').click();
+        }
     </script>
 @endsection
