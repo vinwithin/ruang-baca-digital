@@ -85,9 +85,9 @@
                         @endif
                     </div>
                     <div class="col-12 col-md-6">
-                        <button class="btn btn-primary w-100">
+                        <a href="{{ url('/dokumen/view/' . $data->file) }}" target="_blank" class="btn btn-primary w-100">
                             Baca Dokumen <i class="bi bi-book"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
 

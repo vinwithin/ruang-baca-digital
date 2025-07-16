@@ -69,9 +69,9 @@
                     </table>
                 </div>
 
-                <button class="btn btn-primary px-4">
+                <a class="btn btn-primary px-4" href="{{ url('/dokumen/view/' . $data->file) }}">
                     Baca Dokumen <i class="bi bi-book"></i>
-                </button>
+                </a>
 
 
                 <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">

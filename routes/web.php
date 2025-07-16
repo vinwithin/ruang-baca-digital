@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dokumen/daftar', [KelolaAjuanController::class, 'index'])->name('dokumen-daftar');
     Route::get('/dokumen/show/{id}', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
+    Route::get('/dokumen/view/{filename}', [KelolaAjuanController::class, 'view'])->name('dokumen-view'); // supaya hanya user login yang bisa akses
     Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
     Route::get('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
-
 });

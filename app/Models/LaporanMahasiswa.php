@@ -18,7 +18,7 @@ class LaporanMahasiswa extends Model
         'tahun',
         'judul',
         'kata_kunci',
-        'file_path',
+        'file',
     ];
     public function user()
     {

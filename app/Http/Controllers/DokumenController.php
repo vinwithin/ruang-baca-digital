@@ -39,7 +39,8 @@ class DokumenController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $validatedData['file_path'] = $file->storeAs('dokumen', $fileName, 'public');
+            $file->storeAs('private/dokumen', $fileName);
+            $validatedData['file'] = $fileName;
         } else {
             return back()->withErrors(['file' => 'File dokumen wajib diunggah.']);
         }
@@ -55,4 +56,5 @@ class DokumenController extends Controller
             return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen.');
         }
     }
+   
 }
