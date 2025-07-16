@@ -82,4 +82,31 @@ class CariDokumenController extends Controller
             return redirect()->back()->with('error', 'Gagal Menghapus Dokumen dari Favorit.');
         }
     }
+
+    public function view(LaporanMahasiswa $laporan)
+    {
+        // dd($laporan->judul);
+        return view('cari-dokumen.view', [
+            'data' => $laporan
+        ]);
+    }
+
+    public function stream(LaporanMahasiswa $judul)
+    {
+
+        $path = storage_path('app/private/dokumen/' . $judul->file);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $judul->file_name . '"',
+            'X-Frame-Options' => 'SAMEORIGIN',
+            'Cache-Control' => 'no-cache, no-store, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0'
+        ]);
+    }
 }
