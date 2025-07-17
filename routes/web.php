@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dokumen/informasi', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
     Route::get('/cari-dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
     Route::get('/dokumen/{laporanmahasiswa:judul}', [CariDokumenController::class, 'view'])->name('laporan.view');
-    Route::get('/dokumen/{judul}/stream', [CariDokumenController::class, 'stream'])->name('laporan.stream');
+    Route::get('/dokumen/{laporanmahasiswa:judul}/stream', [CariDokumenController::class, 'stream'])->name('laporan.stream');
     Route::get('/dokumen/detail/{id}', [CariDokumenController::class, 'show'])->name('dokumen-detail');
     Route::get('/dokumen/favorit', [FavoritController::class, 'index'])->name('dokumen-favorit');
     Route::get('/dokumen/favorit/tambah/{id}', [CariDokumenController::class, 'store'])->name('dokumen-favorit-tambah');

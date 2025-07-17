@@ -83,18 +83,17 @@ class CariDokumenController extends Controller
         }
     }
 
-    public function view(LaporanMahasiswa $laporan)
+    public function view(LaporanMahasiswa $laporanmahasiswa)
     {
-        // dd($laporan->judul);
         return view('cari-dokumen.view', [
-            'data' => $laporan
+            'data' => $laporanmahasiswa
         ]);
     }
 
-    public function stream(LaporanMahasiswa $judul)
+    public function stream(LaporanMahasiswa $laporanmahasiswa)
     {
 
-        $path = storage_path('app/private/dokumen/' . $judul->file);
+        $path = storage_path('app/private/dokumen/' . $laporanmahasiswa->file);
 
         if (!file_exists($path)) {
             abort(404);
@@ -102,7 +101,7 @@ class CariDokumenController extends Controller
 
         return response()->file($path, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . $judul->file_name . '"',
+            'Content-Disposition' => 'inline; filename="' . $laporanmahasiswa->file . '"',
             'X-Frame-Options' => 'SAMEORIGIN',
             'Cache-Control' => 'no-cache, no-store, must-revalidate',
             'Pragma' => 'no-cache',
