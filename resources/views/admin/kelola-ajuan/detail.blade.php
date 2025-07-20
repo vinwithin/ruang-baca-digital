@@ -13,16 +13,6 @@
     </style>
     <div class="w-100">
         <div class="card p-3 border rounded-3 shadow-sm">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
             <div class="container mt-2">
                 <h4 class="fw-bold text-center mb-4">
                     Analisis Kesesuaian Tugas Sistem Informasi Akademik (SIAKAD) terhadap Kinerja Dosen <br>
@@ -65,12 +55,18 @@
                                 <td class="fw-semibold">Tanggal Input</td>
                                 <td>{{ $data->created_at }}</td>
                             </tr>
+
+                            <tr>
+                                <td class="fw-semibold">Status</td>
+                                <td>{{ $data->status }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="container mt-3 pt-5">
-                    <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}">
+                    <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
+                        target="_blank">
                         Baca Dokumen <i class="bi bi-book"></i>
                     </a>
                 </div>
@@ -84,23 +80,27 @@
                         </a>
                     </div>
                     <div>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning text-dark"
-                            data-bs-toggle="modal" data-bs-target="#revisiModal">
-                            Kirim Revisi
-                        </a>
+                        @if ($data->status === 'Diproses')
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning text-dark"
+                                data-bs-toggle="modal" data-bs-target="#revisiModal">
+                                Kirim Revisi
+                            </a>
+                            <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                        @elseif($data->status === 'Revisi')
+                            <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                        @endif
+
 
                         <!-- Komponen modal -->
-                        <x-reject-with-modal id="revisiModal" title="Kirim Revisi" action="{{ url('/dokumen/reject/' . $data->id) }}"
-                            buttonText="Kirim" buttonClass="btn-warning">
+                        <x-reject-with-modal id="revisiModal" title="Kirim Revisi"
+                            action="{{ url('/dokumen/reject/' . $data->id) }}" buttonText="Kirim"
+                            buttonClass="btn-warning">
                             <div class="mb-3">
                                 <label for="komentar" class="form-label">Komentar Revisi</label>
                                 <textarea name="komentar" id="komentar" class="form-control" rows="4" required></textarea>
                             </div>
                         </x-reject-with-modal>
 
-
-
-                        <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
                     </div>
 
                 </div>
@@ -111,5 +111,21 @@
 
         </div>
     </div>
-
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        @endif
+    </script>
 @endsection

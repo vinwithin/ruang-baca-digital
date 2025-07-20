@@ -60,7 +60,10 @@ class DokumenController extends Controller
     public function edit($id)
     {
         return view('laporan.edit', [
-            'data' => LaporanMahasiswa::find($id)
+            'data' => LaporanMahasiswa::find($id),
+            'prodi' => ProgramStudi::all(),
+            'dospem' => User::role('dosen')->get(),
+            'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
 
@@ -79,7 +82,7 @@ class DokumenController extends Controller
             'file' => 'required|file|mimes:pdf,doc,docx|max:10240', // Maksimal 10MB
             'dataConfirmation' => 'accepted', // Checkbox harus dicentang
         ]);
-
+        unset($validatedData['dataConfirmation']);
         // Proses upload file
         if ($request->hasFile('file')) {
             $file = $request->file('file');

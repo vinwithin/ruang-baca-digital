@@ -28,6 +28,7 @@
                             <th>Program Studi</th>
                             <th>Jenis Koleksi</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +44,15 @@
                                 </td>
                                 <td>
                                     <span class="badge bg-primary">{{ $item->status }}</span>
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary"
+                                        href="" target="_blank">
+                                        Baca <i class="bi bi-book"></i>
+                                    </a>
                                     @if ($item->status === 'Revisi')
-                                        <a class="btn btn-warning" href="">Edit</a>
+                                        <a class="btn btn-sm btn-warning" href="/dokumen/edit/{{$item->id}}">Edit</a>
                                     @endif
                                 </td>
                             </tr>

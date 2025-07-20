@@ -17,16 +17,6 @@
     </style>
     <div class="w-100">
         <div class="card p-5 border rounded-3 shadow-sm">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
             <div class="container-fluid mt-2 clearfix">
                 <h4 class="fw-bold text-center mb-4">
                     Analisis Kesesuaian Tugas Sistem Informasi Akademik (SIAKAD) terhadap Kinerja Dosen <br>
@@ -75,17 +65,17 @@
                 <div class="row g-2 mt-5">
                     <div class="col-12 col-md-6">
                         @if (!$favorit)
-                            <a href="/dokumen/favorit/tambah/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                            <a href="/bookmark/tambah/{{ $data->id }}" class="btn btn-outline-primary w-100">
                                 Simpan ke favorit <i class="fa-solid fa-star"></i>
                             </a>
                         @else
-                            <a href="/dokumen/favorit/hapus/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                            <a href="/bookmark/hapus/{{ $data->id }}" class="btn btn-outline-primary w-100">
                                 Hapus ke favorit <i class="fa-solid fa-star"></i>
                             </a>
                         @endif
                     </div>
                     <div class="col-12 col-md-6">
-                        <a href="/dokumen/{{ $data->judul }}"  class="btn btn-primary w-100">
+                        <a href="/dokumen/{{ $data->judul }}" class="btn btn-primary w-100">
                             Baca Dokumen <i class="bi bi-book"></i>
                         </a>
                     </div>
@@ -103,5 +93,21 @@
 
         </div>
     </div>
-
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        @endif
+    </script>
 @endsection

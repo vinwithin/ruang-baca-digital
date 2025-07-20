@@ -40,5 +40,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dokumen/{id}', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
     Route::get('/admin/dokumen/view/{filename}', [KelolaAjuanController::class, 'view'])->name('dokumen-view'); // supaya hanya user login yang bisa akses
     Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
-    Route::get('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
+    Route::post('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
 });

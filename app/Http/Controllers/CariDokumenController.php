@@ -14,7 +14,7 @@ class CariDokumenController extends Controller
 
     public function index(Request $request)
     {
-        $keyword = $request->input('search');
+        $keyword = $request->input('keyword');
         $prodi = $request->input('prodi');
         $koleksi = $request->input('koleksi');
         $tahun = $request->input('tahun');

@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dokumen/favorit">
+                    <a class="sidebar-link" href="/bookmarks">
                         <i class="fa-regular fa-star"></i> <span class="align-middle">Dokumen Favorit</span>
                     </a>
                 </li>

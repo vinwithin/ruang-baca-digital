@@ -16,16 +16,6 @@
     </style>
     <div class="w-100 ">
         <div class="card p-5 border rounded-3 shadow-sm">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
             <h3 class="fw-bold mb-4">Daftar dokumen bacaan favorit anda</h3>
             <div class="table-wrapper border rounded-3 overflow-hidden">
 
@@ -38,6 +28,7 @@
                             <th>Program Studi</th>
                             <th>Jenis Koleksi</th>
                             <th>Tahun</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,10 +41,20 @@
                                 <td>{{ $item->laporan->nama }}</td>
                                 <td>{{ $item->laporan->program_studi->nama }}</td>
                                 <td>
-                                    <span class="badge bg-warning text-dark">{{ $item->laporan->jenis_dokumen->nama }}</span>
+                                    <span
+                                        class="badge bg-warning text-dark">{{ $item->laporan->jenis_dokumen->nama }}</span>
                                 </td>
                                 <td>
                                     {{ $item->laporan->tahun }}
+                                </td>
+                                <td>
+                                    <a href="/bookmark/hapus/{{ $item->laporan->id }}"
+                                        class="btn btn-sm btn-outline-primary">
+                                        Hapus
+                                    </a>
+                                    <a href="/dokumen/{{ $item->laporan->judul }}" class="btn btn-sm btn-primary">
+                                        Baca <i class="bi bi-book"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,5 +64,22 @@
             </div>
         </div>
     </div>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        @endif
+    </script>
 
 @endsection

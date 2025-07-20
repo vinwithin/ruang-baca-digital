@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Upload Dokumen Anda')
+@section('title', 'Edit Dokumen Anda')
 @section('content')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -181,7 +181,7 @@
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm" method="POST" action="{{ route('unggah-dokumen') }}" enctype="multipart/form-data">
+                <form id="inputDokumenForm" method="POST" action="/dokumen/update/{{$data->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -189,7 +189,7 @@
                                 <label for="namaMahasiswa" class="form-label">Nama Mahasiswa</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                     id="namaMahasiswa" name="nama" placeholder="Masukkan Nama Anda"
-                                    value="{{ old('nama', auth()->user()->name) }}">
+                                    value="{{$data->nama}}">
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -203,7 +203,7 @@
                                     <option value="">Pilih Program Studi</option>
                                     @foreach ($prodi as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('program_studi_id', auth()->user()->program_studi_id) == $item->id ? 'selected' : '' }}>
+                                            {{ $data->program_studi_id == $item->id ? 'selected' : '' }}>
                                             {{ $item->nama }}
                                         </option>
                                     @endforeach
@@ -220,7 +220,7 @@
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
                                 <input type="text" class="form-control" id="nimMahasiswa" name="identifier" readonly
-                                    value="{{ auth()->user()->identifier }}">
+                                    value="{{$data->identifier}}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -231,7 +231,7 @@
                                     <option value="">Pilih Jenis Dokumen Anda</option>
                                     @foreach ($jenis_dokumen as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('jenis_dokumen_id') == $item->id ? 'selected' : '' }}>
+                                            {{ $data->jenis_dokumen_id == $item->id ? 'selected' : '' }}>
                                             {{ $item->nama }}
                                         </option>
                                     @endforeach
@@ -252,7 +252,7 @@
                                     <option value="">Pilih Pembimbing Anda</option>
                                     @foreach ($dospem as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('dospem1') == $item->id ? 'selected' : '' }}>
+                                            {{ $data->dospem1 == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach
@@ -266,7 +266,7 @@
                             <div class="mb-3">
                                 <label for="tahun" class="form-label">Tahun</label>
                                 <input type="number" class="form-control @error('tahun') is-invalid @enderror"
-                                    id="tahun" name="tahun" value="{{ old('tahun', 2025) }}" min="2020"
+                                    id="tahun" name="tahun" value="{{$data->tahun}}" min="2020"
                                     max="2030">
                                 @error('tahun')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -284,7 +284,7 @@
                                     <option value="">Pilih Pembimbing Anda</option>
                                     @foreach ($dospem as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('dospem2') == $item->id ? 'selected' : '' }}>
+                                            {{ $data->dospem2 == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach
@@ -299,7 +299,7 @@
                                 <label for="judul" class="form-label">Judul</label>
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror"
                                     id="judul" name="judul" placeholder="Masukkan Judul Anda"
-                                    value="{{ old('judul') }}">
+                                    value="{{ $data->judul }}">
                                 @error('judul')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -327,7 +327,7 @@
                             <div class="mb-3">
                                 <label for="kataKunci" class="form-label">Kata Kunci</label>
                                 <textarea class="form-control @error('kata_kunci') is-invalid @enderror" id="kataKunci" name="kata_kunci"
-                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda">{{ old('kata_kunci') }}</textarea>
+                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda">{{ $data->kata_kunci }}</textarea>
                                 @error('kata_kunci')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

@@ -25,7 +25,7 @@
     </style>
     <div class="w-100">
         <div class="card my-4">
-            <form action="" method="GET">
+            <form action="/cari-dokumen" method="GET">
                 <div class="search-box shadow p-3 rounded-4 bg-white d-flex flex-column gap-3">
 
                     {{-- Baris atas: Search input + Tombol --}}
