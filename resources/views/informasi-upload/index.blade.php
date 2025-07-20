@@ -16,16 +16,7 @@
     </style>
     <div class="w-100 ">
         <div class="card p-5 border rounded-3 shadow-sm">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+
             <h3 class="fw-bold mb-4">File yang anda input</h3>
             <div class="table-wrapper border rounded-3 overflow-hidden">
 
@@ -65,5 +56,22 @@
 
         </div>
     </div>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        @endif
+    </script>
 
 @endsection

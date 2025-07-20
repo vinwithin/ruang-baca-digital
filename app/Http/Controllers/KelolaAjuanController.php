@@ -31,10 +31,13 @@ class KelolaAjuanController extends Controller
         }
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
+        $validateData = $request->validate([
+            'komentar' => 'required|string|max:255',
+        ]);
         $result = LaporanMahasiswa::where('id', $id)
-            ->update(['status' => 'Revisi']);
+            ->update(['status' => 'Revisi', 'komentar' => $validateData['komentar']]);
         if ($result) {
             return redirect()->back()->with('success', 'Dokumen Berhasil Ditolak.');
         } else {

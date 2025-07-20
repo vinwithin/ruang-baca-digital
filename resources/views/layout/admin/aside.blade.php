@@ -35,7 +35,7 @@
             </li>
             @role('admin')
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dokumen/daftar">
+                    <a class="sidebar-link" href="/admin/dokumen">
                         <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Kelola Ajuan Mahasiswa</span>
                     </a>
                 </li>

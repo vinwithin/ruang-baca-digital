@@ -69,21 +69,37 @@
                     </table>
                 </div>
 
-                <a class="btn btn-primary px-4" href="{{ url('/dokumen/view/' . $data->file) }}">
-                    Baca Dokumen <i class="bi bi-book"></i>
-                </a>
+                <div class="container mt-3 pt-5">
+                    <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}">
+                        Baca Dokumen <i class="bi bi-book"></i>
+                    </a>
+                </div>
 
 
-                <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">
+                <div class="d-flex justify-content-between mt-2 flex-wrap gap-2">
 
                     <div>
-                        <a href="#" class="btn btn-dark">
+                        <a href="/admin/dokumen" class="btn btn-primary">
                             <i class="bi bi-arrow-left-circle"></i> Kembali
                         </a>
                     </div>
                     <div>
-                        <a class="btn btn-sm btn-outline-warning text-dark"
-                            href="/dokumen/reject/{{ $data->id }}">Kirim Revisi</a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning text-dark"
+                            data-bs-toggle="modal" data-bs-target="#revisiModal">
+                            Kirim Revisi
+                        </a>
+
+                        <!-- Komponen modal -->
+                        <x-reject-with-modal id="revisiModal" title="Kirim Revisi" action="{{ url('/dokumen/reject/' . $data->id) }}"
+                            buttonText="Kirim" buttonClass="btn-warning">
+                            <div class="mb-3">
+                                <label for="komentar" class="form-label">Komentar Revisi</label>
+                                <textarea name="komentar" id="komentar" class="form-control" rows="4" required></textarea>
+                            </div>
+                        </x-reject-with-modal>
+
+
+
                         <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
                     </div>
 

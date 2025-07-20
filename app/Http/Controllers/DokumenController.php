@@ -27,10 +27,10 @@ class DokumenController extends Controller
             'identifier' => 'required|string|max:20',
             'jenis_dokumen_id' => 'required|string',
             'dospem1' => 'required|string|max:255',
-            'dospem2' => 'nullable|string|max:255',
+            'dospem2' => 'required|string|max:255',
             'tahun' => 'required|integer|between:2020,2030',
             'judul' => 'required|string|max:500',
-            'kata_kunci' => 'nullable|string',
+            'kata_kunci' => 'required|string',
             'file' => 'required|file|mimes:pdf,doc,docx|max:10240', // Maksimal 10MB
             'dataConfirmation' => 'accepted', // Checkbox harus dicentang
         ]);
@@ -39,7 +39,7 @@ class DokumenController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('private/dokumen', $fileName);
+            $file->storeAs('dokumen', $fileName);
             $validatedData['file'] = $fileName;
         } else {
             return back()->withErrors(['file' => 'File dokumen wajib diunggah.']);
@@ -56,5 +56,49 @@ class DokumenController extends Controller
             return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen.');
         }
     }
-   
+
+    public function edit($id)
+    {
+        return view('laporan.edit', [
+            'data' => LaporanMahasiswa::find($id)
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'program_studi_id' => 'required|string',
+            'identifier' => 'required|string|max:20',
+            'jenis_dokumen_id' => 'required|string',
+            'dospem1' => 'required|string|max:255',
+            'dospem2' => 'required|string|max:255',
+            'tahun' => 'required|integer|between:2020,2030',
+            'judul' => 'required|string|max:500',
+            'kata_kunci' => 'required|string',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:10240', // Maksimal 10MB
+            'dataConfirmation' => 'accepted', // Checkbox harus dicentang
+        ]);
+
+        // Proses upload file
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('dokumen', $fileName);
+            $validatedData['file'] = $fileName;
+        } else {
+            return back()->withErrors(['file' => 'File dokumen wajib diunggah.']);
+        }
+
+        // Simpan ke database
+        $validatedData['status'] = 'Diproses';
+        $result = LaporanMahasiswa::where('id', $id)->update(
+            $validatedData
+        );
+        if ($result) {
+            return redirect()->route('informasi-dokumen')->with('success', 'Dokumen berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen.');
+        }
+    }
 }

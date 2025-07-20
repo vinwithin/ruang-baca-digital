@@ -94,7 +94,7 @@
 
 
                 <div class="mt-4">
-                    <a href="#" class="btn btn-dark">
+                    <a href="/cari-dokumen" class="btn btn-dark">
                         <i class="bi bi-arrow-left-circle"></i> Kembali
                     </a>
                 </div>

@@ -121,7 +121,7 @@
 
         .canvas-container {
             width: 100%;
-            height: 100%;
+            height: 120%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -429,7 +429,7 @@
                 } else {
                     renderPage(state.currentPage);
                 }
-            }, 400);
+            }, 10);
         }
 
         function closeBook() {
@@ -457,7 +457,7 @@
                 const renderContext = {
                     canvasContext: ctx,
                     viewport: viewport
-                };
+                }; 
 
                 page.render(renderContext).promise.then(() => {
                     hideLoading();
