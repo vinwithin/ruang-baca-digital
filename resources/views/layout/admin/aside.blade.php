@@ -34,7 +34,7 @@
                 </a>
             </li>
             @role('admin')
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('admin/dokumen*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/admin/dokumen">
                         <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Kelola Ajuan Mahasiswa</span>
                     </a>
@@ -44,15 +44,15 @@
                         <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Kelola Dokumen</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/berita">
+                <li class="sidebar-item {{ Request::is('admin/berita*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="/admin/berita">
                         <i class="fa-regular fa-star"></i> <span class="align-middle">Kelola Informasi/Berita</span>
                     </a>
                 </li>
             @endrole
 
             @role('mahasiswa')
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('dokumen*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/dokumen">
                         <i class="fa-solid fa-arrow-up-from-bracket"></i><span class="align-middle">Upload Dokumen
                             Anda</span>
@@ -61,17 +61,17 @@
 
 
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dokumen/informasi">
+                <li class="sidebar-item {{ Request::is('informasi*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="/informasi/dokumen">
                         <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Informasi Status Upload</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('search*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('cari-dokumen') }}">
                         <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Cari Dokumen Bacaan</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('bookmarks*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/bookmarks">
                         <i class="fa-regular fa-star"></i> <span class="align-middle">Dokumen Favorit</span>
                     </a>

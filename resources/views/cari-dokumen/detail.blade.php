@@ -65,11 +65,11 @@
                 <div class="row g-2 mt-5">
                     <div class="col-12 col-md-6">
                         @if (!$favorit)
-                            <a href="/bookmark/tambah/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                            <a href="/bookmark/tambah/{{ $data->uuid }}" class="btn btn-outline-primary w-100">
                                 Simpan ke favorit <i class="fa-solid fa-star"></i>
                             </a>
                         @else
-                            <a href="/bookmark/hapus/{{ $data->id }}" class="btn btn-outline-primary w-100">
+                            <a href="/bookmark/hapus/{{ $data->uuid }}" class="btn btn-outline-primary w-100">
                                 Hapus ke favorit <i class="fa-solid fa-star"></i>
                             </a>
                         @endif
@@ -84,7 +84,7 @@
 
 
                 <div class="mt-4">
-                    <a href="/cari-dokumen" class="btn btn-dark">
+                    <a href="/search/dokumen" class="btn btn-dark">
                         <i class="bi bi-arrow-left-circle"></i> Kembali
                     </a>
                 </div>

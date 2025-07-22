@@ -57,10 +57,10 @@ class DokumenController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(LaporanMahasiswa $laporanmahasiswa)
     {
         return view('laporan.edit', [
-            'data' => LaporanMahasiswa::find($id),
+            'data' => LaporanMahasiswa::find($laporanmahasiswa->id),
             'prodi' => ProgramStudi::all(),
             'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
@@ -79,7 +79,7 @@ class DokumenController extends Controller
             'tahun' => 'required|integer|between:2020,2030',
             'judul' => 'required|string|max:500',
             'kata_kunci' => 'required|string',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:10240', // Maksimal 10MB
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:10240', // Maksimal 10MB
             'dataConfirmation' => 'accepted', // Checkbox harus dicentang
         ]);
         unset($validatedData['dataConfirmation']);

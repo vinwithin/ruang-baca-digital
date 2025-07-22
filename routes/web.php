@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CariDokumenController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokumenController;
@@ -23,22 +24,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::post('/dokumen/unggah', [DokumenController::class, 'store'])->name('unggah-dokumen');
-    Route::get('/dokumen/edit/{id}', [DokumenController::class, 'edit'])->name('edit-dokumen');
-    Route::post('/dokumen/update/{id}', [DokumenController::class, 'update'])->name('update-dokumen');
-    Route::get('/dokumen/informasi', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
-    Route::get('/cari-dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
+    Route::get('/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');
+    Route::post('/dokumen/update/{laporanmahasiswa}', [DokumenController::class, 'update'])->name('update-dokumen');
+    Route::get('/informasi/dokumen', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
+    Route::get('/informasi/dokumen/view/{filename}', [InformasiUpload::class, 'view'])->name('informasi-dokumen-view'); // supaya hanya user login yang bisa akses
+
+    Route::get('/search/dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
+    Route::get('/search/dokumen/{laporanmahasiswa}', [CariDokumenController::class, 'show'])->name('dokumen-detail');
     Route::get('/dokumen/{laporanmahasiswa:judul}', [CariDokumenController::class, 'view'])->name('laporan.view');
     Route::get('/dokumen/{laporanmahasiswa:judul}/stream', [CariDokumenController::class, 'stream'])->name('laporan.stream');
-    Route::get('/dokumen/detail/{id}', [CariDokumenController::class, 'show'])->name('dokumen-detail');
 
     Route::get('/bookmarks', [FavoritController::class, 'index'])->name('bookmark');
-    Route::get('/bookmark/tambah/{id}', [CariDokumenController::class, 'store'])->name('bookmark-tambah');
-    Route::get('/bookmark/hapus/{id}', [CariDokumenController::class, 'destroy'])->name('bookmark-hapus');
+    Route::get('/bookmark/tambah/{laporanmahasiswa}', [CariDokumenController::class, 'store'])->name('bookmark-tambah');
+    Route::get('/bookmark/hapus/{laporanmahasiswa}', [CariDokumenController::class, 'destroy'])->name('bookmark-hapus');
 
-
-    Route::get('/admin/dokumen', [KelolaAjuanController::class, 'index'])->name('admin-dokumen');
-    Route::get('/admin/dokumen/{id}', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
-    Route::get('/admin/dokumen/view/{filename}', [KelolaAjuanController::class, 'view'])->name('dokumen-view'); // supaya hanya user login yang bisa akses
-    Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
-    Route::post('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
+    Route::prefix('admin')->group(function () {
+        Route::get('/dokumen', [KelolaAjuanController::class, 'index'])->name('admin-dokumen');
+        Route::get('/dokumen/{id}', [KelolaAjuanController::class, 'show'])->name('dokumen-detail');
+        Route::get('/dokumen/view/{filename}', [KelolaAjuanController::class, 'view'])->name('dokumen-view');
+        Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
+        Route::post('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
+        Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+        Route::get('/berita/unggah', [BeritaController::class, 'create'])->name('berita.create');
+        Route::post('/berita/unggah', [BeritaController::class, 'store'])->name('berita.store');
+        Route::get('/berita/edit/{berita:slug}', [BeritaController::class, 'edit'])->name('berita.edit');
+        Route::post('/berita/update/{berita:slug}', [BeritaController::class, 'update'])->name('berita.update');
+        Route::get('/berita/delete/{berita:slug}', [BeritaController::class, 'destroy'])->name('berita.delete');
+    });
 });

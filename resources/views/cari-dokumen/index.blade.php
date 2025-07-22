@@ -112,7 +112,7 @@
                             <td>{{ $item->program_studi->nama }}</td>
                             <td><span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span></td>
                             <td><span class="badge bg-primary">{{ $item->tahun }}</span></td>
-                            <td><a href="/dokumen/detail/{{ $item->id }}" class="btn btn-sm btn-primary">Detail</a>
+                            <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-sm btn-primary">Detail</a>
                             </td>
                         </tr>
                     @endforeach

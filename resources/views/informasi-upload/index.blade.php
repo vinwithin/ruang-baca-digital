@@ -28,7 +28,7 @@
                             <th>Program Studi</th>
                             <th>Jenis Koleksi</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <th class="">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,19 +40,74 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->program_studi->nama }}</td>
                                 <td>
-                                    <span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-primary">{{ $item->status }}</span>
+                                    @php
+                                        $jenisNama = $item->jenis_dokumen->nama;
+                                        $badgeClass = 'bg-warning text-dark'; // default
+
+                                        if ($jenisNama === 'Skripsi') {
+                                            $badgeClass = 'bg-secondary';
+                                        } elseif ($jenisNama === 'Laporan Magang') {
+                                            $badgeClass = 'bg-primary';
+                                        }
+                                    @endphp
+
+                                    <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary"
-                                        href="" target="_blank">
+                                    @php
+                                        $badgeClass = 'bg-secondary'; // default
+
+                                        if ($item->status === 'Diproses') {
+                                            $badgeClass = 'bg-warning';
+                                        } elseif ($item->status === 'Disetujui') {
+                                            $badgeClass = 'bg-success';
+                                        } elseif ($item->status === 'Revisi') {
+                                            $badgeClass = 'bg-danger';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}"
+                                        @if ($item->status === 'Revisi') data-bs-toggle="modal" 
+                                            data-bs-target="#modalRevisi-{{ $item->id }}"
+                                            style="cursor: pointer" @endif>
+                                        {{ $item->status }}
+                                        @if ($item->status === 'Revisi')
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        @endif
+                                    </span>
+
+                                    <div class="modal fade" id="modalRevisi-{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="modalRevisiLabel-{{ $item->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalRevisiLabel-{{ $item->id }}">
+                                                        Catatan Revisi</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Tutup"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{ $item->komentar ?? 'Tidak ada catatan revisi.' }}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" href="/informasi/dokumen/view/{{$item->file}}" target="_blank">
                                         Baca <i class="bi bi-book"></i>
                                     </a>
                                     @if ($item->status === 'Revisi')
-                                        <a class="btn btn-sm btn-warning" href="/dokumen/edit/{{$item->id}}">Edit</a>
+                                        <a class="btn btn-sm btn-warning" href="/dokumen/edit/{{ $item->uuid }}">Edit</a>
+                                    @elseif ($item->status === 'Disetujui')
+                                        <a class="btn btn-sm btn-outline-success" href="/dokumen/{{ $item->uuid }}"
+                                            target="_blank">Cetak</a>
                                     @endif
                                 </td>
                             </tr>
@@ -64,6 +119,8 @@
 
         </div>
     </div>
+
+
     <script>
         @if (session('success'))
             Swal.fire({

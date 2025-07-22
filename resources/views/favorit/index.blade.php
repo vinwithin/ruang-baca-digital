@@ -34,6 +34,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
+                                {{-- {{dd($item->laporan)}} --}}
                                 <td><i class="fa-solid fa-star"></i></td>
                                 <td style="max-width: 300px;">
                                     {{ $item->laporan->judul }}
@@ -48,7 +49,7 @@
                                     {{ $item->laporan->tahun }}
                                 </td>
                                 <td>
-                                    <a href="/bookmark/hapus/{{ $item->laporan->id }}"
+                                    <a href="/bookmark/hapus/{{ $item->laporan->uuid }}"
                                         class="btn btn-sm btn-outline-primary">
                                         Hapus
                                     </a>

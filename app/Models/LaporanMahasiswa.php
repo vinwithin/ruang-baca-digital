@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class LaporanMahasiswa extends Model
 {
     protected $table = 'laporan';
     public $laporan = 'laporan';
     protected $fillable = [
+        'uuid',
         'nama',
         'identifier',
         'dospem1',
@@ -21,7 +23,20 @@ class LaporanMahasiswa extends Model
         'file',
         'status',
         'komentar',
+        'view_count',
     ];
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+    }
+
     public function user()
     {
         return $this->hasMany(User::class);

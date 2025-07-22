@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisDokumen;
 use App\Models\LaporanMahasiswa;
 use Illuminate\Http\Request;
 
 class KelolaAjuanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $jenisDokumen = $request->input('jenis_dokumen');
+        $data = LaporanMahasiswa::query();
+        if ($jenisDokumen) {
+            $data->where('jenis_dokumen_id', $jenisDokumen);
+        }
         return view('admin.kelola-ajuan.index', [
-            'data' => LaporanMahasiswa::all(),
+            'data' => $data->latest()->paginate(10),
+            'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
     public function show($id)

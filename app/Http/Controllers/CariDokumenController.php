@@ -47,12 +47,12 @@ class CariDokumenController extends Controller
             'jenis_dokumen' => JenisDokumen::all()
         ]);
     }
-    public function show($id)
+    public function show(LaporanMahasiswa $laporanmahasiswa)
     {
         return view('cari-dokumen.detail', [
-            'data' => LaporanMahasiswa::find($id),
+            'data' => $laporanmahasiswa,
             'favorit' => Favorit::where([
-                'laporan_id' => $id,
+                'laporan_id' => $laporanmahasiswa->uuid,
                 'user_id' => Auth::user()->id
             ])->exists()
 
@@ -97,6 +97,12 @@ class CariDokumenController extends Controller
 
         if (!file_exists($path)) {
             abort(404);
+        }
+        $sessionKey = 'viewed_laporan_' . $laporanmahasiswa->id;
+
+        if (!session()->has($sessionKey)) {
+            $laporanmahasiswa->increment('view_count');
+            session()->put($sessionKey, true);
         }
 
         return response()->file($path, [

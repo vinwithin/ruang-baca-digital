@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Informasi Status Upload')
+@section('title', 'Kelola Ajuan Mahasiswa')
 @section('content')
     <style>
         .search-box {
@@ -36,7 +36,20 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Jenis Koleksi</td>
-                                <td><span class="badge text-bg-warning">{{ $data->jenis_dokumen->nama }}</span></td>
+                                <td>
+                                    @php
+                                        $jenisNama = $data->jenis_dokumen->nama;
+                                        $badgeClass = 'bg-warning text-dark'; // default
+
+                                        if ($jenisNama === 'Skripsi') {
+                                            $badgeClass = 'bg-secondary';
+                                        } elseif ($jenisNama === 'Laporan Magang') {
+                                            $badgeClass = 'bg-primary';
+                                        }
+                                    @endphp
+
+                                    <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Tahun</td>
@@ -58,7 +71,49 @@
 
                             <tr>
                                 <td class="fw-semibold">Status</td>
-                                <td>{{ $data->status }}</td>
+                                <td>
+                                    @php
+                                        $badgeClass = 'bg-secondary'; // default
+
+                                        if ($data->status === 'Diproses') {
+                                            $badgeClass = 'bg-warning';
+                                        } elseif ($data->status === 'Disetujui') {
+                                            $badgeClass = 'bg-success';
+                                        } elseif ($data->status === 'Revisi') {
+                                            $badgeClass = 'bg-danger';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}"
+                                        @if ($data->status === 'Revisi') data-bs-toggle="modal" 
+                                            data-bs-target="#modalRevisi-{{ $data->id }}"
+                                            style="cursor: pointer" @endif>
+                                        {{ $data->status }}
+                                        @if ($data->status === 'Revisi')
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        @endif
+                                    </span>
+
+                                    <div class="modal fade" id="modalRevisi-{{ $data->id }}" tabindex="-1"
+                                        aria-labelledby="modalRevisiLabel-{{ $data->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalRevisiLabel-{{ $data->id }}">
+                                                        Catatan Revisi</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Tutup"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{ $data->komentar ?? 'Tidak ada catatan revisi.' }}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,7 +122,7 @@
                 <div class="container mt-3 pt-5">
                     <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
                         target="_blank">
-                        Baca Dokumen <i class="bi bi-book"></i>
+                        Baca Dokumen <i class="fa-solid fa-book-open"></i>
                     </a>
                 </div>
 
@@ -76,16 +131,16 @@
 
                     <div>
                         <a href="/admin/dokumen" class="btn btn-primary">
-                            <i class="bi bi-arrow-left-circle"></i> Kembali
+                            <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                         </a>
                     </div>
                     <div>
                         @if ($data->status === 'Diproses')
-                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning text-dark"
-                                data-bs-toggle="modal" data-bs-target="#revisiModal">
+                            <a href="javascript:void(0);" class="btn btn-outline-warning text-dark" data-bs-toggle="modal"
+                                data-bs-target="#revisiModal">
                                 Kirim Revisi
                             </a>
-                            <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                            <a class="btn btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
                         @elseif($data->status === 'Revisi')
                             <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
                         @endif
