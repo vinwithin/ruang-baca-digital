@@ -42,6 +42,9 @@
             </div>
         </div>
     </div>
+    <div class="card mt-2">
+        <div id="curve_chart" style="width: 1200px; height: 500px"></div>
+    </div>
     <div class="card">
         <div class="card-header">
             <h5 class="fw-bold">Dokumen Paling Sering Dibaca</h5>
@@ -50,11 +53,38 @@
             @foreach ($data as $item)
                 <h5>{{ $item->judul }}</h5>
                 <p>{{ $item->view_count }} Kali dilihat</p>
-                <span class="badge text-bg-warning">{{$item->jenis_dokumen->nama}}</span>
+                <span class="badge text-bg-warning">{{ $item->jenis_dokumen->nama }}</span>
             @endforeach
 
         </div>
     </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    {{-- <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Bulan', 'Jumlah Ajuan'],
+                @foreach ($chartData as $row)
+                    ['{{ $row->bulan }}', {{ $row->total }}],
+                @endforeach
+            ]);
+
+            var options = {
+                title: 'Total Ajuan',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script> --}}
 
 @endsection
