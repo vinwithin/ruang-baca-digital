@@ -11,27 +11,40 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $request->validate([
-            'start_month' => 'required|date_format:Y-m',
-            'end_month' => 'required|date_format:Y-m|after_or_equal:start_month',
-        ]);
+
+
+        $startMonth = $request->input('start_month');
+        $startYear = $request->input('start_year');
+        $endMonth = $request->input('end_month');
+        $endYear = $request->input('end_year');
 
         // Konversi ke format tanggal awal & akhir
-        $startDate = Carbon::parse($request->start_month)->startOfMonth();
-        $endDate = Carbon::parse($request->end_month)->endOfMonth();
+        $startDate = Carbon::createFromDate($startYear, $startMonth, 1)->startOfMonth();
+        $endDate = Carbon::createFromDate($endYear, $endMonth, 1)->endOfMonth();
 
-        // Query data ajuan laporan per bulan
-        $laporanPerBulan = DB::table('laporan_mahasiswa')
-            ->selectRaw("DATE_FORMAT(created_at, '%M %Y') as bulan, COUNT(*) as total")
-            ->whereBetween('created_at', [$startDate, $endDate])
-            ->groupBy('bulan')
-            ->orderBy('bulan')
+        $laporanPerBulan = DB::table('laporan')
+            ->selectRaw("
+        DATE_FORMAT(created_at, '%M %Y') as bulan, 
+        COUNT(*) as total,
+        YEAR(created_at) as year,
+        MONTH(created_at) as month
+    ")
+            ->whereBetween("created_at", [$startDate, $endDate])
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M %Y')"), 'year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
             ->get();
 
+        // Debug: Check if data is retrieved
         // dd($laporanPerBulan);
+
         return view('dashboard', [
             'chartData' => $laporanPerBulan,
             'data' => LaporanMahasiswa::orderBy('view_count', 'desc')->take(5)->get(),
+            'dateRange' => [
+                'start' => $startDate->format('Y-m-d'),
+                'end' => $endDate->format('Y-m-d')
+            ]
         ]);
     }
 }

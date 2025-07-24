@@ -140,15 +140,15 @@
                                 data-bs-target="#revisiModal">
                                 Kirim Revisi
                             </a>
-                            <a class="btn btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                            <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
                         @elseif($data->status === 'Revisi')
-                            <a class="btn btn-sm btn-primary" href="/dokumen/approve/{{ $data->id }}">Terima</a>
+                            <a class="btn btn-sm btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
                         @endif
 
 
                         <!-- Komponen modal -->
                         <x-reject-with-modal id="revisiModal" title="Kirim Revisi"
-                            action="{{ url('/dokumen/reject/' . $data->id) }}" buttonText="Kirim"
+                            action="{{ url('/admin/dokumen/reject/' . $data->id) }}" buttonText="Kirim"
                             buttonClass="btn-warning">
                             <div class="mb-3">
                                 <label for="komentar" class="form-label">Komentar Revisi</label>

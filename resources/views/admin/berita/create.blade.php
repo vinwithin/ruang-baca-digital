@@ -47,7 +47,7 @@
                     </div>
 
                     <!-- Tanggal Berakhir -->
-                    <a href="/berita" class="btn btn-secondary me-2">Kembali</a>
+                    <a href="/admin/berita" class="btn btn-secondary me-2">Kembali</a>
                     <button type="submit" class="btn btn-primary">Kirim</button>
 
                 </form>

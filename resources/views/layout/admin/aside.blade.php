@@ -28,7 +28,7 @@
 
 
 
-            <li class="sidebar-item ">
+            <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="/dashboard">
                     <i class="fa-solid fa-house"></i><span class="align-middle">Dashboard</span>
                 </a>
