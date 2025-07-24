@@ -25,7 +25,7 @@
     </style>
     <div class="w-100">
         <div class="card my-4">
-            <form action="/cari-dokumen" method="GET">
+            <form action="/search/dokumen" method="GET">
                 <div class="search-box shadow p-3 rounded-4 bg-white d-flex flex-column gap-3">
 
                     {{-- Baris atas: Search input + Tombol --}}
@@ -111,7 +111,7 @@
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->program_studi->nama }}</td>
                             <td><span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span></td>
-                            <td><span class="badge bg-primary">{{ $item->tahun }}</span></td>
+                            <td>{{ $item->tahun }}</td>
                             <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-sm btn-primary">Detail</a>
                             </td>
                         </tr>

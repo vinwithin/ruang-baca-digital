@@ -341,9 +341,9 @@
             <div class="bookmark"></div>
 
             <div class="book-cover" id="book-cover">
-                <h1>📖 Digital Library</h1>
-                <p>Your PDF Collection</p>
-                <button class="open-book-btn" id="open-book">Open Book</button>
+                <h1>📖 Ruang Baca</h1>
+                <p>Dokumen</p>
+                <button class="open-book-btn" id="open-book">Buka Dokumen</button>
             </div>
 
             <div class="book-pages" id="book-pages" style="display: none;">

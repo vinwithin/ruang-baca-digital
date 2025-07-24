@@ -17,7 +17,7 @@
     <div class="w-100">
         <div class="card flex-fill">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <a class="btn btn-success" href="/admin/berita/unggah"><i class="fa-solid fa-plus me-2"></i>Tambah Berita</a>
+                <a class="btn btn-primary" href="/admin/berita/unggah"><i class="fa-solid fa-plus me-2"></i>Tambah Berita</a>
                 <form action="{{ route('berita.index') }}" method="GET" class="mb-3">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Cari berita..."
@@ -70,11 +70,11 @@
 
 
                                     <a href="/admin/berita/edit/{{ $item->slug }}" class="btn btn-outline-warning">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                       Edit
                                     </a>
                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $item->id }}">
-                                        <i class="fa-solid fa-trash"></i>
+                                        Hapus
                                     </button>
                                     <!-- Gunakan komponen modal -->
                                     <x-confirm-modal modalId="deleteModal{{ $item->id }}"

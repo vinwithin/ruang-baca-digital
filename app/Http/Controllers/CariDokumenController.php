@@ -42,7 +42,7 @@ class CariDokumenController extends Controller
         // Eksekusi query
         $data = $query->latest()->get();
         return view('cari-dokumen.index', [
-            'data' => $data,
+            'data' => $data->where('status', 'Disetujui'),
             'prodi' => ProgramStudi::all(),
             'jenis_dokumen' => JenisDokumen::all()
         ]);

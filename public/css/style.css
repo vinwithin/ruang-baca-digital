@@ -106,8 +106,8 @@ html {
     font-weight: 700;
     line-height: 58px; /* 131.818% */
 }
-#koleksi{
-    background-color: #A2D2FF;
+#koleksi {
+    background-color: #a2d2ff;
 }
 .kategori-box {
     width: 200px;
@@ -154,5 +154,9 @@ html {
 footer {
     padding: 1.5rem 8%;
     background: #043471;
-    color:white;
+    color: white;
+}
+.list-unstyled {
+    text-decoration: none !important;
+    color: #ffffff;
 }

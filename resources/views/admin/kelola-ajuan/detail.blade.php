@@ -31,8 +31,8 @@
                                 <td>{{ $data->identifier }}</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Kontributor/Dosen Pembimbing</td>
-                                <td>{{ $data->dospem1 }}</td>
+                                <td class="fw-semibold">Nama Dosen Pembimbing</td>
+                                <td>{{ $data->dosen1->name }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Jenis Koleksi</td>
@@ -52,21 +52,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Tahun</td>
-                                <td>{{ $data->tahun }}</td>
-                            </tr>
-                            <tr>
                                 <td class="fw-semibold">Program Studi</td>
                                 <td>{{ $data->program_studi->nama }}</td>
                             </tr>
+                            <tr>
+                                <td class="fw-semibold">Tahun</td>
+                                <td>{{ $data->tahun }}</td>
+                            </tr>
+
                             <tr>
                                 <td class="fw-semibold">Kata Kunci</td>
                                 <td>{{ $data->kata_kunci }}</td>
                             </tr>
 
                             <tr>
-                                <td class="fw-semibold">Tanggal Input</td>
-                                <td>{{ $data->created_at }}</td>
+                                <td class="fw-semibold">Tanggal Upload</td>
+                                <td>{{ $data->created_at->format('d/m/Y') }}</td>
                             </tr>
 
                             <tr>

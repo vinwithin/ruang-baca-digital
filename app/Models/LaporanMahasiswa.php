@@ -41,6 +41,15 @@ class LaporanMahasiswa extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function dosen1()
+    {
+        return $this->belongsTo(User::class, 'dospem1', 'id');
+    }
+    public function dosen2()
+    {
+        return $this->belongsTo(User::class, 'dospem2', 'id');
+    }
+   
     public function program_studi()
     {
         return $this->belongsTo(ProgramStudi::class, 'program_studi_id');

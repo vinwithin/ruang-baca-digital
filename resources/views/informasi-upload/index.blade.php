@@ -100,7 +100,7 @@
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-primary" href="/informasi/dokumen/view/{{$item->file}}" target="_blank">
+                                    <a class="btn btn-sm btn-primary" href="/informasi/dokumen/view/{{$item->file}}" target="_blank">
                                         Baca <i class="bi bi-book"></i>
                                     </a>
                                     @if ($item->status === 'Revisi')

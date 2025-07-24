@@ -51,7 +51,7 @@
 
                 <div class="ms-auto" id="button-login">
                     <a href="/login" class="fw-semibold">
-                        Masuk <i class="fa-solid fa-arrow-right me-2"></i>
+                        Masuk <i class="fa-solid fa-circle-arrow-right"></i>
                     </a>
 
                 </div>
@@ -61,7 +61,7 @@
         <section class=" position-relative" id="hero">
             <div class="container">
                 <div class="search-bar text-white shadow">
-                    <i class="bi bi-search"></i>
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>
                     <input type="text" class="form-control" placeholder="Cari dokumen..." />
 
                     <select class="form-select">
@@ -70,7 +70,7 @@
                         <option>Sistem Informasi</option>
                     </select>
 
-                    <select class="form-select">
+                    <select class="form-select"><i class="fa-solid fa-file-lines"></i>
                         <option selected>Koleksi</option>
                         <option>Skripsi</option>
                         <option>Laporan</option>
@@ -99,7 +99,7 @@
     </div>
 
     <section class="vh-100" id="prodi">
-        <h1 class="text-dark text-center">PROGRAM STUDI</h1>
+        <h1 class="text-dark text-center mt-5">PROGRAM STUDI</h1>
         <div class="container my-5">
             <div class="d-flex overflow-auto gap-3">
 
@@ -143,7 +143,7 @@
 
     </section>
     <section class="vh-100" id="koleksi">
-        <h1 class="text-dark text-center mb-5">KATEGORI SELEKSI</h1>
+        <h1 class="text-dark text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
         <div class="d-flex justify-content-center align-items-center gap-5">
             <div class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
                 <h1 class="kategori-title">Tugas Akhir</h1>
@@ -161,13 +161,13 @@
     </section>
 
     <section class="vh-100" id="tentang">
-        <h1 class="text-dark text-center">TENTANG RUANG BACA</h1>
-        <div class="d-flex flex-row justify-content-around align-items-center gap-5">
+        <h1 class="text-dark text-center pt-5 mb-5">TENTANG RUANG BACA</h1>
+        <div class="d-flex flex-row justify-content-around align-items-start gap-5">
             <div>
                 <img src="/assets/tentang-img.png" alt="">
             </div>
             <div>
-                <p>Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu fasilitas
+                <p class="">Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu fasilitas
                     penting yang disediakan untuk mendukung kegiatan akademik sivitas akademika, khususnya mahasiswa
                     dalam mengakses berbagai sumber referensi yang relevan dengan bidang sains dan teknologi. Ruang baca
                     ini dirancang sebagai tempat yang nyaman dan kondusif untuk belajar mandiri, membaca literatur
@@ -265,25 +265,25 @@
             </div>
             <div>
                 <h3>Tautan</h3>
-                <ul>
+                <ul class="list-unstyled">
                     <li>
-                        <a href="">Web Unja</a>
+                        <a class="list-unstyled"  href="">Web Unja</a>
 
                     </li>
                     <li>
-                        <a href="">Sistem Informasi Akademik</a>
+                        <a class="list-unstyled" href="">Sistem Informasi Akademik</a>
                     </li>
                     <li>
-                        <a href="">Tugas Akhir</a>
+                        <a class="list-unstyled" href="">Tugas Akhir</a>
                     </li>
                     <li>
-                        <a href="">Perpustakaan Nasional</a>
+                        <a class="list-unstyled" href="">Perpustakaan Nasional</a>
                     </li>
                 </ul>
             </div>
             <div>
                 <h3>Kontak</h3>
-                <ul>
+                <ul class="list-unstyled">
                     <li>
                         <p>Ruang Baca<br>
                             Fakultas Sains dan Teknologi UNJA<br>

@@ -32,7 +32,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Kontributor/Dosen Pembimbing</td>
-                                <td>{{ $data->dospem1 }}</td>
+                                <td>{{ $data->dosen1->name }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Jenis Koleksi</td>
@@ -56,7 +56,8 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Tanggal Input</td>
-                                <td>{{ $data->created_at }}</td>
+                                <td>{{ $data->created_at->format('d/m/Y') }}</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -84,8 +85,8 @@
 
 
                 <div class="mt-4">
-                    <a href="/search/dokumen" class="btn btn-dark">
-                        <i class="bi bi-arrow-left-circle"></i> Kembali
+                    <a href="/search/dokumen" class="btn btn-primary">
+                       <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                     </a>
                 </div>
             </div>

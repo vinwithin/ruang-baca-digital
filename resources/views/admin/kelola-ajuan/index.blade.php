@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                 <h5 class="fw-bold">Daftar seluruh ajuan dari Mahasiswa</h5>
-                <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection"
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection"
                     aria-expanded="false" aria-controls="filterSection">
                     <i class="fas fa-filter me-2"></i>Filter
                 </button>
@@ -40,7 +40,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-dark ">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-filter me-1"></i> Terapkan Filter
                                 </button>
                             </div>
@@ -68,7 +68,9 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->created_at->format('d/m/Y') }}</td>
+
+
                                     <td style="max-width: 300px;">
                                         {{ $item->judul }}
                                     </td>

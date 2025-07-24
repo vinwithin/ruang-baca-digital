@@ -9,6 +9,7 @@ use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
@@ -22,6 +23,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::post('/dokumen/unggah', [DokumenController::class, 'store'])->name('unggah-dokumen');
     Route::get('/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');

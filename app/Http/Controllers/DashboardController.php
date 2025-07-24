@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaporanMahasiswa;
+use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -40,6 +41,7 @@ class DashboardController extends Controller
 
         return view('dashboard', [
             'chartData' => $laporanPerBulan,
+            'prodi' => ProgramStudi::all(),
             'data' => LaporanMahasiswa::orderBy('view_count', 'desc')->take(5)->get(),
             'dateRange' => [
                 'start' => $startDate->format('Y-m-d'),
