@@ -79,11 +79,26 @@ html {
     align-items: center;
     gap: 1rem;
 }
+.form-control {
+    flex: 1;
+    width: 150px;
+}
 .search-bar input,
 .search-bar select {
     background: transparent;
     border: none;
     color: white;
+}
+.search-bar select {
+    appearance: none; /* hilangkan default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem; /* beri ruang buat icon */
+    width: 180px;
 }
 .search-bar input:focus,
 .search-bar select:focus {
@@ -122,9 +137,89 @@ html {
     background: url("/assets/Subtract.png") no-repeat center center/cover;
     z-index: 10;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start; /* Horizontal */
+    align-items: center; /* Vertical */
     padding-top: 200px;
     height: 100vh;
 }
+#scroll-container {
+    overflow-x: auto;
+    /* white-space: nowrap; */
+    padding-bottom: 10px;
+    display: flex;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    scrollbar-width: thin; /* Untuk browser Firefox */
+    -ms-overflow-style: none; /* Untuk IE dan Edge */
+}
+#card-list {
+    width: 299.824px;
+    height: 200px;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    color: black;
+    user-select: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid rgba(188, 225, 148, 1);
+    background: rgba(250, 250, 250, 1);
+    position: relative;
+    background: url("/assets/bg-prodi.png") no-repeat center center/cover;
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #667eea;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.arrow-icon:hover {
+    transform: translateY(-50%) scale(1.1);
+    color: #764ba2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.arrow-icon:active {
+    transform: translateY(-50%) scale(0.95);
+}
+.card-title {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    /* Heading/h4/Bold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 133.333% */
+    margin: 0;
+    text-align: center;
+    /* margin: 14px 0 40px; */
+}
+
 #koleksi {
     height: 120vh;
     background: url("/assets/koleksi.png") no-repeat center center/cover;
@@ -150,7 +245,7 @@ html {
     font-size: 44px !important;
     font-style: normal;
     font-weight: 700;
-    line-height: 58px; 
+    line-height: 58px;
     z-index: 1;
 }
 
@@ -224,15 +319,94 @@ html {
 }
 
 #tentang {
-    height: 90vh;
+    height: 80vh;
     padding: 1.5rem 8%;
+}
+#tentang h1 {
+    color: #1a1a1a;
+    text-align: center;
+
+    /* Heading/h1/SemiBold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 58px; /* 131.818% */
+}
+#tentang .deskripsi {
+    color: #000;
+    text-align: justify;
+    /* Paragraph/p16/Medium */
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+}
+.image-about {
+    width: 627px;
+    height: 439px;
+    flex-shrink: 0;
+}
+#berita {
+    height: 70vh;
+    padding: 1.5rem 8%;
+    display: flex;
+    flex-direction: column;
+    /* place-items: center; */
+    justify-content: center; /* Horizontal */
+    align-items: center; /* Vertical */
+}
+#berita h1 {
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 4rem;
+    /* Heading/h1/SemiBold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 58px; /* 131.818% */
+}
+.news-card {
+    width: 400px;
+    height: 300px;
+    flex-shrink: 0;
+    aspect-ratio: 4/3;
+}
+
+.news-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: brightness(60%);
+}
+.card-content h4 {
+    color: #fff;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 130% */
+}
+.card-content p {
+    color: #fff;
+    text-align: center;
+    /* Paragraph/p12/Medium */
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 150% */
 }
 footer {
     padding: 1.5rem 8%;
     background: #043471;
     color: white;
 }
-.list-unstyled {
+.list-unstyled li a {
     text-decoration: none !important;
     color: #ffffff;
 }

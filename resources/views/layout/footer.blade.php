@@ -3,7 +3,7 @@
  </style>
  <footer>
      <div class="d-flex flex-row justify-content-between align-items-start">
-         <div class="d-flex justify-content-center align-items-center gap-3">
+         <div class="d-flex justify-content-center align-items-center gap-3 ">
              <a href="#" class="navbar-brand d-flex align-items-center">
                  <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
              </a>

@@ -63,18 +63,21 @@
                 <div class="search-bar text-white shadow">
                     <i class="fa-solid fa-magnifying-glass me-2"></i>
                     <input type="text" class="form-control" placeholder="Cari dokumen..." />
-
+                    <i class="fa-solid fa-graduation-cap"></i>
                     <select class="form-select">
-                        <option selected>Program Studi</option>
-                        <option>Teknik Informatika</option>
-                        <option>Sistem Informasi</option>
+                        <option value="">Program Studi</option>
+                        @foreach ($prodi as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
                     </select>
-
-                    <select class="form-select"><i class="fa-solid fa-file-lines"></i>
-                        <option selected>Koleksi</option>
-                        <option>Skripsi</option>
-                        <option>Laporan</option>
+                    <i class="fa-solid fa-file-lines"></i>
+                    <select class="form-select">
+                        <option value="">Koleksi</option>
+                        @foreach ($jenis as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
                     </select>
+                    <i class="fa-solid fa-calendar"></i>
 
                     <select class="form-select">
                         <option selected>Tahun</option>
@@ -99,45 +102,24 @@
     </div>
 
     <section id="prodi">
-        <h1 class="text-dark text-center mt-5">PROGRAM STUDI</h1>
-        <div class="container my-5">
-            <div class="d-flex overflow-auto gap-3">
+        <h1 class="text-dark text-center pt-5 mb-5 mt-5">PROGRAM STUDI</h1>
 
-                <!-- Kartu 1 -->
-                <div class="position-relative flex-shrink-0 rounded-4 overflow-hidden text-white"
-                    style="width: 300px; height: 180px; background-image: url('/assets/bg-prodi.png'); background-size: cover; background-position: center;">
-                    <div class="position-absolute top-50 start-50 translate-middle text-center fw-bold fs-5">Sistem
-                        Informasi</div>
-                </div>
+        <div class="container position-relative">
+            <div class="arrow-icon" onclick="scrollRight('scroll-container')">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
 
-                <!-- Kartu 2 -->
-                <div class="position-relative flex-shrink-0 rounded-4 overflow-hidden text-white"
-                    style="width: 300px; height: 180px; background-image: url('/assets/bg-prodi.png'); background-size: cover; background-position: center;">
-                    <div class="position-absolute top-50 start-50 translate-middle text-center fw-bold fs-5">Analisis
-                        Kimia</div>
-                </div>
 
-                <!-- Kartu 3 -->
-                <div class="position-relative flex-shrink-0 rounded-4 overflow-hidden text-white"
-                    style="width: 300px; height: 180px; background-image: url('/assets/bg-prodi.png'); background-size: cover; background-position: center;">
-                    <div class="position-absolute top-50 start-50 translate-middle text-center fw-bold fs-5">Biologi
+            <div class="d-flex gap-4 overflow-auto" id="scroll-container">
+                @foreach ($prodi as $item)
+                    <div class="card flex-shrink-0" id="card-list" onclick="window.location=''"
+                        style="cursor: pointer; ">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama }}</h5>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Kartu 4 -->
-                <div class="position-relative flex-shrink-0 rounded-4 overflow-hidden text-white"
-                    style="width: 300px; height: 180px; background-image: url('/assets/bg-prodi.png'); background-size: cover; background-position: center;">
-                    <div class="position-absolute top-50 start-50 translate-middle text-center fw-bold fs-5">Fisika
-                    </div>
-                </div>
-
-                <!-- Tombol Panah -->
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-primary rounded-circle shadow" style="width: 48px; height: 48px;">
-                        <i class="bi bi-arrow-right fs-5"></i>
-                    </button>
-                </div>
-
+                @endforeach
             </div>
         </div>
 
@@ -162,14 +144,16 @@
 
     </section>
 
-    <section class="vh-100" id="tentang">
+    <section class="" id="tentang">
         <h1 class="text-dark text-center pt-5 mb-5">TENTANG RUANG BACA</h1>
-        <div class="d-flex flex-row justify-content-around align-items-start gap-5">
+        <div class="d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
+
             <div>
-                <img src="/assets/tentang-img.png" alt="">
+                <img class="image-about" src="/assets/tentang-img.png" alt="">
             </div>
             <div>
-                <p class="">Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu
+                <p class="deskripsi">Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah
+                    satu
                     fasilitas
                     penting yang disediakan untuk mendukung kegiatan akademik sivitas akademika, khususnya mahasiswa
                     dalam mengakses berbagai sumber referensi yang relevan dengan bidang sains dan teknologi. Ruang baca
@@ -184,107 +168,71 @@
             </div>
         </div>
     </section>
-    <section class="vh-100" id="berita">
-        <h1 class="text-dark text-center mb-5">BERITA/INFORMASI</h1>
+    <section id="berita">
+        <h1 class="text-dark text-center">BERITA/INFORMASI</h1>
         <div class="container">
             <div class="row g-5">
                 <!-- Card 1 -->
-                <div class="col-md-4">
-                    <div class="news-card position-relative text-white">
-                        <img src="/assets/berita.png"
-                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                        <div
-                            class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
-                            <h4 class="fw-bold">Perpustakaan UNJA Raih Akreditasi Unggul dari <br><span
-                                    class="d-block fs-4">PERPUSNAS RI</span></h4>
-                            <p class="mt-3 small">
-                                Akreditasi Unggul Perpustakaan merupakan pengakuan tertinggi yang diberikan kepada
-                                Perpustakaan yang telah memenuhi kriteria ketat terkait standar akademik, manajemen,
-                                serta kontribusi dalam penelitian dan pengabdian kepada masyarakat.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 (copy) -->
-                <div class="col-md-4">
-                    <div class="news-card position-relative text-white">
-                        <img src="/assets/berita.png"
-                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                        <div
-                            class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
-                            <h4 class="fw-bold">Perpustakaan UNJA Raih Akreditasi Unggul dari <br><span
-                                    class="d-block fs-4">PERPUSNAS RI</span></h4>
-                            <p class="mt-3 small">
-                                Akreditasi Unggul Perpustakaan merupakan pengakuan tertinggi yang diberikan kepada
-                                Perpustakaan yang telah memenuhi kriteria ketat terkait standar akademik, manajemen,
-                                serta kontribusi dalam penelitian dan pengabdian kepada masyarakat.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 with arrow -->
-                <div class="col-md-4">
-                    <div class="news-card position-relative text-white">
-                        <img src="/assets/berita.png"
-                            class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="..." />
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                        <div
-                            class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-center">
-                            <h4 class="fw-bold">Perpustakaan UNJA Raih Akreditasi Unggul dari <br><span
-                                    class="d-block fs-4">PERPUSNAS RI</span></h4>
-                            <p class="mt-3 small">
-                                Akreditasi Unggul Perpustakaan merupakan pengakuan tertinggi yang diberikan kepada
-                                Perpustakaan yang telah memenuhi kriteria ketat terkait standar akademik, manajemen,
-                                serta kontribusi dalam penelitian dan pengabdian kepada masyarakat.
-                            </p>
-                            <!-- Arrow Button -->
-                            <div class="position-absolute end-0 bottom-50 translate-middle-y me-3">
-                                <button class="btn btn-primary rounded-circle p-2 shadow">
-                                    <i class="bi bi-arrow-right fs-4"></i>
-                                </button>
+                @foreach ($berita as $item)
+                    <div class="col-md-4">
+                        <div class="news-card position-relative text-white">
+                            <img src="/storage/{{ $item->image }}"
+                                class="object-fit-cover position-absolute top-0 start-0" alt="..." />
+                            <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                            <div
+                                class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
+                                <h4 class="fw-bold">{{ $item->title }}</h4>
+                                <p class="mt-3 small">
+                                    {{ Str::limit($item->content, 100, '...') }}
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
+
 
             </div>
         </div>
 
     </section>
     <footer>
-        <div class="d-flex flex-row justify-content-between align-items-start">
-            <div class="d-flex justify-content-center align-items-center gap-3">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
-                </a>
-                <div class="d-flex flex-column">
-                    <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
-                    <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
+
+        <div class="row ">
+            <!-- Logo and Title Section -->
+            <div class="col-lg-4 col-md-6 col-12 d-flex align-items-center justify-content-start">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <a href="#" class="navbar-brand d-flex align-items-center">
+                        <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
+                    </a>
+                    <div class="d-flex flex-column">
+                        <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
+                        <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
+                    </div>
                 </div>
             </div>
-            <div>
+
+            <!-- Tautan Section -->
+            <div class="col-lg-3 col-md-6 col-6 ">
                 <h3>Tautan</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a class="list-unstyled" href="">Web Unja</a>
-
+                        <a href="">Web Unja</a>
                     </li>
                     <li>
-                        <a class="list-unstyled" href="">Sistem Informasi Akademik</a>
+                        <a href="">Sistem Informasi Akademik</a>
                     </li>
                     <li>
-                        <a class="list-unstyled" href="">Tugas Akhir</a>
+                        <a href="">Tugas Akhir</a>
                     </li>
                     <li>
-                        <a class="list-unstyled" href="">Perpustakaan Nasional</a>
+                        <a href="">Perpustakaan Nasional</a>
                     </li>
                 </ul>
             </div>
-            <div>
+
+            <!-- Kontak Section -->
+            <div class="col-lg-3 col-md-6 col-6">
                 <h3>Kontak</h3>
                 <ul class="list-unstyled">
                     <li>
@@ -293,21 +241,56 @@
                             Gedung A, Lt.2</p>
                     </li>
                     <li>
-                        <p>Jl. Raya Jambi - Muara Bulian<br> Km. 15Mendalo Indah, Jambi Luar Kota, <br>Jambi 36361</p>
+                        <p>Jl. Raya Jambi - Muara Bulian<br>
+                            Km. 15 Mendalo Indah, Jambi Luar Kota,<br>
+                            Jambi 36361</p>
                     </li>
                     <li>
-                        <p>Phone:</p>
+                        <p><strong>Phone:</strong> +62 xxx xxxx xxxx</p>
                     </li>
                     <li>
-                        <p>Email:</p>
+                        <p><strong>Email:</strong> info@unja.ac.id</p>
                     </li>
                 </ul>
             </div>
-            <div>
+
+            <!-- Media Sosial Section -->
+            <div class="col-lg-2 col-md-6 col-12 ms-auto">
                 <h3>Media Sosial</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#" class="d-flex align-items-center mb-2">
+                            <i class="fab fa-facebook me-2"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex align-items-center mb-2">
+                            <i class="fab fa-instagram me-2"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex align-items-center mb-2">
+                            <i class="fab fa-twitter me-2"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex align-items-center mb-2">
+                            <i class="fab fa-youtube me-2"></i> YouTube
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="row mt-4 pt-4">
+            <div class="col-12 text-center">
+                <p class="mb-0">&copy; 2024 Ruang Baca Digital - Fakultas Sains dan Teknologi UNJA. All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>
+    <script src="https://kit.fontawesome.com/f10456a175.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
@@ -317,6 +300,17 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
         integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous">
+    </script>
+    <script>
+        function scrollRight(containerId) {
+            const container = document.getElementById(containerId);
+            const scrollAmount = 200; // Adjust scroll distance as needed
+
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 
