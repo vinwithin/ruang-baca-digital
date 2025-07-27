@@ -98,7 +98,7 @@
 
     </div>
 
-    <section class="vh-100" id="prodi">
+    <section id="prodi">
         <h1 class="text-dark text-center mt-5">PROGRAM STUDI</h1>
         <div class="container my-5">
             <div class="d-flex overflow-auto gap-3">
@@ -142,22 +142,24 @@
         </div>
 
     </section>
-    <section class="vh-100" id="koleksi">
-        <h1 class="text-dark text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
-        <div class="d-flex justify-content-center align-items-center gap-5">
-            <div class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
-                <h1 class="kategori-title">Tugas Akhir</h1>
-                <div class="logo-wrapper">
-                    <img src="/assets/logo.png" alt="Logo">
-                </div>
-            </div>
-            <div class="kategori-box laporan-magang d-flex flex-column justify-content-between align-items-center">
-                <h1 class="kategori-title">Laporan Magang</h1>
-                <div class="logo-wrapper">
-                    <img src="/assets/logo.png" alt="Logo">
+    <section class="" id="koleksi">
+        <div class="wrapper">
+            <h1 class="text-white text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
+            <div class="container">
+                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                    <div class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
+                        <h1 class="kategori-title">Tugas Akhir</h1>
+                        <img src="/assets/unja.png" alt="">
+                    </div>
+                    <div
+                        class="kategori-box laporan-magang d-flex flex-column justify-content-between align-items-center">
+                        <h1 class="kategori-title">Laporan Magang</h1>
+                        <img src="/assets/unja.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
+
     </section>
 
     <section class="vh-100" id="tentang">
@@ -167,7 +169,8 @@
                 <img src="/assets/tentang-img.png" alt="">
             </div>
             <div>
-                <p class="">Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu fasilitas
+                <p class="">Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu
+                    fasilitas
                     penting yang disediakan untuk mendukung kegiatan akademik sivitas akademika, khususnya mahasiswa
                     dalam mengakses berbagai sumber referensi yang relevan dengan bidang sains dan teknologi. Ruang baca
                     ini dirancang sebagai tempat yang nyaman dan kondusif untuk belajar mandiri, membaca literatur
@@ -267,7 +270,7 @@
                 <h3>Tautan</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a class="list-unstyled"  href="">Web Unja</a>
+                        <a class="list-unstyled" href="">Web Unja</a>
 
                     </li>
                     <li>
@@ -293,7 +296,7 @@
                         <p>Jl. Raya Jambi - Muara Bulian<br> Km. 15Mendalo Indah, Jambi Luar Kota, <br>Jambi 36361</p>
                     </li>
                     <li>
-                       <p>Phone:</p>
+                        <p>Phone:</p>
                     </li>
                     <li>
                         <p>Email:</p>

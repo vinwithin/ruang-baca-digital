@@ -11,12 +11,21 @@
 html {
     font-family: "Plus Jakarta Sans", sans-serif;
 }
-.wrapper {
-    height: 100vh;
-}
+
 .wrap {
     background: url("/assets/hero-img.png") no-repeat center center/cover;
 }
+
+/* .wrap::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: white;
+} */
+
 #navigasi {
     display: flex;
     color: white;
@@ -55,8 +64,11 @@ html {
     color: rgba(255, 255, 255, 1);
 }
 #hero {
-    height: 90vh;
+    height: 105vh;
     padding: 1.5rem 8%;
+    z-index: 1;
+    position: relative;
+    margin-bottom: -200px;
 }
 .search-bar {
     background: rgba(255, 255, 255, 0.2);
@@ -106,45 +118,109 @@ html {
     font-weight: 700;
     line-height: 58px; /* 131.818% */
 }
-#koleksi {
-    background-color: #a2d2ff;
-}
-.kategori-box {
-    width: 200px;
-    height: 540px;
-    flex-shrink: 0;
+#prodi {
+    background: url("/assets/Subtract.png") no-repeat center center/cover;
+    z-index: 10;
     position: relative;
-    padding: 20px 0;
-    overflow: hidden;
+    padding-top: 200px;
+    height: 100vh;
+}
+#koleksi {
+    height: 120vh;
+    background: url("/assets/koleksi.png") no-repeat center center/cover;
+    z-index: 1;
+    position: relative;
+    margin-top: -200px;
+    /* pading-top: 200px; */
+}
+.wrapper {
+    padding-top: 200px;
+    display: grid;
+    place-items: center;
+    justify-items: center; /* Horizontal */
+    align-items: start;
 }
 
 .kategori-title {
     writing-mode: vertical-rl;
     transform: rotate(360deg); /* agar teks dari bawah ke atas */
-    font-size: 24px;
     color: white;
-    margin-bottom: 20px;
+    position: absolute;
+    font-family: "Plus Jakarta Sans";
+    font-size: 44px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px; 
+    z-index: 1;
 }
 
-.logo-wrapper {
-    margin-top: auto;
-    margin-bottom: 10px;
+.kategori-box {
+    position: relative;
+    width: 200px;
+    height: 540px;
+    padding: 20px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
-
+.kategori-box img {
+    position: relative;
+    z-index: 2;
+}
+.kategori-box:hover {
+    transform: translateY(-5px);
+}
 .tugas-akhir {
+    background-image: url("/assets/koleksi1.png");
+}
+
+.laporan-magang {
+    background-image: url("/assets/koleksi2.png");
+}
+
+.tugas-akhir::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(
         180deg,
         rgba(237, 91, 49, 0.36) 0%,
         rgba(237, 91, 49, 0.83) 100%
     );
+    z-index: 1;
 }
-
-.laporan-magang {
+.laporan-magang::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(
         180deg,
         rgba(2, 62, 138, 0.36) 0%,
         rgba(2, 62, 138, 0.83) 100%
     );
+    z-index: 1;
+}
+
+.kategori-title {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #tentang {
