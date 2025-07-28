@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+Route::get('/tentang-kami', [BerandaController::class, 'tentang'])->name('tentang-kami');
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');

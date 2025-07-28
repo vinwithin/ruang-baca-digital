@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+html {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+#navigasi {
+    display: flex;
+
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10rem;
+    align-items: center;
+    padding: 1.5rem 8%;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+#navigasi img {
+    max-width: 9rem;
+}
+#navigasi a {
+    color: #1f1f1f;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+}
+#button-login {
+    display: flex;
+    background: rgba(2, 62, 138, 1);
+    width: 7.9rem;
+    height: 2.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+#button-login a {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+#tentang-kami {
+    height: 130vh;
+    padding: 1.5rem 8%;
+    z-index: 1;
+}
+#tentang-kami h2 {
+    color: #043471;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    /* Heading/h4/Bold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 133.333% */
+}
+#tentang-kami p {
+    color: #000;
+    text-align: justify;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+.img-tentang-kami {
+    width: 584px;
+    height: 360px;
+    flex-shrink: 0;
+}
+footer {
+    padding: 1.5rem 8%;
+    background: #043471;
+    color: white;
+}
+.list-unstyled li a {
+    text-decoration: none !important;
+    color: #ffffff;
+}

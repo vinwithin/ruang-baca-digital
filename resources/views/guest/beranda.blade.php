@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse " id="navbarNav">
                 <ul class="navbar-nav me-auto gap-4 ">
                     <li class="nav-item ">
-                        <a class="nav-link text-white" href="/tentang-kami">Beranda</a>
+                        <a class="nav-link text-white" href="">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white " href="/#announcement">Jenis Koleksi</a>
@@ -44,7 +44,7 @@
                         <a class="nav-link text-white " href="/daftar-publikasi">Berita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="/#galeri">Tentang</a>
+                        <a class="nav-link text-white " href="/#tentang">Tentang</a>
                     </li>
 
                 </ul>
@@ -102,7 +102,11 @@
     </div>
 
     <section id="prodi">
-        <h1 class="text-dark text-center pt-5 mb-5 mt-5">PROGRAM STUDI</h1>
+        <div class="container d-flex justify-content-between align-items-center pt-5 mb-4 mt-5">
+            <h1 class="text-dark ">PROGRAM STUDI</h1>
+            <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+
+        </div>
 
         <div class="container position-relative">
             <div class="arrow-icon" onclick="scrollRight('scroll-container')">
@@ -126,10 +130,14 @@
     </section>
     <section class="" id="koleksi">
         <div class="wrapper">
-            <h1 class="text-white text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
+            <div class="container d-flex justify-content-between align-items-center mb-5 ">
+                <h1 class="text-white text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
+                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
             <div class="container">
                 <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
-                    <div class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
+                    <div
+                        class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
                         <h1 class="kategori-title">Tugas Akhir</h1>
                         <img src="/assets/unja.png" alt="">
                     </div>
@@ -145,7 +153,7 @@
     </section>
 
     <section class="" id="tentang">
-        <h1 class="text-dark text-center pt-5 mb-5">TENTANG RUANG BACA</h1>
+        <h1 class="text-dark text-start pt-5 mb-5">TENTANG RUANG BACA</h1>
         <div class="d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
 
             <div>
@@ -165,30 +173,41 @@
                     melalui jaringan kampus. Keberadaan ruang baca ini sangat membantu mahasiswa dalam mengembangkan
                     wawasan akademik, meningkatkan kualitas penulisan ilmiah, serta menunjang proses penyusunan laporan
                     magang dan tugas akhir secara lebih efektif dan terarah.</p>
+                <a class="btn-deskripsi" href="/tentang-kami">Baca Selengkapnya ... <i class="fa-solid fa-folder-open"></i></a>
             </div>
         </div>
     </section>
     <section id="berita">
-        <h1 class="text-dark text-center">BERITA/INFORMASI</h1>
+        <div class="container d-flex justify-content-between align-items-center mb-5 pb-4">
+            <h1 class="text-dark">BERITA/INFORMASI</h1>
+            <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
         <div class="container">
             <div class="row g-5">
                 <!-- Card 1 -->
-                @foreach ($berita as $item)
-                    <div class="col-md-4">
-                        <div class="news-card position-relative text-white">
-                            <img src="/storage/{{ $item->image }}"
-                                class="object-fit-cover position-absolute top-0 start-0" alt="..." />
-                            <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                            <div
-                                class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
-                                <h4 class="fw-bold">{{ $item->title }}</h4>
-                                <p class="mt-3 small">
-                                    {{ Str::limit($item->content, 100, '...') }}
-                                </p>
-                            </div>
-                        </div>
+                <div class="container position-relative">
+                    <div class="arrow-icon" onclick="scrollRight('scroll-container2')">
+                        <i class="fa-solid fa-arrow-right"></i>
                     </div>
-                @endforeach
+                    <div class="d-flex gap-2 overflow-auto" id="scroll-container2">
+                        @foreach ($berita as $item)
+                            <div class="col-md-4">
+                                <div class="news-card position-relative text-white">
+                                    <img src="/storage/{{ $item->image }}"
+                                        class="object-fit-cover position-absolute top-0 start-0" alt="..." />
+                                    <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                                    <div
+                                        class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
+                                        <h4 class="fw-bold">{{ $item->title }}</h4>
+                                        <p class="mt-3 small">
+                                            {{ Str::limit($item->content, 100, '...') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
 
 
@@ -285,8 +304,7 @@
         <!-- Copyright Section -->
         <div class="row mt-4 pt-4">
             <div class="col-12 text-center">
-                <p class="mb-0">&copy; 2024 Ruang Baca Digital - Fakultas Sains dan Teknologi UNJA. All rights
-                    reserved.</p>
+                <p class="mb-0">Copyright &copy; 2025 Ruang Baca Fakultas Sains dan Teknologi Universitas Jambi.</p>
             </div>
         </div>
     </footer>

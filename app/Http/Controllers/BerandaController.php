@@ -12,8 +12,11 @@ class BerandaController extends Controller
     public function index(){
         return view('guest.beranda', [
             'prodi' => ProgramStudi::all(),
-            'berita' => Berita::latest()->take(3)->get(),
+            'berita' => Berita::latest()->take(10)->get(),
             'jenis' => JenisDokumen::all(),
         ]);
+    }
+    public function tentang(){
+        return view('guest.tentang');
     }
 }

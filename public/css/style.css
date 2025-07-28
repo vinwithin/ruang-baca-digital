@@ -16,16 +16,6 @@ html {
     background: url("/assets/hero-img.png") no-repeat center center/cover;
 }
 
-/* .wrap::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: white;
-} */
-
 #navigasi {
     display: flex;
     color: white;
@@ -144,6 +134,23 @@ html {
     padding-top: 200px;
     height: 100vh;
 }
+.btn-more {
+    display: flex;
+    height: 36px;
+    padding: 0 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 12px;
+    background: #023e8a;
+    color: #fff;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+    text-decoration: none;
+}
 #scroll-container {
     overflow-x: auto;
     /* white-space: nowrap; */
@@ -221,11 +228,11 @@ html {
 }
 
 #koleksi {
-    height: 120vh;
+    height: 130vh;
     background: url("/assets/koleksi.png") no-repeat center center/cover;
     z-index: 1;
     position: relative;
-    margin-top: -200px;
+    margin-top: -130px;
     /* pading-top: 200px; */
 }
 .wrapper {
@@ -348,8 +355,27 @@ html {
     height: 439px;
     flex-shrink: 0;
 }
+.btn-deskripsi {
+    display: flex;
+    width: 200px;
+    height: 28px;
+    padding: 0 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 1px solid #185adc;
+    color: #185adc;
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 116.667% */
+    text-decoration: none;
+}
 #berita {
-    height: 70vh;
+    height: 90vh;
     padding: 1.5rem 8%;
     display: flex;
     flex-direction: column;
@@ -359,14 +385,25 @@ html {
 }
 #berita h1 {
     color: #1a1a1a;
-    text-align: center;
-    margin-bottom: 4rem;
+
     /* Heading/h1/SemiBold */
     font-family: "Plus Jakarta Sans";
     font-size: 44px;
     font-style: normal;
     font-weight: 600;
     line-height: 58px; /* 131.818% */
+}
+#scroll-container2 {
+    overflow-x: auto;
+    /* white-space: nowrap; */
+    padding-bottom: 10px;
+    display: flex;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    scrollbar-width: thin; /* Untuk browser Firefox */
+    -ms-overflow-style: none; /* Untuk IE dan Edge */
 }
 .news-card {
     width: 400px;
@@ -379,7 +416,7 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 5px;
     filter: brightness(60%);
 }
 .card-content h4 {
