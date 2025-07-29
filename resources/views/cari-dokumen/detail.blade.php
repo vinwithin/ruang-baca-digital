@@ -19,8 +19,7 @@
         <div class="card p-5 border rounded-3 shadow-sm">
             <div class="container-fluid mt-2 clearfix">
                 <h4 class="fw-bold text-center mb-4">
-                    Analisis Kesesuaian Tugas Sistem Informasi Akademik (SIAKAD) terhadap Kinerja Dosen <br>
-                    Menggunakan Metode Task Technology Fit (Studi Kasus Universitas Jambi)
+                    {{$data->judul}}
                 </h4>
 
                 <div class="table-responsive rounded-4 border mb-5">

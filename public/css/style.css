@@ -40,6 +40,8 @@ html {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 600;
 }
+
+
 #button-login {
     display: flex;
     background: rgba(2, 62, 138, 1);
@@ -443,7 +445,74 @@ footer {
     background: #043471;
     color: white;
 }
+.footer-title h1 {
+    color: #fff;
+    /* Label/l18/Bold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px; /* 127.778% */
+}
+.footer-title h2 {
+    color: #fff;
+    /* Label/l16/Bold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+.footer-links h3 {
+    color: #fff8f8;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+}
 .list-unstyled li a {
     text-decoration: none !important;
-    color: #ffffff;
+    color: #fff8f8;
+    /* Label/la12/Medium */
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 116.667% */
+}
+.footer-contact h3 {
+    color: #fff8f8;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+}
+.list-unstyled li p {
+    text-decoration: none !important;
+    color: #fff8f8;
+    /* Label/la12/Medium */
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 116.667% */
+}
+.footer-social h3 {
+    color: #fff8f8;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+}
+.footer-copyright p {
+    color: #fff8f8;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 116.667% */
 }

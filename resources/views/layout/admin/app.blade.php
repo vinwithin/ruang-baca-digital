@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" href="/assets/unja.png">
-    <meta name="description" content="Pro-IDe Universitas Jambi">
+    <meta name="description" content="Ruang Baca Digital Fakultas Sains dan Teknologi Universitas Jambi">
     <meta name="author" content="Pro-IDe">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="Pro-IDe, Universitas Jambi, Pro-IDe Universitas Jambi, UNJA, PKM, UKM, web">

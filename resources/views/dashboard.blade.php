@@ -80,7 +80,7 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data->where('status', 'Diproses')->count() }}
+                                    {{ $data->whereIn('status', ['Diproses', 'Revisi'])->count() }}
                                 </h2>
                                 <div class="text-center">
                                     Ajuan Mahasiswa

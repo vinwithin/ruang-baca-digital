@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Edit Dokumen Anda')
+@section('title', 'Kelola Dokumen')
 @section('content')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -124,8 +124,17 @@
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
-            border-radius: 25px;
+            border-radius: 10px;
             padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-light {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #023E8A;
+            padding: 10px 25px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -181,7 +190,8 @@
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm" method="POST" action="/dokumen/update/{{$data->uuid}}" enctype="multipart/form-data">
+                <form id="inputDokumenForm" method="POST" action="/admin/kelola-dokumen/update/{{ $data->uuid }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -189,7 +199,7 @@
                                 <label for="namaMahasiswa" class="form-label">Nama Mahasiswa</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                     id="namaMahasiswa" name="nama" placeholder="Masukkan Nama Anda"
-                                    value="{{$data->nama}}">
+                                    value="{{ $data->nama }}">
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -220,7 +230,7 @@
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
                                 <input type="text" class="form-control" id="nimMahasiswa" name="identifier" readonly
-                                    value="{{$data->identifier}}">
+                                    value="{{ $data->identifier }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -266,7 +276,7 @@
                             <div class="mb-3">
                                 <label for="tahun" class="form-label">Tahun</label>
                                 <input type="number" class="form-control @error('tahun') is-invalid @enderror"
-                                    id="tahun" name="tahun" value="{{$data->tahun}}" min="2020"
+                                    id="tahun" name="tahun" value="{{ $data->tahun }}" min="2020"
                                     max="2030">
                                 @error('tahun')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -351,8 +361,11 @@
                         </div>
 
                         <div class="button-group">
+                            <a href="{{ route('admin.kelola-dokumen') }}" class="btn btn-light text-dark">
+                                Batal <i class="fa-solid fa-xmark ms-2"></i>
+                            </a>
                             <button type="submit" class="btn btn-primary" id="submitButton" disabled>
-                                Kirim
+                                Kirim<i class="fa-solid fa-circle-arrow-right ms-2"></i>
                             </button>
                         </div>
                     </div>

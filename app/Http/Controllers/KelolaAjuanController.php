@@ -11,7 +11,22 @@ class KelolaAjuanController extends Controller
     public function index(Request $request)
     {
         $jenisDokumen = $request->input('jenis_dokumen');
-        $data = LaporanMahasiswa::query();
+        $search = $request->input('search');
+
+        $data = LaporanMahasiswa::with('user.roles')
+            ->whereHas('user.roles', function ($q) {
+                $q->where('name', 'mahasiswa');
+            });
+
+        if ($search) {
+            $data->where(function ($query) use ($search) {
+                $query->where('judul', 'like', "%{$search}%")
+                    ->orWhere('nama', 'like', "%{$search}%")
+                    ->orWhere('identifier', 'like', "%{$search}%")
+                    ->orWhere('kata_kunci', 'like', "%{$search}%");
+            });
+        }
+
         if ($jenisDokumen) {
             $data->where('jenis_dokumen_id', $jenisDokumen);
         }

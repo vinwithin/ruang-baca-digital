@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Kelola Ajuan Mahasiswa')
+@section('title', 'Kelola Dokumen')
 @section('content')
     <style>
         .search-box {
@@ -15,7 +15,7 @@
         <div class="card p-3 border rounded-3 shadow-sm">
             <div class="container mt-2">
                 <h4 class="fw-bold text-center mb-4">
-                   {{$data->judul}}
+                    {{ $data->judul }}
                 </h4>
 
                 <div class="table-responsive rounded-4 border overflow-hidden">
@@ -36,18 +36,7 @@
                             <tr>
                                 <td class="fw-semibold">Jenis Koleksi</td>
                                 <td>
-                                    @php
-                                        $jenisNama = $data->jenis_dokumen->nama;
-                                        $badgeClass = 'bg-warning text-dark'; // default
-
-                                        if ($jenisNama === 'Skripsi') {
-                                            $badgeClass = 'bg-secondary';
-                                        } elseif ($jenisNama === 'Laporan Magang') {
-                                            $badgeClass = 'bg-primary';
-                                        }
-                                    @endphp
-
-                                    <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                    <span class="badge bg-primary px-3 py-2">{{ $data->jenis_dokumen->nama }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -83,7 +72,7 @@
                                             $badgeClass = 'bg-danger';
                                         }
                                     @endphp
-                                    <span class="badge {{ $badgeClass }}"
+                                    <span class="badge px-3 py-2 {{ $badgeClass }}"
                                         @if ($data->status === 'Revisi') data-bs-toggle="modal" 
                                             data-bs-target="#modalRevisi-{{ $data->id }}"
                                             style="cursor: pointer" @endif>
@@ -130,31 +119,14 @@
                 <div class="d-flex justify-content-between mt-2 flex-wrap gap-2">
 
                     <div>
-                        <a href="/admin/dokumen" class="btn btn-primary">
+                        <a href="/admin/kelola-dokumen" class="btn btn-primary">
                             <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                         </a>
                     </div>
                     <div>
-                        @if ($data->status === 'Diproses')
-                            <a href="javascript:void(0);" class="btn btn-outline-warning text-dark" data-bs-toggle="modal"
-                                data-bs-target="#revisiModal">
-                                Kirim Revisi
-                            </a>
-                            <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
-                        @elseif($data->status === 'Revisi')
-                            <a class="btn btn-sm btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
-                        @endif
 
-
-                        <!-- Komponen modal -->
-                        <x-reject-with-modal id="revisiModal" title="Kirim Revisi"
-                            action="{{ url('/admin/dokumen/reject/' . $data->id) }}" buttonText="Kirim"
-                            buttonClass="btn-warning">
-                            <div class="mb-3">
-                                <label for="komentar" class="form-label">Komentar Revisi</label>
-                                <textarea name="komentar" id="komentar" class="form-control" rows="4" required></textarea>
-                            </div>
-                        </x-reject-with-modal>
+                        <a href="/admin/kelola-dokumen/edit/{{ $data->uuid }}" class="btn btn-warning">Edit</a>
+                        <a href="/admin/kelola-dokumen/delete/{{ $data->uuid }}" class="btn btn-outline-danger">Hapus</a>
 
                     </div>
 

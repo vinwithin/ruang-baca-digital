@@ -4,8 +4,8 @@
              <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
          </a>
          <div class="d-flex flex-column">
-             <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
-             <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
+             <h1 class="fs-6 mb-0 fw-bold">Ruang Baca Digital</h1>
+             <h1 class="fs-6 fw-bold">Fakultas Sains dan Teknologi</h1>
          </div>
      </div>
 
@@ -17,7 +17,7 @@
      <div class="collapse navbar-collapse " id="navbarNav">
          <ul class="navbar-nav me-auto gap-4 ">
              <li class="nav-item ">
-                 <a class="nav-link text-dark" href="/tentang-kami">Beranda</a>
+                 <a class="nav-link text-dark" href="/">Beranda</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link text-dark " href="/#announcement">Jenis Koleksi</a>
@@ -36,9 +36,11 @@
 
          <div class="ms-auto" id="button-login">
              <a href="/login" class="fw-semibold">
-                 Masuk <i class="fa-solid fa-arrow-right me-2"></i>
+                 Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
              </a>
 
          </div>
      </div>
+
  </nav>
+ <hr class="navbar-line">

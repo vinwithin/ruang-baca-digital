@@ -9,17 +9,51 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DokumenController extends Controller
+class KelolaDokumenController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('laporan.index', [
+        $search = $request->input('search');
+        $jenisDokumen = $request->input('jenis_dokumen');
+
+        $data = LaporanMahasiswa::with('user.roles')
+            ->whereHas('user.roles', function ($q) {
+                $q->where('name', 'admin');
+            });
+        if ($search) {
+            $data->where(function ($query) use ($search) {
+                $query->where('judul', 'like', "%{$search}%")
+                    ->orWhere('nama', 'like', "%{$search}%")
+                    ->orWhere('identifier', 'like', "%{$search}%")
+                    ->orWhere('kata_kunci', 'like', "%{$search}%");
+            });
+        }
+        if ($jenisDokumen) {
+            $data->where('jenis_dokumen_id', $jenisDokumen);
+        }
+        
+        $data = $data->latest()->paginate(10);
+
+        return view('admin.kelola-dokumen.index', [
+            'data' => $data,
+            'jenis_dokumen' => JenisDokumen::all(),
+        ]);
+    }
+    public function show(LaporanMahasiswa $laporanmahasiswa)
+    {
+        $data = LaporanMahasiswa::findOrFail($laporanmahasiswa->id);
+        return view('admin.kelola-dokumen.show', [
+            'data' => $data,
+        ]);
+    }
+    public function create()
+    {
+        return view('admin.kelola-dokumen.create', [
             'prodi' => ProgramStudi::all(),
             'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -47,28 +81,26 @@ class DokumenController extends Controller
         }
 
         // Simpan ke database
-        $validatedData['status'] = 'Diproses';
+        $validatedData['status'] = 'Disetujui';
         $validatedData['user_id'] = Auth::user()->id; // Set user_id to the currently authenticated user
         $result = LaporanMahasiswa::create(
             $validatedData
         );
         if ($result) {
-            return redirect()->route('informasi-dokumen')->with('success', 'Dokumen berhasil disimpan.');
+            return redirect()->route('admin.kelola-dokumen')->with('success', 'Dokumen berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen.');
         }
     }
-
     public function edit(LaporanMahasiswa $laporanmahasiswa)
     {
-        return view('laporan.edit', [
+        return view('admin.kelola-dokumen.edit', [
             'data' => LaporanMahasiswa::find($laporanmahasiswa->id),
             'prodi' => ProgramStudi::all(),
             'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
-
     public function update(Request $request, LaporanMahasiswa $laporanmahasiswa)
     {
         $validatedData = $request->validate([
@@ -94,18 +126,23 @@ class DokumenController extends Controller
         } else {
             return back()->withErrors(['file' => 'File dokumen wajib diunggah.']);
         }
-
-        // Simpan ke database
-        $validatedData['status'] = 'Diproses';
         $validatedData['user_id'] = Auth::user()->id; // Set user_id to the currently authenticated user
-
         $result = LaporanMahasiswa::where('id', $laporanmahasiswa->id)->update(
             $validatedData
         );
         if ($result) {
-            return redirect()->route('informasi-dokumen')->with('success', 'Dokumen berhasil disimpan.');
+            return redirect()->route('admin.kelola-dokumen')->with('success', 'Dokumen berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal Menyimpan Dokumen.');
+        }
+    }
+    public function destroy(LaporanMahasiswa $laporanmahasiswa)
+    {
+        $laporan = LaporanMahasiswa::findOrFail($laporanmahasiswa->id);
+        if ($laporan->delete()) {
+            return redirect()->route('admin.kelola-dokumen')->with('success', 'Dokumen berhasil dihapus.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menghapus dokumen.');
         }
     }
 }

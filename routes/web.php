@@ -9,6 +9,7 @@ use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
+use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/dokumen/view/{filename}', [KelolaAjuanController::class, 'view'])->name('dokumen-view');
         Route::get('/dokumen/approve/{id}', [KelolaAjuanController::class, 'approve'])->name('dokumen-approve');
         Route::post('/dokumen/reject/{id}', [KelolaAjuanController::class, 'reject'])->name('dokumen-reject');
+        Route::get('/kelola-dokumen', [KelolaDokumenController::class, 'index'])->name('admin.kelola-dokumen');
+        Route::get('/kelola-dokumen/unggah', [KelolaDokumenController::class, 'create'])->name('admin.kelola-dokumen.unggah');
+        Route::post('/kelola-dokumen/unggah', [KelolaDokumenController::class, 'store'])->name('admin.kelola-dokumen.unggah');
+        Route::get('/kelola-dokumen/edit/{laporanmahasiswa}', [KelolaDokumenController::class, 'edit'])->name('admin.kelola-dokumen.edit');
+        Route::post('/kelola-dokumen/update/{laporanmahasiswa}', [KelolaDokumenController::class, 'update'])->name('admin.kelola-dokumen.update');
+        Route::get('/kelola-dokumen/detail/{laporanmahasiswa}', [KelolaDokumenController::class, 'show'])->name('admin.kelola-dokumen.detail');
+        Route::get('/kelola-dokumen/delete/{laporanmahasiswa}', [KelolaDokumenController::class, 'destroy'])->name('admin.kelola-dokumen.delete');
+
         Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
         Route::get('/berita/unggah', [BeritaController::class, 'create'])->name('berita.create');
         Route::post('/berita/unggah', [BeritaController::class, 'store'])->name('berita.store');

@@ -51,7 +51,7 @@
 
                 <div class="ms-auto" id="button-login">
                     <a href="/login" class="fw-semibold">
-                        Masuk <i class="fa-solid fa-circle-arrow-right"></i>
+                        Masuk <i class="fa-solid fa-circle-arrow-right ms-2"></i>
                     </a>
 
                 </div>
@@ -224,15 +224,15 @@
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
                     </a>
-                    <div class="d-flex flex-column">
-                        <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
-                        <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
+                    <div class="d-flex flex-column footer-title">
+                        <h1 class=" mb-0">Ruang Baca Digital</h1>
+                        <h2 class="">Fakultas Sains dan Teknologi</h1>
                     </div>
                 </div>
             </div>
 
             <!-- Tautan Section -->
-            <div class="col-lg-3 col-md-6 col-6 ">
+            <div class="col-lg-3 col-md-6 col-6 footer-links">
                 <h3>Tautan</h3>
                 <ul class="list-unstyled">
                     <li>
@@ -251,7 +251,7 @@
             </div>
 
             <!-- Kontak Section -->
-            <div class="col-lg-3 col-md-6 col-6">
+            <div class="col-lg-3 col-md-6 col-6 footer-contact">
                 <h3>Kontak</h3>
                 <ul class="list-unstyled">
                     <li>
@@ -274,7 +274,7 @@
             </div>
 
             <!-- Media Sosial Section -->
-            <div class="col-lg-2 col-md-6 col-12 ms-auto">
+            <div class="col-lg-2 col-md-6 col-12 ms-auto footer-social">
                 <h3>Media Sosial</h3>
                 <ul class="list-unstyled">
                     <li>
@@ -303,8 +303,8 @@
 
         <!-- Copyright Section -->
         <div class="row mt-4 pt-4">
-            <div class="col-12 text-center">
-                <p class="mb-0">Copyright &copy; 2025 Ruang Baca Fakultas Sains dan Teknologi Universitas Jambi.</p>
+            <div class="col-12 text-center footer-copyright">
+                <p class="mb-0 ">Copyright &copy; 2025 Ruang Baca Fakultas Sains dan Teknologi Universitas Jambi.</p>
             </div>
         </div>
     </footer>

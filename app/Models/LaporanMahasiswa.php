@@ -11,6 +11,7 @@ class LaporanMahasiswa extends Model
     public $laporan = 'laporan';
     protected $fillable = [
         'uuid',
+        'user_id',
         'nama',
         'identifier',
         'dospem1',
@@ -39,7 +40,7 @@ class LaporanMahasiswa extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
     public function dosen1()
     {

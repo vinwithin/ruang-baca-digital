@@ -39,8 +39,8 @@
                         <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Kelola Ajuan Mahasiswa</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="">
+                <li class="sidebar-item {{ Request::is('admin/kelola-dokumen*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.kelola-dokumen') }}">
                         <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Kelola Dokumen</span>
                     </a>
                 </li>

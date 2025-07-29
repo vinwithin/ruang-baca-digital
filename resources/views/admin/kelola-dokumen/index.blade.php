@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Kelola Ajuan Mahasiswa')
+@section('title', 'Kelola Dokumen')
 @section('content')
     <style>
         .table-wrapper {
@@ -17,7 +17,7 @@
     <div class="w-100">
         <div class="card">
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold">Daftar seluruh ajuan dari Mahasiswa</h5>
+                <h5 class="fw-bold">Daftar Dokumen</h5>
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection"
                     aria-expanded="false" aria-controls="filterSection">
                     <i class="fas fa-filter me-2"></i>Filter
@@ -26,7 +26,7 @@
             </div>
             <div class="collapse mt-3" id="filterSection">
                 <div class="card card-body border shadow-sm">
-                    <form method="GET" action="{{ route('admin-dokumen') }}">
+                    <form method="GET" action="{{ route('admin.kelola-dokumen') }}">
                         <div class="row g-3 align-items-end">
                             <div class="col-md-4">
                                 <label for="jenis_dokumen" class="form-label text-dark fw-semibold">Pilih Dokumen:</label>
@@ -48,16 +48,18 @@
                     </form>
                 </div>
             </div>
-            <div class="card-header d-flex justify-content-end align-items-end">
-               
-                <form action="{{ route('admin-dokumen') }}" method="GET" >
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <a class="btn btn-primary" href="{{ route('admin.kelola-dokumen.unggah') }}"><i
+                        class="fa-solid fa-plus me-2"></i>Tambah
+                    Dokumen</a>
+                <form action="{{ route('admin.kelola-dokumen') }}" method="GET" class="mb-3">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Cari kegiatan..."
                             value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa fa-search"></i> Cari
                         </button>
-                        <a href="{{ route('admin-dokumen') }}" class="btn btn-primary ms-2">Atur Ulang</a>
+                        <a href="{{ route('admin.kelola-dokumen') }}" class="btn btn-primary ms-2">Atur Ulang</a>
 
                     </div>
                 </form>
@@ -69,12 +71,11 @@
                         <thead class="table-light text-start">
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal Ajuan</th>
+                                <th>Tanggal Input</th>
                                 <th>Judul</th>
                                 <th>Nama</th>
                                 <th>Program Studi</th>
                                 <th>Jenis Koleksi</th>
-                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -91,65 +92,19 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->program_studi->nama }}</td>
                                     <td>
-                                        @php
-                                            $jenisNama = $item->jenis_dokumen->nama;
-                                            $badgeClass = 'bg-warning text-dark'; // default
-
-                                            if ($jenisNama === 'Skripsi') {
-                                                $badgeClass = 'bg-secondary';
-                                            } elseif ($jenisNama === 'Laporan Magang') {
-                                                $badgeClass = 'bg-primary';
-                                            }
-                                        @endphp
-
-                                        <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                        <span class="badge bg-primary px-4 py-2">{{ $item->jenis_dokumen->nama }}</span>
                                     </td>
-                                    <td>
-                                        @php
-                                            $badgeClass = 'bg-secondary'; // default
 
-                                            if ($item->status === 'Diproses') {
-                                                $badgeClass = 'bg-warning';
-                                            } elseif ($item->status === 'Disetujui') {
-                                                $badgeClass = 'bg-success';
-                                            } elseif ($item->status === 'Revisi') {
-                                                $badgeClass = 'bg-danger';
-                                            }
-                                        @endphp
-                                        <span class="badge {{ $badgeClass }}"
-                                            @if ($item->status === 'Revisi') data-bs-toggle="modal" 
-                                            data-bs-target="#modalRevisi-{{ $item->id }}"
-                                            style="cursor: pointer" @endif>
-                                            {{ $item->status }}
-                                            @if ($item->status === 'Revisi')
-                                                <i class="fa-solid fa-circle-info"></i>
-                                            @endif
-                                        </span>
-
-                                        <div class="modal fade" id="modalRevisi-{{ $item->id }}" tabindex="-1"
-                                            aria-labelledby="modalRevisiLabel-{{ $item->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalRevisiLabel-{{ $item->id }}">
-                                                            Catatan Revisi</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Tutup"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {{ $item->komentar ?? 'Tidak ada catatan revisi.' }}
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Tutup</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td>
-                                        <a class="btn btn-primary" href="/admin/dokumen/{{ $item->id }}">Lihat
-                                            Detail</a>
+                                        <a href="/admin/kelola-dokumen/detail/{{ $item->uuid }}"
+                                            class="btn btn-outline-primary"><i class="fa-solid fa-eye"
+                                                style="color: #B197FC;"></i></a>
+                                        <a href="/admin/kelola-dokumen/edit/{{ $item->uuid }}"
+                                            class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"
+                                                style="color: #FFD43B;"></i></a>
+                                        <a href="/admin/kelola-dokumen/delete/{{ $item->uuid }}"
+                                            class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"
+                                                style="color: #ff2600;"></i></a>
 
                                     </td>
                                 </tr>
