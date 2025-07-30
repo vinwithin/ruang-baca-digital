@@ -12,4 +12,8 @@ class JenisDokumen extends Model
         'nama',
 
     ];
+    public function getRouteKeyName(): string
+    {
+        return 'nama';
+    }
 }

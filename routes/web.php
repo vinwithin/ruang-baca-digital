@@ -10,11 +10,15 @@ use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/tentang-kami', [BerandaController::class, 'tentang'])->name('tentang-kami');
+Route::get('/hasil-pencarian', [BerandaController::class, 'tentang'])->name('hasil-pencarian');
+Route::get('/koleksi/{jenisdokumen}', [KoleksiController::class, 'index'])->name('koleksi');
+
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');

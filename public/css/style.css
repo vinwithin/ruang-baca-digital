@@ -41,7 +41,6 @@ html {
     font-weight: 600;
 }
 
-
 #button-login {
     display: flex;
     background: rgba(2, 62, 138, 1);
@@ -245,21 +244,12 @@ html {
     align-items: start;
 }
 
-.kategori-title {
-    writing-mode: vertical-rl;
-    transform: rotate(360deg); /* agar teks dari bawah ke atas */
-    color: white;
-    position: absolute;
-    font-family: "Plus Jakarta Sans";
-    font-size: 44px !important;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 58px;
-    z-index: 1;
-}
-
 .kategori-box {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 200px;
     height: 540px;
     padding: 20px 0;
@@ -269,21 +259,80 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: width 0.6s ease, height 0.6s ease, transform 0.6s ease;
 }
+
 .kategori-box img {
     position: relative;
     z-index: 2;
+    transition: transform 0.3s ease;
 }
+
+.kategori-title {
+    writing-mode: vertical-rl;
+    transform: rotate(360deg);
+    color: white;
+    position: absolute;
+    font-family: "Plus Jakarta Sans";
+    font-size: 40px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px;
+    z-index: 1;
+    transition: transform 0.3s ease, writing-mode 0.3s ease;
+}
+
+.kategori-subtitle {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover effect */
 .kategori-box:hover {
-    transform: translateY(-5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    width: 600px;
+    height: 540px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+.tugas-akhir:hover::before {
+    background: none;
+    opacity: 0.2;
+}
+.laporan-magang:hover::before {
+    background: none;
+}
+
+.kategori-box:hover img {
+    transform: scale(1.1);
+}
+
+.kategori-box:hover .kategori-title {
+    writing-mode: horizontal-tb;
+    transform: rotate(0deg);
+    transform-origin: left top;
+
+    transition: transform 0.6s ease, writing-mode 0.6s ease;
+}
+
 .tugas-akhir {
-    background-image: url("/assets/koleksi1.png");
+    background-image: url("/assets/koleksi3.jpg");
 }
 
 .laporan-magang {
-    background-image: url("/assets/koleksi2.png");
+    background-image: url("/assets/koleksi4.jpg");
 }
 
 .tugas-akhir::before {

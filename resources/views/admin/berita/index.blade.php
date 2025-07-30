@@ -70,11 +70,11 @@
 
 
                                     <a href="/admin/berita/edit/{{ $item->slug }}" class="btn btn-outline-warning">
-                                       Edit
+                                        <i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i>
                                     </a>
                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $item->id }}">
-                                        Hapus
+                                        <i class="fa-solid fa-trash-can" style="color: #ff2600;"></i>
                                     </button>
                                     <!-- Gunakan komponen modal -->
                                     <x-confirm-modal modalId="deleteModal{{ $item->id }}"

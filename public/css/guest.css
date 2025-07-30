@@ -57,6 +57,52 @@ html {
     color: rgba(255, 255, 255, 1);
     text-decoration: none;
 }
+.search-bar {
+    border: 1px solid var(--Neutral-ne10, #ddd);
+    background: rgba(242, 247, 255, 0.4);
+    backdrop-filter: blur(17.712465286254883px);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.form-control {
+    flex: 1;
+    width: 150px;
+}
+.search-bar input,
+.search-bar select {
+    background: transparent;
+    border: none;
+    color: white;
+}
+.search-bar select {
+    appearance: none; /* hilangkan default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem; /* beri ruang buat icon */
+    width: 180px;
+}
+.search-bar input:focus,
+.search-bar select:focus {
+    box-shadow: none;
+    outline: none;
+}
+.search-bar input::placeholder {
+    color: #313131;
+}
+.search-bar button {
+    border-radius: 2rem;
+    padding: 0.4rem 1.2rem;
+}
+.search-bar .form-select {
+    color: black;
+}
 #tentang-kami {
     height: 130vh;
     padding: 1.5rem 8%;
@@ -86,6 +132,10 @@ html {
     width: 584px;
     height: 360px;
     flex-shrink: 0;
+}
+#koleksi{
+    padding: 1.5rem 8%;
+    z-index: 1;
 }
 footer {
     padding: 1.5rem 8%;

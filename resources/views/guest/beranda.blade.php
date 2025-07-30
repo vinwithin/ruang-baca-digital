@@ -136,14 +136,24 @@
             </div>
             <div class="container">
                 <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
-                    <div
-                        class="kategori-box tugas-akhir d-flex flex-column justify-content-between align-items-center">
+                    <div class="kategori-box tugas-akhir" id="tugas-akhir">
                         <h1 class="kategori-title">Tugas Akhir</h1>
+                        <p class="kategori-subtitle d-none">Kumpulan Koleksi Tugas Akhir Mahasiswa Fakultas Sains dan
+                            Teknologi Universitas Jambi</p>
+                        <a class="btn btn-primary button-koleksi d-none mb-3" href=""><i
+                                class="fa-solid fa-circle-arrow-left me-2"></i>Lihat
+                            Koleksi<i class="fa-solid fa-circle-arrow-right ms-2"></i></a>
                         <img src="/assets/unja.png" alt="">
                     </div>
-                    <div
-                        class="kategori-box laporan-magang d-flex flex-column justify-content-between align-items-center">
+                    <div class="kategori-box laporan-magang " id="laporan-magang">
                         <h1 class="kategori-title">Laporan Magang</h1>
+                        <p class="kategori-subtitle d-none">Kumpulan Koleksi Laporan Magang Mahasiswa Fakultas Sains
+                            dan
+                            Teknologi Universitas Jambi</p>
+                        <a class="btn btn-primary button-koleksi d-none mb-3" href=""><i
+                                class="fa-solid fa-circle-arrow-left me-2"></i>Lihat
+                            Koleksi<i class="fa-solid fa-circle-arrow-right ms-2"></i></a>
+
                         <img src="/assets/unja.png" alt="">
                     </div>
                 </div>
@@ -173,7 +183,8 @@
                     melalui jaringan kampus. Keberadaan ruang baca ini sangat membantu mahasiswa dalam mengembangkan
                     wawasan akademik, meningkatkan kualitas penulisan ilmiah, serta menunjang proses penyusunan laporan
                     magang dan tugas akhir secara lebih efektif dan terarah.</p>
-                <a class="btn-deskripsi" href="/tentang-kami">Baca Selengkapnya ... <i class="fa-solid fa-folder-open"></i></a>
+                <a class="btn-deskripsi" href="/tentang-kami">Baca Selengkapnya ... <i
+                        class="fa-solid fa-folder-open"></i></a>
             </div>
         </div>
     </section>
@@ -329,6 +340,30 @@
                 behavior: 'smooth'
             });
         }
+        const tugas_akhir = document.getElementById('tugas-akhir');
+        const laporan_magang = document.getElementById('laporan-magang');
+        tugas_akhir.addEventListener('mouseover', function() {
+            tugas_akhir.querySelector('.kategori-subtitle').classList.remove('d-none');
+            tugas_akhir.querySelector('.button-koleksi').classList.remove('d-none');
+        });
+        tugas_akhir.addEventListener('click', function() {
+            window.location.href = '/koleksi/Skripsi'; // Ganti dengan URL yang sesuai
+        });
+        laporan_magang.addEventListener('click', function() {
+            window.location.href = '/koleksi/Laporan Magang'; // Ganti dengan URL yang sesuai
+        });
+        tugas_akhir.addEventListener('mouseout', function() {
+            tugas_akhir.querySelector('.kategori-subtitle').classList.add('d-none');
+            tugas_akhir.querySelector('.button-koleksi').classList.add('d-none');
+        });
+        laporan_magang.addEventListener('mouseover', function() {
+            laporan_magang.querySelector('.kategori-subtitle').classList.remove('d-none');
+            laporan_magang.querySelector('.button-koleksi').classList.remove('d-none');
+        });
+        laporan_magang.addEventListener('mouseout', function() {
+            laporan_magang.querySelector('.kategori-subtitle').classList.add('d-none');
+            laporan_magang.querySelector('.button-koleksi').classList.add('d-none');
+        });
     </script>
 </body>
 
