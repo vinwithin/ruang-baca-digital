@@ -131,7 +131,7 @@
     <section class="" id="koleksi">
         <div class="wrapper">
             <div class="container d-flex justify-content-between align-items-center mb-5 ">
-                <h1 class="text-white text-center mb-5 pt-5">KATEGORI SELEKSI</h1>
+                <h1 class="text-white text-center mb-5 pt-5">KATEGORI KOLEKSI</h1>
                 <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>
             <div class="container">
@@ -140,7 +140,7 @@
                         <h1 class="kategori-title">Tugas Akhir</h1>
                         <p class="kategori-subtitle d-none">Kumpulan Koleksi Tugas Akhir Mahasiswa Fakultas Sains dan
                             Teknologi Universitas Jambi</p>
-                        <a class="btn btn-primary button-koleksi d-none mb-3" href=""><i
+                        <a class="btn-more button-koleksi d-none mb-3" href=""><i
                                 class="fa-solid fa-circle-arrow-left me-2"></i>Lihat
                             Koleksi<i class="fa-solid fa-circle-arrow-right ms-2"></i></a>
                         <img src="/assets/unja.png" alt="">
@@ -150,7 +150,7 @@
                         <p class="kategori-subtitle d-none">Kumpulan Koleksi Laporan Magang Mahasiswa Fakultas Sains
                             dan
                             Teknologi Universitas Jambi</p>
-                        <a class="btn btn-primary button-koleksi d-none mb-3" href=""><i
+                        <a class="btn-more button-koleksi d-none mb-3" href=""><i
                                 class="fa-solid fa-circle-arrow-left me-2"></i>Lihat
                             Koleksi<i class="fa-solid fa-circle-arrow-right ms-2"></i></a>
 

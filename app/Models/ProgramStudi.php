@@ -12,6 +12,10 @@ class ProgramStudi extends Model
         'nama',
         'fakultas_id'
     ];
+    public function getRouteKeyName(): string
+    {
+        return 'nama';
+    }
     public function fakultas()
     {
         return $this->hasMany(Fakultas::class);

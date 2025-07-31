@@ -18,6 +18,9 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/tentang-kami', [BerandaController::class, 'tentang'])->name('tentang-kami');
 Route::get('/hasil-pencarian', [BerandaController::class, 'tentang'])->name('hasil-pencarian');
 Route::get('/koleksi/{jenisdokumen}', [KoleksiController::class, 'index'])->name('koleksi');
+Route::get('/koleksi/detail/{laporanmahasiswa}', [KoleksiController::class, 'show'])->name('koleksi-detail');
+Route::get('/program-studi/{programstudi}', [KoleksiController::class, 'show'])->name('koleksi-detail');
+
 
 
 

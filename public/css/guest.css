@@ -16,18 +16,18 @@ html {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    gap: 10rem;
+    gap: 13rem;
     align-items: center;
-    padding: 1.5rem 8%;
+    padding: 0.6rem 8%;
     left: 0;
     right: 0;
     top: 0;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
 }
 .navbar-line {
-    /* border: none; */
     height: 4px;
     background: black;
-    width: 84%; /* menyesuaikan dengan padding 8% kiri kanan */
+    width: 84%;
     margin: 0 auto;
 }
 
@@ -133,9 +133,53 @@ html {
     height: 360px;
     flex-shrink: 0;
 }
-#koleksi{
+#koleksi {
     padding: 1.5rem 8%;
     z-index: 1;
+    height: 100vh;
+    background: #fff;
+}
+#koleksi-title {
+    color: #043471;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+}
+#koleksi-deskripsi {
+    color: #1f1f1f;
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 23px; 
+    padding-bottom: 1rem;
+}
+.table-wrapper {
+    border: 5px solid #dee2e6;
+    border-radius: 0.75rem;
+    /* rounded-3 */
+    overflow: hidden;
+}
+
+.table {
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.table td,
+.table th {
+    padding: 20px 20px;
+    color: #666;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
 }
 footer {
     padding: 1.5rem 8%;

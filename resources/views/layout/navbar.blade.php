@@ -15,7 +15,7 @@
          <span class="navbar-toggler-icon"></span>
      </button>
      <div class="collapse navbar-collapse " id="navbarNav">
-         <ul class="navbar-nav me-auto gap-4 ">
+         <ul class="navbar-nav me-auto gap-5 ">
              <li class="nav-item ">
                  <a class="nav-link text-dark" href="/">Beranda</a>
              </li>
