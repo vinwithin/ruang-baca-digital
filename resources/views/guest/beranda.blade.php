@@ -116,7 +116,7 @@
 
             <div class="d-flex gap-4 overflow-auto" id="scroll-container">
                 @foreach ($prodi as $item)
-                    <div class="card flex-shrink-0" id="card-list" onclick="window.location=''"
+                    <div class="card flex-shrink-0" id="card-list" onclick="window.location.href='/koleksi/program-studi/{{$item->nama}}'"
                         style="cursor: pointer; ">
 
                         <div class="card-body">
