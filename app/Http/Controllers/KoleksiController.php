@@ -30,24 +30,37 @@ class KoleksiController extends Controller
                 ->whereHas('jenis_dokumen', function ($q) {
                     $q->where('nama', 'Skripsi');
                 })
-                ->paginate(10),
+                ->take(5)
+                ->get(),
             'data_laporan' => LaporanMahasiswa::with('jenis_dokumen')
                 ->where('program_studi_id', $programstudi->id)
                 ->where('status', 'Disetujui')
                 ->whereHas('jenis_dokumen', function ($q) {
                     $q->where('nama', 'Laporan Magang');
                 })
-                ->paginate(10),
+                ->take(5)
+                ->get(),
             'title' => ProgramStudi::findOrFail($programstudi->id),
             'prodi' => ProgramStudi::all(),
             'jenis' => JenisDokumen::all()
         ]);
     }
-    public function detail(LaporanMahasiswa $laporanmahasiswa)
+    // public function detail(JenisDokumen $jenisdokumen)
+    // {
+    //     return view('guest.produ.detail', [
+    //         'data' => LaporanMahasiswa::where('jenis_dokumen_id', $jenisdokumen->id)
+    //             ->where('status', 'Disetujui')
+    //             ->paginate(10),
+    //         'title' => JenisDokumen::findOrFail($jenisdokumen->id),
+    //         'prodi' => ProgramStudi::all(),
+    //         'jenis' => JenisDokumen::all()
+    //     ]);
+    // }
+    public function show(LaporanMahasiswa $laporanmahasiswa)
     {
+        // dd($laporanmahasiswa->id);
         return view('guest.jenis-koleksi.detail', [
-            'data' => LaporanMahasiswa::where('id', $laporanmahasiswa->id)
-                ->get(),
+            'data' => $laporanmahasiswa,
             'prodi' => ProgramStudi::all(),
             'jenis' => JenisDokumen::all()
         ]);

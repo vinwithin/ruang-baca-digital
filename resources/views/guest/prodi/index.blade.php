@@ -29,7 +29,7 @@
             <button class="btn btn-primary">Cari</button>
         </div>
         <h1 id="koleksi-title" class="text-center mb-5">{{ $title->nama }}</h1>
-        <h3  id="koleksi-deskripsi">Skripsi/Tugas Akhir </h3>
+        <h3 id="koleksi-deskripsi">Skripsi/Tugas Akhir </h3>
         <div class="table-wrapper border rounded-4 overflow-hidden">
             <table class="table align-middle  overflow-hidden">
                 <thead class="table-light text-start">
@@ -44,7 +44,8 @@
                 <tbody>
                     @foreach ($data_skripsi as $item)
                         <tr>
-                            <td style="max-width: 300px;">
+                            <td style="max-width: 300px; cursor: pointer;"
+                                onclick="window.location.href='/koleksi/detail/{{ $item->uuid }}'">
                                 {{ $item->judul }}
                             </td>
                             <td>{{ $item->nama }}</td>
@@ -71,8 +72,11 @@
 
                 </tbody>
             </table>
-            {{ $data_skripsi->links() }}
         </div>
+        @if (isset($data_skripsi[0]) && $data_skripsi[0]->jenis_dokumen)
+            <a href="/koleksi/{{ $data_skripsi[0]->jenis_dokumen->nama }}">Selengkapnya</a>
+        @endif
+
         <h3 class="mt-5" id="koleksi-deskripsi"> Laporan Magang </h3>
         <div class="table-wrapper border rounded-4 overflow-hidden">
             <table class="table align-middle  overflow-hidden">
@@ -115,7 +119,10 @@
 
                 </tbody>
             </table>
-            {{ $data_skripsi->links() }}
         </div>
+        @if (isset($data_laporan[0]) && $data_laporan[0]->jenis_dokumen)
+            <a href="/koleksi/{{ $data_laporan[0]->jenis_dokumen->nama }}">Selengkapnya</a>
+        @endif
+
     </section>
 @endsection
