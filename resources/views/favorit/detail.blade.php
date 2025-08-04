@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Informasi Status Upload')
+@section('title', 'Dokumen Favorit')
 @section('content')
     <style>
         .search-box {
@@ -13,6 +13,10 @@
 
         .btn {
             position: static !important;
+        }
+
+        p {
+            font-style: italic;
         }
     </style>
     <div class="w-100">
@@ -67,28 +71,21 @@
                                 <td style="width: 50%;">Nama Admin</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold" style="width: 50%;">Tanggal Input</td>
+                                <td class="fw-semibold" style="width: 50%;">Tanggal Upload</td>
                                 <td style="width: 50%;">{{ $data->created_at->format('d/m/Y') }}</td>
 
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row g-2 mt-5">
                     <div class="col-12 col-md-6">
-                        @if (!$favorit)
-                            <a href="/bookmark/tambah/{{ $data->uuid }}" class="btn btn-outline-primary w-100">
-                                Simpan ke favorit <i class="fa-regular fa-star ms-2"></i>
-                            </a>
-                        @else
-                            <a href="/bookmark/hapus/{{ $data->uuid }}" class="btn btn-outline-primary w-100">
-                                Hapus ke favorit <i class="fa-regular fa-star ms-2"></i>
-                            </a>
-                        @endif
+
                     </div>
                     <div class="col-12 col-md-6">
-                        <a href="/dokumen/{{ $data->judul }}" class="btn btn-primary w-100">
+                        <a href="/dokumen/{{$data->judul}}" class="btn btn-primary w-100" target="_blank">
                             Baca Dokumen <i class="bi bi-book"></i>
                         </a>
                     </div>
@@ -96,10 +93,12 @@
 
 
 
-                <div class="">
-                    <a href="/search/dokumen" class="btn btn-primary">
+
+                <div class="d-flex justify-content-between">
+                    <a href="/bookmarks" class="btn btn-primary">
                         <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                     </a>
+
                 </div>
             </div>
 

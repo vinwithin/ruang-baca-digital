@@ -122,10 +122,10 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(2, 62, 138, 1);
             border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
+            border-radius: 10px;
+            padding: 8px 35px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -326,8 +326,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="kataKunci" class="form-label">Kata Kunci</label>
-                                <textarea class="form-control @error('kata_kunci') is-invalid @enderror" id="kataKunci" name="kata_kunci"
-                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda">{{ old('kata_kunci') }}</textarea>
+                                <input type="text" class="form-control @error('kata_kunci') is-invalid @enderror"
+                                    id="kata_kunci" name="kata_kunci" value="{{ old('kata_kunci') }}">
                                 @error('kata_kunci')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

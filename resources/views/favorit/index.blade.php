@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Informasi Status Upload')
+@section('title', 'Dokumen Favorit')
 @section('content')
     <style>
         .table-wrapper {
@@ -35,26 +35,35 @@
                         @foreach ($data as $item)
                             <tr>
                                 {{-- {{dd($item->laporan)}} --}}
-                                <td><i class="fa-solid fa-star"></i></td>
+                                <td style="text-align: center;"><i class="fa-solid fa-star"></i></td>
                                 <td style="max-width: 300px;">
                                     {{ $item->laporan->judul }}
                                 </td>
                                 <td>{{ $item->laporan->nama }}</td>
                                 <td>{{ $item->laporan->program_studi->nama }}</td>
                                 <td>
-                                    <span
-                                        class="badge bg-warning text-dark">{{ $item->laporan->jenis_dokumen->nama }}</span>
+                                    @php
+                                        $jenisNama = $item->laporan->jenis_dokumen->nama;
+                                        $badgeClass = 'bg-info'; // default
+
+                                        if ($jenisNama === 'Skripsi') {
+                                            $badgeClass = 'bg-secondary';
+                                        } elseif ($jenisNama === 'Laporan Magang') {
+                                            $badgeClass = 'bg-info';
+                                        }
+                                    @endphp
+
+                                    <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                                 </td>
                                 <td>
                                     {{ $item->laporan->tahun }}
                                 </td>
                                 <td>
-                                    <a href="/bookmark/hapus/{{ $item->laporan->uuid }}"
-                                        class="btn btn-sm btn-outline-primary">
-                                        Hapus
+                                    <a href="/bookmark/hapus/{{ $item->laporan->uuid }}" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
                                     </a>
-                                    <a href="/dokumen/{{ $item->laporan->judul }}" class="btn btn-sm btn-primary">
-                                        Baca <i class="bi bi-book"></i>
+                                    <a href="/bookmarks/{{$item->laporan->uuid}}" class="btn btn-primary">
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>

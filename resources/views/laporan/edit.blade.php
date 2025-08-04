@@ -122,13 +122,23 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(2, 62, 138, 1);
             border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
+            border-radius: 10px;
+            padding: 8px 35px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
+
+        .btn-light {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #023E8A;
+            padding: 8px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
 
         .btn-primary:hover {
             transform: translateY(-2px);
@@ -181,7 +191,8 @@
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm" method="POST" action="/dokumen/update/{{$data->uuid}}" enctype="multipart/form-data">
+                <form id="inputDokumenForm" method="POST" action="/dokumen/update/{{ $data->uuid }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -189,7 +200,7 @@
                                 <label for="namaMahasiswa" class="form-label">Nama Mahasiswa</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                     id="namaMahasiswa" name="nama" placeholder="Masukkan Nama Anda"
-                                    value="{{$data->nama}}">
+                                    value="{{ $data->nama }}">
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -220,7 +231,7 @@
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
                                 <input type="text" class="form-control" id="nimMahasiswa" name="identifier" readonly
-                                    value="{{$data->identifier}}">
+                                    value="{{ $data->identifier }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -266,7 +277,7 @@
                             <div class="mb-3">
                                 <label for="tahun" class="form-label">Tahun</label>
                                 <input type="number" class="form-control @error('tahun') is-invalid @enderror"
-                                    id="tahun" name="tahun" value="{{$data->tahun}}" min="2020"
+                                    id="tahun" name="tahun" value="{{ $data->tahun }}" min="2020"
                                     max="2030">
                                 @error('tahun')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -351,6 +362,9 @@
                         </div>
 
                         <div class="button-group">
+                            <a href="/informasi/dokumen" class="btn btn-light text-dark">
+                                Batal <i class="fa-solid fa-xmark ms-2"></i>
+                            </a>
                             <button type="submit" class="btn btn-primary" id="submitButton" disabled>
                                 Kirim
                             </button>

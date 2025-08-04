@@ -6844,10 +6844,11 @@ fieldset:disabled .btn {
 }
 .bg-secondary {
     --bs-bg-opacity: 1;
+    color:#CC3C14;
     background-color: rgba(
-        var(--bs-secondary-rgb),
-        var(--bs-bg-opacity)
+       255, 237, 222, 1
     ) !important;
+    padding:8px 30px;
 }
 .bg-success {
     --bs-bg-opacity: 1;
@@ -6858,7 +6859,9 @@ fieldset:disabled .btn {
 }
 .bg-info {
     --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+    background-color: #A2D2FF !important;
+    color:black;
+    padding:8px 30px;
 }
 .bg-warning {
     --bs-bg-opacity: 1;

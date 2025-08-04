@@ -19,7 +19,7 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($validateData)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->intended('/dashboard');
         }
         return back()->withInput()->with('error', 'Invalid Username and Password!');
     }

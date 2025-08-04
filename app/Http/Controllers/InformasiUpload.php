@@ -14,6 +14,11 @@ class InformasiUpload extends Controller
             'data' => LaporanMahasiswa::where('identifier', Auth::user()->identifier)->get()
         ]);
     }
+    public function detail(LaporanMahasiswa $laporanmahasiswa){
+        return view('informasi-upload.detail',[
+            'data' => $laporanmahasiswa
+        ]);
+    }
     public function view($filename)
     {
         $path = storage_path('app/private/dokumen/' . $filename);

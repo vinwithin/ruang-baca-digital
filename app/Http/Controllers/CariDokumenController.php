@@ -20,29 +20,35 @@ class CariDokumenController extends Controller
         $tahun = $request->input('tahun');
 
         // Query builder dasar
-        $query = LaporanMahasiswa::query();
-
+        $query = LaporanMahasiswa::query()->where('status', 'Disetujui');
+        $judul = null;
         // Filter berdasarkan input (jika ada)
         if ($keyword) {
             $query->where('judul', 'like', '%' . $keyword . '%');
+            $judul = 'Hasil Pencarian Anda';
         }
 
         if ($prodi) {
             $query->where('program_studi_id', $prodi);
+            $judul = 'Hasil Pencarian Anda';
         }
 
         if ($koleksi) {
             $query->where('jenis_dokumen_id', $koleksi);
+            $judul = 'Hasil Pencarian Anda';
         }
 
         if ($tahun) {
             $query->whereYear('created_at', $tahun); // Atau gunakan field 'tahun_terbit' jika ada
+            $judul = 'Hasil Pencarian Anda';
         }
+        $title = $judul ? $judul : 'Daftar skripsi dan laporan magang terbaru di Fakultas Sains dan Teknologi';
 
         // Eksekusi query
         $data = $query->latest()->get();
         return view('cari-dokumen.index', [
-            'data' => $data->where('status', 'Disetujui'),
+            'data' => $data,
+            'title' => $title,
             'prodi' => ProgramStudi::all(),
             'jenis_dokumen' => JenisDokumen::all()
         ]);

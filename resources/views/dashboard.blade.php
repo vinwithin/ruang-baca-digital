@@ -3,8 +3,8 @@
 @section('content')
     <style>
         /* .row {
-                                        margin-top: -100px;
-                                    } */
+                                            margin-top: -100px;
+                                        } */
 
         .minimal-select {
             appearance: none;
@@ -173,7 +173,18 @@
                             @foreach ($data as $item)
                                 <h6 class="mb-1">{{ $item->judul }}</h6>
                                 <p class="mb-1 text-muted small">{{ $item->view_count }} Kali dilihat</p>
-                                <span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span>
+                                @php
+                                    $jenisNama = $item->jenis_dokumen->nama;
+                                    $badgeClass = 'bg-info'; // default
+
+                                    if ($jenisNama === 'Skripsi') {
+                                        $badgeClass = 'bg-secondary';
+                                    } elseif ($jenisNama === 'Laporan Magang') {
+                                        $badgeClass = 'bg-info';
+                                    }
+                                @endphp
+
+                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                                 @if (!$loop->last)
                                     <hr class="my-3">
                                 @endif
@@ -250,10 +261,13 @@
             @elserole('mahasiswa')
             <div class="card">
                 <div class="d-flex flex-column g-2 align-items-start p-3">
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Selamat Datang di Dashboard Ruang Baca Digital Fakultas Sains dan Teknologi Universitas Jambi</p>
+                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Selamat Datang di Dashboard Ruang Baca Digital
+                        Fakultas Sains dan Teknologi Universitas Jambi</p>
                     <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda belum pernah mengupload dokumen</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mengupload Tugas akhir atau Laporan magang pada menu “Upload Dokumen”</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mencari file Tugas akhir atau Laporan magang untuk anda baca</p>
+                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mengupload Tugas akhir atau Laporan magang
+                        pada menu “Upload Dokumen”</p>
+                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mencari file Tugas akhir atau Laporan
+                        magang untuk anda baca</p>
 
                 </div>
             </div>

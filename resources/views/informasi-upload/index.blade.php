@@ -4,18 +4,13 @@
     <style>
         .table-wrapper {
             border: 5px solid #dee2e6;
-            border-radius: 0.75rem;
+            border-radius: 2rem;
             /* rounded-3 */
             overflow: hidden;
         }
-
-        .table td,
-        .table th {
-            border: none !important;
-        }
     </style>
     <div class="w-100 ">
-        <div class="card p-5 border rounded-3 shadow-sm">
+        <div class="card p-5 border rounded-4 shadow-sm">
 
             <h3 class="fw-bold mb-4">File yang anda input</h3>
             <div class="table-wrapper border rounded-3 overflow-hidden">
@@ -42,12 +37,12 @@
                                 <td>
                                     @php
                                         $jenisNama = $item->jenis_dokumen->nama;
-                                        $badgeClass = 'bg-warning text-dark'; // default
+                                        $badgeClass = 'bg-info'; // default
 
                                         if ($jenisNama === 'Skripsi') {
                                             $badgeClass = 'bg-secondary';
                                         } elseif ($jenisNama === 'Laporan Magang') {
-                                            $badgeClass = 'bg-primary';
+                                            $badgeClass = 'bg-info';
                                         }
                                     @endphp
 
@@ -100,14 +95,12 @@
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="/informasi/dokumen/view/{{$item->file}}" target="_blank">
-                                        Baca <i class="bi bi-book"></i>
+                                    <a class="btn btn-primary" href="/informasi/dokumen/{{ $item->uuid }}">
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    @if ($item->status === 'Revisi')
-                                        <a class="btn btn-sm btn-warning" href="/dokumen/edit/{{ $item->uuid }}">Edit</a>
-                                    @elseif ($item->status === 'Disetujui')
-                                        <a class="btn btn-sm btn-outline-success" href="/dokumen/{{ $item->uuid }}"
-                                            target="_blank">Cetak</a>
+                                    @if ($item->status === 'Disetujui')
+                                        <a class="btn btn-info" href="/dokumen/{{ $item->uuid }}"><i
+                                                class="fa-solid fa-print"></i></a>
                                     @endif
                                 </td>
                             </tr>

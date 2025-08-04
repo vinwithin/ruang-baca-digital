@@ -49,8 +49,8 @@
                 </div>
             </div>
             <div class="card-header d-flex justify-content-end align-items-end">
-               
-                <form action="{{ route('admin-dokumen') }}" method="GET" >
+
+                <form action="{{ route('admin-dokumen') }}" method="GET">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Cari kegiatan..."
                             value="{{ request('search') }}">
@@ -68,7 +68,7 @@
                     <table class="table align-middle  overflow-hidden">
                         <thead class="table-light text-start">
                             <tr>
-                                <th>No</th>
+                                <th style="text-align: center;">No</th>
                                 <th>Tanggal Ajuan</th>
                                 <th>Judul</th>
                                 <th>Nama</th>
@@ -81,7 +81,7 @@
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td style="text-align: center;">{{ $loop->iteration }}</td>
                                     <td>{{ $item->created_at->format('d/m/Y') }}</td>
 
 
@@ -93,12 +93,12 @@
                                     <td>
                                         @php
                                             $jenisNama = $item->jenis_dokumen->nama;
-                                            $badgeClass = 'bg-warning text-dark'; // default
+                                            $badgeClass = 'bg-info'; // default
 
                                             if ($jenisNama === 'Skripsi') {
                                                 $badgeClass = 'bg-secondary';
                                             } elseif ($jenisNama === 'Laporan Magang') {
-                                                $badgeClass = 'bg-primary';
+                                                $badgeClass = 'bg-info';
                                             }
                                         @endphp
 
@@ -148,8 +148,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="/admin/dokumen/{{ $item->id }}">Lihat
-                                            Detail</a>
+                                        <a class="btn btn-primary" href="/admin/dokumen/{{ $item->id }}"><i class="fa-solid fa-eye"></i></a>
 
                                     </td>
                                 </tr>

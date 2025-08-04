@@ -7,6 +7,7 @@ use App\Http\Controllers\CariDokumenController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\FavoritController;
+use App\Http\Controllers\GuestCariDokumenController;
 use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
@@ -16,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/tentang-kami', [BerandaController::class, 'tentang'])->name('tentang-kami');
-Route::get('/hasil-pencarian', [BerandaController::class, 'tentang'])->name('hasil-pencarian');
+Route::get('/hasil-pencarian', [GuestCariDokumenController::class, 'index'])->name('hasil-pencarian');
 Route::get('/koleksi/{jenisdokumen}', [KoleksiController::class, 'index'])->name('koleksi');
 Route::get('/koleksi/detail/{laporanmahasiswa}', [KoleksiController::class, 'show'])->name('koleksi-detail');
 Route::get('/koleksi/program-studi/{programstudi}', [KoleksiController::class, 'koleksi'])->name('koleksi-program-studi');
+
 
 
 
@@ -38,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');
     Route::post('/dokumen/update/{laporanmahasiswa}', [DokumenController::class, 'update'])->name('update-dokumen');
     Route::get('/informasi/dokumen', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
+    Route::get('/informasi/dokumen/{laporanmahasiswa}', [InformasiUpload::class, 'detail'])->name('informasi-dokumen.detail');
     Route::get('/informasi/dokumen/view/{filename}', [InformasiUpload::class, 'view'])->name('informasi-dokumen-view'); // supaya hanya user login yang bisa akses
 
     Route::get('/search/dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
@@ -46,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dokumen/{laporanmahasiswa:judul}/stream', [CariDokumenController::class, 'stream'])->name('laporan.stream');
 
     Route::get('/bookmarks', [FavoritController::class, 'index'])->name('bookmark');
+    Route::get('/bookmarks/{laporanmahasiswa}', [FavoritController::class, 'detail'])->name('bookmark.detail');
     Route::get('/bookmark/tambah/{laporanmahasiswa}', [CariDokumenController::class, 'store'])->name('bookmark-tambah');
     Route::get('/bookmark/hapus/{laporanmahasiswa}', [CariDokumenController::class, 'destroy'])->name('bookmark-hapus');
 

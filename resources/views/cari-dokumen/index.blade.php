@@ -91,28 +91,43 @@
                 {{ session('error') }}
             </div>
         @endif
-        <h3 class="pb-3 fw-bold">Hasil pencarian anda</h3>
+        <h3 class="pb-3 fw-bold">{{$title}}</h3>
         <div class="table-wrapper border rounded-3 overflow-hidden">
             <table class="table align-middle mb-0">
                 <thead class="table-light text-start">
                     <tr>
-                        <th>Judul</th>
-                        <th>Nama</th>
-                        <th>Program Studi</th>
-                        <th>Jenis Koleksi</th>
-                        <th>Tahun</th>
-                        <th>Aksi</th>
+                        <th style="width: 5%;"></th>
+                        <th style="width: 35%">Judul</th>
+                        <th style="width: 15%">Nama</th>
+                        <th style="width: 15%">Program Studi</th>
+                        <th style="width: 10%">Jenis Koleksi</th>
+                        <th style="width: 5%">Tahun</th>
+                        <th style="width: 5%">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td style="max-width: 300px;">{{ $item->judul }}</td>
+                            <td style="text-align: center;"><i class="fa-regular fa-star"></i></td>
+                            <td>{{ $item->judul }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->program_studi->nama }}</td>
-                            <td><span class="badge bg-warning text-dark">{{ $item->jenis_dokumen->nama }}</span></td>
+                            <td>
+                                @php
+                                    $jenisNama = $item->jenis_dokumen->nama;
+                                    $badgeClass = 'bg-info'; // default
+
+                                    if ($jenisNama === 'Skripsi') {
+                                        $badgeClass = 'bg-secondary';
+                                    } elseif ($jenisNama === 'Laporan Magang') {
+                                        $badgeClass = 'bg-info';
+                                    }
+                                @endphp
+
+                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                            </td>
                             <td>{{ $item->tahun }}</td>
-                            <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-sm btn-primary">Detail</a>
+                            <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach

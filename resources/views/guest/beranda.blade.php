@@ -60,33 +60,36 @@
 
         <section class=" position-relative" id="hero">
             <div class="container">
-                <div class="search-bar text-white shadow">
-                    <i class="fa-solid fa-magnifying-glass me-2"></i>
-                    <input type="text" class="form-control" placeholder="Cari dokumen..." />
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <select class="form-select">
-                        <option value="">Program Studi</option>
-                        @foreach ($prodi as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @endforeach
-                    </select>
-                    <i class="fa-solid fa-file-lines"></i>
-                    <select class="form-select">
-                        <option value="">Koleksi</option>
-                        @foreach ($jenis as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @endforeach
-                    </select>
-                    <i class="fa-solid fa-calendar"></i>
+                <form action="/hasil-pencarian" method="GET">
+                    @csrf
+                    <div class="search-bar text-white shadow">
+                        <i class="fa-solid fa-magnifying-glass me-2"></i>
+                        <input type="text" class="form-control" name="keyword" placeholder="Cari dokumen..." />
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <select class="form-select" name="prodi">
+                            <option value="">Program Studi</option>
+                            @foreach ($prodi as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                        <i class="fa-solid fa-file-lines"></i>
+                        <select class="form-select" name="koleksi">
+                            <option value="">Koleksi</option>
+                            @foreach ($jenis as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                        <i class="fa-solid fa-calendar"></i>
 
-                    <select class="form-select">
-                        <option selected>Tahun</option>
-                        <option>2025</option>
-                        <option>2024</option>
-                    </select>
+                        <select class="form-select" name="tahun">
+                            <option value="">Tahun</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                        </select>
 
-                    <button class="btn btn-light">Cari</button>
-                </div>
+                        <button class="btn btn-light">Cari</button>
+                    </div>
+                </form>
             </div>
 
             <!-- Hero Title di tengah section -->
@@ -116,7 +119,8 @@
 
             <div class="d-flex gap-4 overflow-auto" id="scroll-container">
                 @foreach ($prodi as $item)
-                    <div class="card flex-shrink-0" id="card-list" onclick="window.location.href='/koleksi/program-studi/{{$item->nama}}'"
+                    <div class="card flex-shrink-0" id="card-list"
+                        onclick="window.location.href='/koleksi/program-studi/{{ $item->nama }}'"
                         style="cursor: pointer; ">
 
                         <div class="card-body">
