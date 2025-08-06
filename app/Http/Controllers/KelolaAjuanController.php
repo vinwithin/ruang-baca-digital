@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisDokumen;
 use App\Models\LaporanMahasiswa;
+use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 
 class KelolaAjuanController extends Controller
@@ -11,6 +12,7 @@ class KelolaAjuanController extends Controller
     public function index(Request $request)
     {
         $jenisDokumen = $request->input('jenis_dokumen');
+        $prodi = $request->input('prodi');
         $search = $request->input('search');
 
         $data = LaporanMahasiswa::with('user.roles')
@@ -30,9 +32,13 @@ class KelolaAjuanController extends Controller
         if ($jenisDokumen) {
             $data->where('jenis_dokumen_id', $jenisDokumen);
         }
+        if ($prodi) {
+            $data->where('program_studi_id', $prodi);
+        }
         return view('admin.kelola-ajuan.index', [
             'data' => $data->latest()->paginate(10),
             'jenis_dokumen' => JenisDokumen::all(),
+            'prodi' => ProgramStudi::all()
         ]);
     }
     public function show($id)

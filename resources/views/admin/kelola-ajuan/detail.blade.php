@@ -142,7 +142,7 @@
                             </a>
                             <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
                         @elseif($data->status === 'Revisi')
-                            <a class="btn btn-sm btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
+                            <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
                         @endif
 
 

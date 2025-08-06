@@ -29,10 +29,21 @@
                     <form method="GET" action="{{ route('admin.kelola-dokumen') }}">
                         <div class="row g-3 align-items-end">
                             <div class="col-md-4">
-                                <label for="jenis_dokumen" class="form-label text-dark fw-semibold">Pilih Dokumen:</label>
+                                <label for="jenis_dokumen" class="form-label text-dark fw-semibold">Jenis Dokumen</label>
                                 <select name="jenis_dokumen" id="jenis_dokumen" class="form-select">
                                     <option value="">Pilih Dokumen</option>
                                     @foreach ($jenis_dokumen as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="prodi" class="form-label text-dark fw-semibold">Program Studi</label>
+                                <select name="prodi" id="prodi" class="form-select">
+                                    <option value="">Pilih Program Studi</option>
+                                    @foreach ($prodi as $item)
                                         <option value="{{ $item->id }}">
                                             {{ $item->nama }}
                                         </option>
@@ -97,8 +108,7 @@
 
                                     <td>
                                         <a href="/admin/kelola-dokumen/detail/{{ $item->uuid }}"
-                                            class="btn btn-outline-primary"><i class="fa-solid fa-eye"
-                                                style="color: #B197FC;"></i></a>
+                                            class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                         <a href="/admin/kelola-dokumen/edit/{{ $item->uuid }}"
                                             class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"
                                                 style="color: #FFD43B;"></i></a>

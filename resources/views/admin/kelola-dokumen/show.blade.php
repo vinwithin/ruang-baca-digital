@@ -135,9 +135,11 @@
                         </a>
                     </div>
                     <div>
+                        <a href="/admin/kelola-dokumen/edit/{{ $data->uuid }}" class="btn btn-outline-warning"><i
+                                class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i></a>
+                        <a href="/admin/kelola-dokumen/delete/{{ $data->uuid }}" class="btn btn-outline-danger"><i
+                                class="fa-solid fa-trash-can" style="color: #ff2600;"></i></a>
 
-                        <a href="/admin/kelola-dokumen/edit/{{ $data->uuid }}" class="btn btn-warning">Edit</a>
-                        <a href="/admin/kelola-dokumen/delete/{{ $data->uuid }}" class="btn btn-outline-danger">Hapus</a>
 
                     </div>
 

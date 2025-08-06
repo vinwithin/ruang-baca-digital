@@ -194,7 +194,7 @@
     </section>
     <section id="berita">
         <div class="container d-flex justify-content-between align-items-center mb-5 pb-4">
-            <h1 class="text-dark">BERITA/INFORMASI</h1>
+            <h1 class="text-dark">INFORMASI/BERITA</h1>
             <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
         </div>
         <div class="container">

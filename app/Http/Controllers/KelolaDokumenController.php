@@ -14,6 +14,7 @@ class KelolaDokumenController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $prodi = $request->input('prodi');
         $jenisDokumen = $request->input('jenis_dokumen');
 
         $data = LaporanMahasiswa::with('user.roles')
@@ -31,12 +32,16 @@ class KelolaDokumenController extends Controller
         if ($jenisDokumen) {
             $data->where('jenis_dokumen_id', $jenisDokumen);
         }
+        if ($prodi) {
+            $data->where('program_studi_id', $prodi);
+        }
         
         $data = $data->latest()->paginate(10);
 
         return view('admin.kelola-dokumen.index', [
             'data' => $data,
             'jenis_dokumen' => JenisDokumen::all(),
+            'prodi' => ProgramStudi::all()
         ]);
     }
     public function show(LaporanMahasiswa $laporanmahasiswa)

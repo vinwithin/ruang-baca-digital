@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- Tanggal Berakhir -->
-                    <a href="/admin/berita" class="btn btn-outline-info me-2">Kembali</a>
+                    <a href="/admin/berita" class="btn btn-outline-info me-2">Batalkan <i class="fa-solid fa-xmark ms-2"></i></a>
                     <button type="submit" class="btn btn-primary">Kirim <i class="fa-solid fa-circle-arrow-right ms-2"></i></button>
 
                 </form>
