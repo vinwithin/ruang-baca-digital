@@ -862,7 +862,7 @@
 
         searchInput.addEventListener("input", (e) => {
             const searchTerm = e.target.value.trim();
-            if (searchTerm.length >= 2) {
+            if (searchTerm.length >= 3) {
                 performSearch(searchTerm);
             } else if (searchTerm.length === 0) {
                 performSearch('');

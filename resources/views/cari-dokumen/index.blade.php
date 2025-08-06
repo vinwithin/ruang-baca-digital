@@ -68,8 +68,11 @@
                             <i class="fa-solid fa-calendar"></i>
                             <select class="form-select" name="tahun">
                                 <option value="">Tahun</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
+                                @foreach (range(date('Y'), 2020) as $year)
+                                    <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
+                                        {{ $year }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -91,7 +94,7 @@
                 {{ session('error') }}
             </div>
         @endif
-        <h3 class="pb-3 fw-bold">{{$title}}</h3>
+        <h3 class="pb-3 fw-bold">{{ $title }}</h3>
         <div class="table-wrapper border rounded-3 overflow-hidden">
             <table class="table align-middle mb-0">
                 <thead class="table-light text-start">
@@ -127,7 +130,8 @@
                                 <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                             </td>
                             <td>{{ $item->tahun }}</td>
-                            <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            <td><a href="/search/dokumen/{{ $item->uuid }}" class="btn btn-primary"><i
+                                        class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach

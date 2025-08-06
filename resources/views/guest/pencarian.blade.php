@@ -37,8 +37,11 @@
 
                 <select class="form-select">
                     <option selected>Tahun</option>
-                    <option>2025</option>
-                    <option>2024</option>
+                    @foreach (range(date('Y'), 2020) as $year)
+                        <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
+                            {{ $year }}
+                        </option>
+                    @endforeach
                 </select>
 
                 <button class="btn btn-light">Cari</button>
