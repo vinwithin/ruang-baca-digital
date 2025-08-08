@@ -50,6 +50,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-4">
+                                <label for="prodi" class="form-label text-dark fw-semibold">Status</label>
+                                <select name="prodi" id="prodi" class="form-select">
+                                    <option value="Status">Status</option>
+                                    <option value="Diproses">Diproses</option>
+                                    <option value="Revisi">Revisi</option>
+                                    <option value="Disetujui">Disetujui</option>
+                                   
+                                </select>
+                            </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-filter me-1"></i> Terapkan Filter

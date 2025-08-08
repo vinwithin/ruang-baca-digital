@@ -15,7 +15,7 @@
         <div class="card p-3 border rounded-3 shadow-sm">
             <div class="container mt-2">
                 <h4 class="fw-bold text-center mb-4">
-                   {{$data->judul}}
+                    {{ $data->judul }}
                 </h4>
 
                 <div class="table-responsive rounded-4 border overflow-hidden">
@@ -141,6 +141,11 @@
                                 Kirim Revisi
                             </a>
                             <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
+                        @elseif($data->status === 'Disetujui')
+                            <a href="javascript:void(0);" class="btn btn-outline-warning text-dark" data-bs-toggle="modal"
+                                data-bs-target="#revisiModal">
+                                Kirim Revisi
+                            </a>
                         @elseif($data->status === 'Revisi')
                             <a class="btn btn-primary" href="/admin/dokumen/approve/{{ $data->id }}">Terima</a>
                         @endif

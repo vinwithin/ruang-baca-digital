@@ -683,7 +683,8 @@
                         str: item.str,
                         transform: item.transform,
                         width: item.width,
-                        height: item.height
+                        height: item.height,
+                        fontName: item.fontName
                     }));
                     state.allTextContent[i - 1] = textItems;
                 } catch (error) {
@@ -693,11 +694,39 @@
             }
         }
 
+        // Fungsi untuk menghitung lebar karakter berdasarkan font
+        function getCharWidth(textItem, char) {
+            // Estimasi sederhana berdasarkan lebar total dibagi panjang string
+            return textItem.width / textItem.str.length;
+        }
+
+        // Fungsi untuk mencari posisi exact match dalam string
+        function findExactMatches(text, searchTerm) {
+            const matches = [];
+            const lowerText = text.toLowerCase();
+            const lowerSearchTerm = searchTerm.toLowerCase();
+
+            let startIndex = 0;
+            while (startIndex < lowerText.length) {
+                const foundIndex = lowerText.indexOf(lowerSearchTerm, startIndex);
+                if (foundIndex === -1) break;
+
+                matches.push({
+                    start: foundIndex,
+                    end: foundIndex + searchTerm.length
+                });
+                startIndex = foundIndex + 1;
+            }
+
+            return matches;
+        }
+
         function performSearch(searchTerm) {
             if (!searchTerm || !state.allTextContent.length) {
                 state.searchResults = [];
                 state.currentSearchIndex = -1;
                 updateSearchUI();
+                renderPage(state.currentPage); // Re-render to clear highlights
                 return;
             }
 
@@ -707,17 +736,26 @@
             // Search through all pages
             state.allTextContent.forEach((pageContent, pageIndex) => {
                 pageContent.forEach((textItem, itemIndex) => {
-                    const text = textItem.str.toLowerCase();
-                    if (text.includes(state.searchTerm)) {
+                    const matches = findExactMatches(textItem.str, searchTerm);
+
+                    matches.forEach(match => {
+                        const charWidth = getCharWidth(textItem, 'W'); // Estimasi lebar karakter
+
                         state.searchResults.push({
                             pageNumber: pageIndex + 1,
                             itemIndex: itemIndex,
                             text: textItem.str,
+                            matchText: textItem.str.substring(match.start, match.end),
                             transform: textItem.transform,
                             width: textItem.width,
-                            height: textItem.height
+                            height: textItem.height,
+                            fontName: textItem.fontName,
+                            matchStart: match.start,
+                            matchEnd: match.end,
+                            matchWidth: charWidth * (match.end - match.start),
+                            matchX: textItem.transform[4] + (charWidth * match.start)
                         });
-                    }
+                    });
                 });
             });
 
@@ -749,9 +787,6 @@
         function highlightSearchResults() {
             if (!state.searchResults.length || !state.pdfDoc) return;
 
-            // Clear previous highlights
-            ctx.save();
-
             // Get current page results
             const currentPageResults = state.searchResults.filter(
                 result => result.pageNumber === state.currentPage
@@ -764,24 +799,47 @@
                     scale: state.zoom
                 });
 
+                // Create a temporary canvas for text measurement (more accurate)
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+
                 currentPageResults.forEach((result, index) => {
                     const globalIndex = state.searchResults.indexOf(result);
                     const transform = result.transform;
 
-                    // Calculate position and size
-                    const x = transform[4] * state.zoom;
-                    const y = viewport.height - (transform[5] * state.zoom) - (result.height * state.zoom);
-                    const width = result.width * state.zoom;
-                    const height = result.height * state.zoom;
+                    // Set font for accurate measurement
+                    const fontSize = Math.abs(transform[3]) * state.zoom;
+                    tempCtx.font = `${fontSize}px serif`; // Default font approximation
+
+                    // Measure text before the match
+                    const textBeforeMatch = result.text.substring(0, result.matchStart);
+                    const textBeforeWidth = tempCtx.measureText(textBeforeMatch).width;
+
+                    // Measure the actual match text
+                    const matchTextWidth = tempCtx.measureText(result.matchText).width;
+
+                    // Calculate precise position
+                    const baseX = transform[4] * state.zoom;
+                    const baseY = viewport.height - (transform[5] * state.zoom);
+
+                    const highlightX = baseX + textBeforeWidth;
+                    const highlightY = baseY - (fontSize * 0.8); // Adjust for baseline
+                    const highlightWidth = matchTextWidth;
+                    const highlightHeight = fontSize;
 
                     // Highlight color
                     const isCurrentResult = globalIndex === state.currentSearchIndex;
-                    ctx.fillStyle = isCurrentResult ? 'rgba(255, 165, 0, 0.2)' : 'rgba(255, 255, 0, 0.20)';
+                    ctx.fillStyle = isCurrentResult ? 'rgba(255, 165, 0, 0.4)' : 'rgba(255, 255, 0, 0.3)';
 
-                    ctx.fillRect(x, y, width, height);
+                    ctx.fillRect(highlightX, highlightY, highlightWidth, highlightHeight);
+
+                    // Optional: Add border for current result
+                    if (isCurrentResult) {
+                        ctx.strokeStyle = 'rgba(255, 140, 0, 0.8)';
+                        ctx.lineWidth = 1;
+                        ctx.strokeRect(highlightX, highlightY, highlightWidth, highlightHeight);
+                    }
                 });
-
-                ctx.restore();
             });
         }
 
@@ -862,7 +920,7 @@
 
         searchInput.addEventListener("input", (e) => {
             const searchTerm = e.target.value.trim();
-            if (searchTerm.length >= 3) {
+            if (searchTerm.length >= 2) { // Reduced from 3 to 2 for better responsiveness
                 performSearch(searchTerm);
             } else if (searchTerm.length === 0) {
                 performSearch('');
