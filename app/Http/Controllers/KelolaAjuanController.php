@@ -14,6 +14,7 @@ class KelolaAjuanController extends Controller
         $jenisDokumen = $request->input('jenis_dokumen');
         $prodi = $request->input('prodi');
         $search = $request->input('search');
+        $status = $request->input('status');
 
         $data = LaporanMahasiswa::with('user.roles')
             ->whereHas('user.roles', function ($q) {
@@ -34,6 +35,9 @@ class KelolaAjuanController extends Controller
         }
         if ($prodi) {
             $data->where('program_studi_id', $prodi);
+        }
+        if ($status) {
+            $data->where('status', $status);
         }
         return view('admin.kelola-ajuan.index', [
             'data' => $data->latest()->paginate(10),

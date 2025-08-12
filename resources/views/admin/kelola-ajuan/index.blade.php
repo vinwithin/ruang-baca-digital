@@ -51,8 +51,8 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="prodi" class="form-label text-dark fw-semibold">Status</label>
-                                <select name="prodi" id="prodi" class="form-select">
+                                <label for="status" class="form-label text-dark fw-semibold">Status</label>
+                                <select name="status" id="status" class="form-select">
                                     <option value="Status">Status</option>
                                     <option value="Diproses">Diproses</option>
                                     <option value="Revisi">Revisi</option>
