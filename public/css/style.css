@@ -21,7 +21,7 @@ html {
     color: white;
     justify-content: space-between;
     flex-direction: row;
-    gap: 10rem;
+    gap: 15rem;
     align-items: center;
     padding: 1.5rem 8%;
     left: 0;
@@ -62,10 +62,11 @@ html {
     margin-bottom: -200px;
 }
 .search-bar {
+    margin-top: 4rem;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 2rem;
-    padding: 0.5rem 1rem;
+    padding: 1.2rem 3rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -89,11 +90,11 @@ html {
     background-position: right 1rem center;
     background-size: 12px;
     padding-right: 2.5rem; /* beri ruang buat icon */
-    width: 180px;
+    width: 250px;
 }
 .search-bar input:focus,
 .search-bar select:focus {
-     background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     box-shadow: none;
     outline: none;
@@ -103,7 +104,7 @@ html {
 }
 .search-bar button {
     border-radius: 2rem;
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 3rem;
 }
 .search-bar .form-select {
     color: white;
@@ -121,7 +122,7 @@ html {
 .hero-title h1 {
     color: #fff;
     font-family: "Plus Jakarta Sans";
-    font-size: 44px;
+    font-size: 45px;
     font-style: normal;
     font-weight: 700;
     line-height: 58px; /* 131.818% */
@@ -130,12 +131,17 @@ html {
     background: url("/assets/Subtract.png") no-repeat center center/cover;
     z-index: 10;
     position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: start; /* Horizontal */
-    align-items: center; /* Vertical */
+    align-items: center;
     padding-top: 200px;
     height: 100vh;
+}
+.wrap-prodi {
+    padding: 1.5rem 8%;
+    width: 95%;
 }
 .btn-more {
     display: flex;
@@ -167,8 +173,8 @@ html {
     -ms-overflow-style: none; /* Untuk IE dan Edge */
 }
 #card-list {
-    width: 299.824px;
-    height: 200px;
+    width: 370px;
+    height: 250px;
     display: flex;
 
     justify-content: center;
@@ -398,20 +404,20 @@ html {
     text-align: justify;
     /* Paragraph/p16/Medium */
     font-family: "Plus Jakarta Sans";
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px; /* 150% */
 }
 .image-about {
-    width: 627px;
-    height: 439px;
+    width: 750px;
+    height: 500px;
     flex-shrink: 0;
 }
 .btn-deskripsi {
     display: flex;
-    width: 200px;
-    height: 28px;
+    width: 250px;
+    height: 35px;
     padding: 0 8px;
     justify-content: center;
     align-items: center;
@@ -421,7 +427,7 @@ html {
     border: 1px solid #185adc;
     color: #185adc;
     font-family: "Plus Jakarta Sans";
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 14px; /* 116.667% */
@@ -429,12 +435,15 @@ html {
 }
 #berita {
     height: 90vh;
-    padding: 1.5rem 8%;
     display: flex;
     flex-direction: column;
     /* place-items: center; */
     justify-content: center; /* Horizontal */
     align-items: center; /* Vertical */
+}
+.wrap-berita {
+    padding: 1.5rem 8%;
+    width: 100%;
 }
 #berita h1 {
     color: #1a1a1a;
@@ -459,10 +468,10 @@ html {
     -ms-overflow-style: none; /* Untuk IE dan Edge */
 }
 .news-card {
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
     flex-shrink: 0;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
 }
 
 .news-card img {
@@ -476,7 +485,7 @@ html {
     color: #fff;
     text-align: center;
     font-family: "Plus Jakarta Sans";
-    font-size: 18px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 26px; /* 130% */
@@ -486,7 +495,7 @@ html {
     text-align: center;
     /* Paragraph/p12/Medium */
     font-family: "Plus Jakarta Sans";
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 18px; /* 150% */
@@ -566,4 +575,568 @@ footer {
     font-style: normal;
     font-weight: 500;
     line-height: 14px; /* 116.667% */
+}
+@media screen and (max-width: 480px) {
+    #navigasi {
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        padding: 1.5rem 8%;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    .navbar-nav {
+        gap: 10px !important;
+    }
+    #navigasi img {
+        max-width: 2rem;
+        max-height: 2rem;
+    }
+    #logo-text h1 {
+        font-size: 10px !important;
+    }
+    #navigasi a {
+        color: white;
+        margin: 0; /* Menghapus margin default */
+        text-decoration: none;
+        color: rgba(0, 0, 0, 1);
+        font-size: 0.9rem;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 600;
+    }
+
+    #button-login {
+        display: flex;
+        background: rgba(2, 62, 138, 1);
+        width: 7.9rem;
+        height: 2.5rem;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+    }
+    #button-login a {
+        color: rgba(255, 255, 255, 1);
+    }
+    .hero-title {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        width: 80%;
+        left: 50%;
+    }
+    .hero-title h1 {
+        color: #fff;
+        font-family: "Plus Jakarta Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 58px; /* 131.818% */
+        /* text-align:justify; */
+    }
+    .search-bar {
+        margin-top: 4rem;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 2rem;
+        padding: 0.2rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .search-bar button {
+        border-radius: 1rem;
+        padding: 0.4rem 1rem;
+    }
+    .search-bar select {
+        display: none;
+    }
+    .search-bar i {
+        display: none;
+    }
+    #prodi {
+        height: 70vh;
+    }
+    #wrap-title-prodi {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    .wrap-prodi h1 {
+        font-size: 15px;
+    }
+    .btn-more {
+        display: flex;
+        height: 30px;
+        padding: 0 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        border-radius: 12px;
+        background: #023e8a;
+        color: #fff;
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 125% */
+        text-decoration: none;
+    }
+    #scroll-container {
+        overflow-x: auto;
+        /* white-space: nowrap; */
+        padding-bottom: 10px;
+        display: flex;
+
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+        scrollbar-width: thin; /* Untuk browser Firefox */
+        -ms-overflow-style: none; /* Untuk IE dan Edge */
+    }
+    #card-list {
+        width: 270px;
+        height: 150px;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        color: black;
+        user-select: none;
+        border-radius: 10px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 4px solid rgba(188, 225, 148, 1);
+        background: rgba(250, 250, 250, 1);
+        position: relative;
+        background: url("/assets/bg-prodi.png") no-repeat center center/cover;
+    }
+
+    .arrow-icon {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #667eea;
+        font-size: 15px;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .arrow-icon:hover {
+        transform: translateY(-50%) scale(1.1);
+        color: #764ba2;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .arrow-icon:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+    .card-title {
+        color: black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        color: #fff;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        /* Heading/h4/Bold */
+        font-family: "Plus Jakarta Sans";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px; /* 133.333% */
+        margin: 0;
+        text-align: center;
+        /* margin: 14px 0 40px; */
+    }
+    #koleksi {
+        height: 100vh;
+    }
+    .wrapper h1 {
+        font-size: 15px;
+    }
+    .wrapper {
+        padding-top: 150px;
+        display: grid;
+        place-items: center;
+        justify-items: center;
+        align-items: start;
+    }
+    .wrapper .container {
+        padding-left: 8%;
+        padding-right: 8%;
+        margin-bottom: 0px !important;
+    }
+    .kategori-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100px;
+        height: 400px;
+        padding: 20px 0;
+        border-radius: 15px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        transition: width 0.6s ease, height 0.6s ease, transform 0.6s ease;
+    }
+
+    .kategori-box img {
+        /* position: relative; */
+        z-index: 2;
+        transition: transform 0.3s ease;
+    }
+
+    .kategori-title {
+        writing-mode: vertical-rl;
+        transform: rotate(360deg);
+        color: white;
+        /* position: absolute; */
+        font-family: "Plus Jakarta Sans";
+        font-size: 25px !important;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 58px;
+        z-index: 1;
+        transition: transform 0.3s ease, writing-mode 0.3s ease;
+    }
+
+    /* Hover effect */
+    .kategori-box:hover {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        width: 200px;
+        height: 140px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .kategori-subtitle {
+        display: none !important;
+    }
+
+    #tentang {
+        height: 140vh;
+        padding: 1.5rem 8%;
+    }
+    #tentang h1 {
+        color: #1a1a1a;
+        text-align: center;
+        padding-bottom: 10px !important;
+        margin-bottom: 10px !important;
+        /* Heading/h1/SemiBold */
+        font-family: "Plus Jakarta Sans";
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 58px; /* 131.818% */
+    }
+    .wrap-tentang {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem !important;
+    }
+    #tentang .deskripsi {
+        color: #000;
+        text-align: justify;
+        /* Paragraph/p16/Medium */
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+    }
+    .image-about {
+        width: 100%;
+        height: 300px;
+        flex-shrink: 0;
+    }
+    .btn-deskripsi {
+        display: flex;
+        width: 190px;
+        height: 35px;
+        padding: 0 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 1px solid #185adc;
+        color: #185adc;
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px; /* 116.667% */
+        text-decoration: none;
+    }
+    #berita {
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        /* place-items: center; */
+        justify-content: center; /* Horizontal */
+        align-items: center; /* Vertical */
+    }
+    .wrap-berita {
+        padding: 1.5rem 8%;
+        width: 100%;
+    }
+    #berita h1 {
+        color: #1a1a1a;
+
+        /* Heading/h1/SemiBold */
+        font-family: "Plus Jakarta Sans";
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 58px; /* 131.818% */
+    }
+    #scroll-container2 {
+        overflow-x: auto;
+        padding-bottom: 10px;
+        display: flex;
+
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+        -ms-overflow-style: none;
+    }
+    .news-card {
+        width: 350px;
+        height: 250px;
+        flex-shrink: 0;
+        /* aspect-ratio: 4/4; */
+    }
+
+    .news-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+        filter: brightness(60%);
+    }
+    .card-content h4 {
+        color: #fff;
+        text-align: center;
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 26px; /* 130% */
+    }
+    .card-content p {
+        color: #fff;
+        text-align: center;
+        /* Paragraph/p12/Medium */
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px; /* 150% */
+    }
+    .footer-title h1 {
+        color: #fff;
+        /* Label/l18/Bold */
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px; /* 127.778% */
+    }
+    .footer-title h2 {
+        color: #fff;
+        /* Label/l16/Bold */
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+    .footer-links h3 {
+        color: #fff8f8;
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 125% */
+    }
+    .list-unstyled li a {
+        text-decoration: none !important;
+        color: #fff8f8;
+        /* Label/la12/Medium */
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px; /* 116.667% */
+    }
+    .footer-contact h3 {
+        color: #fff8f8;
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 125% */
+    }
+    .list-unstyled li p {
+        text-decoration: none !important;
+        color: #fff8f8;
+        /* Label/la12/Medium */
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px; /* 116.667% */
+    }
+    .footer-social h3 {
+        color: #fff8f8;
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 125% */
+    }
+    .footer-copyright p {
+        color: #fff8f8;
+        text-align: center;
+        font-family: "Plus Jakarta Sans";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px; /* 116.667% */
+    }
+}
+
+/* Tablets (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .hero-title {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        /* width: 60%; */
+        /* position: absolute;
+        top: 40%;
+        left: 40%; */
+        transform: translate(-50%, -50%);
+    }
+    .hero-title h1 {
+        color: #fff;
+        font-family: "Plus Jakarta Sans";
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 58px; /* 131.818% */
+    }
+    .search-bar select {
+        display: none;
+    }
+    .search-bar i {
+        display: none;
+    }
+    .wrap-tentang {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .image-about {
+        width: 100%;
+        height: 400px;
+        flex-shrink: 0;
+    }
+}
+
+/* Small laptops (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #navigasi {
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        padding: 1.5rem 8%;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    .navbar-nav {
+        gap: 10px !important;
+    }
+    .search-bar {
+        margin-top: 4rem;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 2rem;
+        padding: 0.2rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .search-bar button {
+        border-radius: 1rem;
+        padding: 0.4rem 1rem;
+    }
+    .search-bar select {
+        display: none;
+    }
+    .search-bar i {
+        display: none;
+    }
+    #tentang {
+        height: 85vh;
+        padding: 1.5rem 8%;
+    }
+    .wrap-tentang {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem !important;
+    }
+    #tentang .deskripsi {
+        color: #000;
+        text-align: justify;
+        /* Paragraph/p16/Medium */
+        font-family: "Plus Jakarta Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+    }
+    .image-about {
+        width: 120%;
+        height: 400px;
+        flex-shrink: 0;
+    }
+    .news-card {
+        width: 350px;
+        height: 250px;
+        flex-shrink: 0;
+        /* aspect-ratio: 4/4; */
+    }
+}
+
+/* Large screens (1025px+) */
+@media screen and (min-width: 1025px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

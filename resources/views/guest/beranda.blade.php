@@ -18,7 +18,7 @@
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <img src="/assets/logo.png" alt="Logo" style="height: 60px;">
                 </a>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column" id="logo-text">
                     <h1 class="fs-6 mb-0">Ruang Baca Digital</h1>
                     <h1 class="fs-6">Fakultas Sains dan Teknologi</h1>
                 </div>
@@ -30,7 +30,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav me-auto gap-4 ">
+                <ul class="navbar-nav me-auto gap-5 ">
                     <li class="nav-item ">
                         <a class="nav-link text-white" href="">Beranda</a>
                     </li>
@@ -59,7 +59,7 @@
         </nav>
 
         <section class=" position-relative" id="hero">
-            <div class="container">
+            <div class="">
                 <form action="/hasil-pencarian" method="GET">
                     @csrf
                     <div class="search-bar text-white shadow">
@@ -108,36 +108,37 @@
     </div>
 
     <section id="prodi">
-        <div class="container d-flex justify-content-between align-items-center pt-5 mb-4 mt-5">
-            <h1 class="text-dark ">PROGRAM STUDI</h1>
-            <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+        <div class="wrap-prodi">
+            <div class=" d-flex flex-row justify-content-between align-items-center pt-5 mb-4 mt-5" id="wrap-title-prodi">
+                <h1 class="text-dark ">PROGRAM STUDI</h1>
+                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
 
-        </div>
-
-        <div class="container position-relative">
-            <div class="arrow-icon" onclick="scrollRight('scroll-container')">
-                <i class="fa-solid fa-arrow-right"></i>
             </div>
 
+            <div class=" position-relative">
+                <div class="arrow-icon" onclick="scrollRight('scroll-container')">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
 
-            <div class="d-flex gap-4 overflow-auto" id="scroll-container">
-                @foreach ($prodi as $item)
-                    <div class="card flex-shrink-0" id="card-list"
-                        onclick="window.location.href='/koleksi/program-studi/{{ $item->nama }}'"
-                        style="cursor: pointer; ">
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item->nama }}</h5>
+                <div class="d-flex gap-4 overflow-auto" id="scroll-container">
+                    @foreach ($prodi as $item)
+                        <div class="card flex-shrink-0" id="card-list"
+                            onclick="window.location.href='/koleksi/program-studi/{{ $item->nama }}'"
+                            style="cursor: pointer; ">
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->nama }}</h5>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-
     </section>
     <section class="" id="koleksi">
         <div class="wrapper">
-            <div class="container d-flex justify-content-between align-items-center mb-5 ">
+            <div class="container d-flex justify-content-between align-items-center mb-5">
                 <h1 class="text-white text-center mb-5 pt-5">KATEGORI KOLEKSI</h1>
                 <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>
@@ -171,7 +172,7 @@
 
     <section class="" id="tentang">
         <h1 class="text-dark text-start pt-5 mb-5">TENTANG RUANG BACA</h1>
-        <div class="d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
+        <div class="wrap-tentang d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
 
             <div>
                 <img class="image-about" src="/assets/tentang-img.png" alt="">
@@ -196,39 +197,38 @@
         </div>
     </section>
     <section id="berita">
-        <div class="container d-flex justify-content-between align-items-center mb-5 pb-4">
-            <h1 class="text-dark">INFORMASI/BERITA</h1>
-            <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
-        </div>
-        <div class="container">
-            <div class="row g-5">
-                <!-- Card 1 -->
-                <div class="container position-relative">
-                    <div class="arrow-icon" onclick="scrollRight('scroll-container2')">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="d-flex gap-2 overflow-auto" id="scroll-container2">
-                        @foreach ($berita as $item)
-                            <div class="col-md-4">
-                                <div class="news-card position-relative text-white">
-                                    <img src="/storage/{{ $item->image }}"
-                                        class="object-fit-cover position-absolute top-0 start-0" alt="..." />
-                                    <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                                    <div
-                                        class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
-                                        <h4 class="fw-bold">{{ $item->title }}</h4>
-                                        <p class="mt-3 small">
-                                            {{ Str::limit($item->content, 100, '...') }}
-                                        </p>
+        <div class="wrap-berita">
+            <div class="d-flex justify-content-between align-items-center mb-5 pb-4" >
+                <h1 class="text-dark">INFORMASI/BERITA</h1>
+                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+            <div class="">
+                {{-- <div class="row g-5"> --}}
+                    <!-- Card 1 -->
+                    <div class="position-relative">
+                        <div class="arrow-icon" onclick="scrollRight('scroll-container2')">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="d-flex gap-4 overflow-auto" id="scroll-container2">
+                            @foreach ($berita as $item)
+                                {{-- <div class="col-md-4 col-4 gap-sm-6"> --}}
+                                    <div class="news-card position-relative text-white">
+                                        <img src="/storage/{{ $item->image }}"
+                                            class="object-fit-cover position-absolute top-0 start-0" alt="..." />
+                                        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                                        <div
+                                            class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
+                                            <h4 class="fw-bold">{{ $item->title }}</h4>
+                                            <p class="mt-3 small">
+                                                {{ Str::limit($item->content, 100, '...') }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        @endforeach
+                                {{-- </div> --}}
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
 
