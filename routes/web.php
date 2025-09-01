@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/berita/edit/{berita:slug}', [BeritaController::class, 'edit'])->name('berita.edit');
             Route::post('/berita/update/{berita:slug}', [BeritaController::class, 'update'])->name('berita.update');
             Route::get('/berita/delete/{berita:slug}', [BeritaController::class, 'destroy'])->name('berita.delete');
+            Route::get('/calendar/month', [DashboardController::class, 'getMonth'])->name('calendar.month');
         });
     });
 });

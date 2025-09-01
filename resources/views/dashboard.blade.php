@@ -2,9 +2,213 @@
 @section('title', 'Dashboard')
 @section('content')
     <style>
-        /* .row {
-                                            margin-top: -100px;
-                                        } */
+        .calendar-header {
+            color: white;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .month-year {
+            color: #31394D;
+            font-family: "Plus Jakarta Sans";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 17px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* background: #f8f9fa; */
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .weekday {
+            padding: 15px 5px;
+            text-align: center;
+            color: #B8C5D3;
+            text-align: center;
+            font-family: "Plus Jakarta Sans";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 17px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            /* background: #e9ecef; */
+            padding: 1px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border-radius: 5px;
+            background: #E5E9F2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.2s ease;
+            min-height: 50px;
+        }
+
+        .calendar-day:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.other-month {
+            color: #adb5bd;
+            background: #f8f9fa;
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .calendar-day.today:hover {
+            transform: scale(1.1);
+        }
+
+        .calendar-day.has-event {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .calendar-day.special {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .calendar-day.has-event:hover,
+        .calendar-day.special:hover {
+            transform: scale(1.1);
+        }
+
+        .event-dot {
+            position: absolute;
+            bottom: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #28a745;
+            border-radius: 50%;
+        }
+
+        .today .event-dot {
+            background: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4A90E2;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsif */
+        @media (max-width: 600px) {
+            .calendar-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .calendar-header {
+                padding: 20px;
+            }
+
+            .month-year {
+                font-size: 20px;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .weekday {
+                padding: 12px 5px;
+                font-size: 12px;
+            }
+
+            .calendar-day {
+                min-height: 45px;
+                font-size: 14px;
+            }
+        }
 
         .minimal-select {
             appearance: none;
@@ -195,60 +399,28 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-3">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h6 class="mb-0">Kalender</h6>
-                                <span class="text-muted">Juni, 2025</span>
+                            <div class="calendar-header">
+                                <h6>Kalender</h6>
+                                <div class="month-year" id="monthYear"></div>
                             </div>
-                            {{-- Kalender statis, bisa diganti library --}}
-                            <table class="table table-bordered text-center small mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S</th>
-                                        <th>M</th>
-                                        <th>T</th>
-                                        <th>W</th>
-                                        <th>T</th>
-                                        <th>F</th>
-                                        <th>S</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{-- Buat baris tanggal manual atau pakai JS --}}
-                                    <tr>
-                                        <td>29</td>
-                                        <td>30</td>
-                                        <td class="bg-primary text-white">1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>7</td>
-                                        <td>8</td>
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>11</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>14</td>
-                                        <td class="bg-success text-white">15</td>
-                                        <td>16</td>
-                                        <td>17</td>
-                                        <td>18</td>
-                                        <td>19</td>
-                                    </tr>
-                                    {{-- Lanjutkan sesuai kebutuhan --}}
-                                </tbody>
-                            </table>
+
+                            <div class="weekdays">
+                                <div class="weekday">S</div>
+                                <div class="weekday">M</div>
+                                <div class="weekday">T</div>
+                                <div class="weekday">W</div>
+                                <div class="weekday">T</div>
+                                <div class="weekday">F</div>
+                                <div class="weekday">S</div>
+                            </div>
+
+                            <div id="calendarContent">
+                                <div class="calendar-grid" id="calendarGrid"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <h6 class="mb-2">Program Studi</h6>
                             <ul class="list-group list-group-flush">
                                 @foreach ($prodi as $item)
                                     <li class="list-group-item">{{ $item->nama }}</li>
@@ -264,7 +436,8 @@
                     <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Selamat Datang di Dashboard Ruang Baca Digital
                         Fakultas Sains dan Teknologi Universitas Jambi</p>
                     <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda belum pernah mengupload dokumen</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mengupload Tugas akhir atau Laporan magang
+                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mengupload Tugas akhir atau Laporan
+                        magang
                         pada menu “Upload Dokumen”</p>
                     <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mencari file Tugas akhir atau Laporan
                         magang untuk anda baca</p>
@@ -274,6 +447,131 @@
         @endrole
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        let currentDate = new Date();
+        let events = {};
+
+        const monthNames = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+
+        function getDaysInMonth(year, month) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function getFirstDayOfMonth(year, month) {
+            return new Date(year, month, 1).getDay();
+        }
+
+        function generateCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const today = new Date();
+
+            // Update month/year display
+            document.getElementById('monthYear').textContent =
+                `${monthNames[month]} ${year}`;
+
+            // Get calendar info
+            const daysInMonth = getDaysInMonth(year, month);
+            const firstDay = getFirstDayOfMonth(year, month);
+            const daysInPrevMonth = getDaysInMonth(year, month - 1);
+
+
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+
+            // Previous month's trailing days
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day other-month';
+                dayDiv.textContent = daysInPrevMonth - i;
+                calendarGrid.appendChild(dayDiv);
+            }
+
+            // Current month's days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.textContent = day;
+
+                // Check if it's today
+                if (year === today.getFullYear() &&
+                    month === today.getMonth() &&
+                    day === today.getDate()) {
+                    dayDiv.classList.add('today');
+                }
+
+                // Check for events
+                const dateKey = `${year}-${month}-${day}`;
+                if (events[dateKey]) {
+                    dayDiv.classList.add('has-event');
+                    const eventDot = document.createElement('div');
+                    eventDot.className = 'event-dot';
+                    dayDiv.appendChild(eventDot);
+                }
+
+                // Add click event to toggle event
+                dayDiv.addEventListener('click', () => toggleEvent(year, month, day, dayDiv));
+
+                calendarGrid.appendChild(dayDiv);
+            }
+
+            // Next month's leading days
+            const totalCells = calendarGrid.children.length;
+            const remainingCells = 42 - totalCells; // 6 rows × 7 days
+
+            for (let day = 1; day <= remainingCells; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day other-month';
+                dayDiv.textContent = day;
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        function goToToday() {
+            currentDate = new Date();
+            generateCalendar();
+        }
+
+        function toggleEvent(year, month, day, element) {
+            const dateKey = `${year}-${month}-${day}`;
+
+            if (events[dateKey]) {
+                delete events[dateKey];
+                element.classList.remove('has-event');
+                const eventDot = element.querySelector('.event-dot');
+                if (eventDot) eventDot.remove();
+            } else {
+                events[dateKey] = true;
+                element.classList.add('has-event');
+                const eventDot = document.createElement('div');
+                eventDot.className = 'event-dot';
+                element.appendChild(eventDot);
+            }
+        }
+
+        function addSampleEvents() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Add some sample events
+            events[`${year}-${month}-5`] = true;
+            events[`${year}-${month}-15`] = true;
+            events[`${year}-${month}-22`] = true;
+
+            generateCalendar();
+        }
+
+        function clearEvents() {
+            events = {};
+            generateCalendar();
+        }
+
+        // Initialize calendar
+        generateCalendar();
+    </script>
     <script type="text/javascript">
         google.charts.load('current', {
             'packages': ['corechart']

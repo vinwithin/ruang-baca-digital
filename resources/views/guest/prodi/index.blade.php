@@ -80,7 +80,10 @@
             </table>
         </div>
         @if (isset($data_skripsi[0]) && $data_skripsi[0]->jenis_dokumen)
-            <a href="/koleksi/{{ $data_skripsi[0]->jenis_dokumen->nama }}">Selengkapnya</a>
+            <div class="text-center p-3 mb-5 rounded-4">
+                <a href="/koleksi/{{ $data_skripsi[0]->jenis_dokumen->nama }}" class="btn btn-primary ">Selengkapnya <i class="fa-solid fa-circle-arrow-right ms-2" style="color: white;"></i></a>
+
+            </div>
         @endif
 
         <h3 class="mt-5" id="koleksi-deskripsi"> Laporan Magang </h3>
@@ -127,7 +130,9 @@
             </table>
         </div>
         @if (isset($data_laporan[0]) && $data_laporan[0]->jenis_dokumen)
-            <a href="/koleksi/{{ $data_laporan[0]->jenis_dokumen->nama }}">Selengkapnya</a>
+            <div class="text-center p-3 mb-5 rounded-4">
+                <a href="/koleksi/{{ $data_laporan[0]->jenis_dokumen->nama }}" class="btn btn-primary">Selengkapnya <i class="fa-solid fa-circle-arrow-right ms-2" style="color: white;"></i></a>
+            </div>
         @endif
 
     </section>
