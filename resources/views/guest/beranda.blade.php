@@ -50,9 +50,17 @@
                 </ul>
 
                 <div class="ms-auto" id="button-login">
-                    <a href="/login" class="fw-semibold">
-                        Masuk <i class="fa-solid fa-circle-arrow-right ms-2"></i>
-                    </a>
+                    @guest
+                        <a href="/login" class="fw-semibold">
+                            Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                    @endguest
+
+                    @auth
+                        <a href="/dashboard" class="fw-semibold">
+                            Dashboard <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                    @endauth
 
                 </div>
             </div>
@@ -109,7 +117,8 @@
 
     <section id="prodi">
         <div class="wrap-prodi">
-            <div class=" d-flex flex-row justify-content-between align-items-center pt-5 mb-4 mt-5" id="wrap-title-prodi">
+            <div class=" d-flex flex-row justify-content-between align-items-center pt-5 mb-4 mt-5"
+                id="wrap-title-prodi">
                 <h1 class="text-dark ">PROGRAM STUDI</h1>
                 <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
 
@@ -198,38 +207,38 @@
     </section>
     <section id="berita">
         <div class="wrap-berita">
-            <div class="d-flex justify-content-between align-items-center mb-5 pb-4" >
+            <div class="d-flex justify-content-between align-items-center mb-5 pb-4">
                 <h1 class="text-dark">INFORMASI/BERITA</h1>
                 <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>
             <div class="">
                 {{-- <div class="row g-5"> --}}
-                    <!-- Card 1 -->
-                    <div class="position-relative">
-                        <div class="arrow-icon" onclick="scrollRight('scroll-container2')">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                        <div class="d-flex gap-4 overflow-auto" id="scroll-container2">
-                            @foreach ($berita as $item)
-                                {{-- <div class="col-md-4 col-4 gap-sm-6"> --}}
-                                    <div class="news-card position-relative text-white">
-                                        <img src="/storage/{{ $item->image }}"
-                                            class="object-fit-cover position-absolute top-0 start-0" alt="..." />
-                                        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
-                                        <div
-                                            class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
-                                            <h4 class="fw-bold">{{ $item->title }}</h4>
-                                            <p class="mt-3 small">
-                                                {{ Str::limit($item->content, 100, '...') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                {{-- </div> --}}
-                            @endforeach
-                        </div>
+                <!-- Card 1 -->
+                <div class="position-relative">
+                    <div class="arrow-icon" onclick="scrollRight('scroll-container2')">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                    <div class="d-flex gap-4 overflow-auto" id="scroll-container2">
+                        @foreach ($berita as $item)
+                            {{-- <div class="col-md-4 col-4 gap-sm-6"> --}}
+                            <div class="news-card position-relative text-white">
+                                <img src="/storage/{{ $item->image }}"
+                                    class="object-fit-cover position-absolute top-0 start-0" alt="..." />
+                                <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                                <div
+                                    class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
+                                    <h4 class="fw-bold">{{ $item->title }}</h4>
+                                    <p class="mt-3 small">
+                                        {{ Str::limit($item->content, 100, '...') }}
+                                    </p>
+                                </div>
+                            </div>
+                            {{-- </div> --}}
+                        @endforeach
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </section>

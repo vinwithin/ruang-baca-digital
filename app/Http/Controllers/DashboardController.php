@@ -43,6 +43,7 @@ class DashboardController extends Controller
             'chartData' => $laporanPerBulan,
             'prodi' => ProgramStudi::all(),
             'data' => LaporanMahasiswa::where('status', 'Disetujui')->orderBy('view_count', 'desc')->take(5)->get(),
+            'data_count' => LaporanMahasiswa::orderBy('view_count', 'desc')->get(),
             'dateRange' => [
                 'start' => $startDate->format('Y-m-d'),
                 'end' => $endDate->format('Y-m-d')

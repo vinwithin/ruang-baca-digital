@@ -35,9 +35,18 @@
          </ul>
 
          <div class="ms-auto" id="button-login">
-             <a href="/login" class="fw-semibold">
-                 Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
-             </a>
+             @guest
+                 <a href="/login" class="fw-semibold">
+                     Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
+                 </a>
+             @endguest
+
+             @auth
+                 <a href="/dashboard" class="fw-semibold">
+                     Dashboard <i class="fa-solid fa-arrow-right ms-2"></i>
+                 </a>
+             @endauth
+
 
          </div>
      </div>

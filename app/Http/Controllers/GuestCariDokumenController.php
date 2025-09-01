@@ -22,7 +22,7 @@ class GuestCariDokumenController extends Controller
             ->when($keyword, fn($q) => $q->where('judul', 'like', "%$keyword%"))
             ->when($prodi, fn($q) => $q->where('program_studi_id', $prodi))
             ->when($koleksi, fn($q) => $q->where('jenis_dokumen_id', $koleksi))
-            ->when($tahun, fn($q) => $q->whereYear('created_at', $tahun));
+            ->when($tahun, fn($q) => $q->where('tahun', $tahun));
 
         $data = $query->latest()->get();
 

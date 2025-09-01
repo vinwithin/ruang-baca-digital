@@ -71,7 +71,7 @@
                                 <span class="badge py-2 px-4 {{ $badgeClass }}">{{ $jenisNama }}</span>
                             </td>
                             <td>
-                                {{ $item->created_at->format('Y') }}
+                                {{ $item->tahun }}
                             </td>
                         </tr>
                     @endforeach

@@ -262,7 +262,7 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center  fw-bold">
-                                    {{ $data->where('jenis_dokumen_id', 2)->where('status', 'Disetujui')->count() }}
+                                    {{ $data_count->where('jenis_dokumen_id', 1)->where('status', 'Disetujui')->count() }}
                                 </h2>
                                 <div class="text-center">
                                     Tugas Akhir/Skripsi
@@ -273,7 +273,7 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data->where('jenis_dokumen_id', 5)->where('status', 'Disetujui')->count() }}
+                                    {{ $data_count->where('jenis_dokumen_id', 2)->where('status', 'Disetujui')->count() }}
                                 </h2>
                                 <div class="text-center">
                                     Laporan Magang
@@ -284,7 +284,7 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data->whereIn('status', ['Diproses', 'Revisi'])->count() }}
+                                    {{ $data_count->whereIn('status', ['Diproses', 'Revisi'])->count() }}
                                 </h2>
                                 <div class="text-center">
                                     Ajuan Mahasiswa
@@ -398,7 +398,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-3">
-                        <div class="card-body">
+                        <div class="card-body overflow-scroll">
                             <div class="calendar-header">
                                 <h6>Kalender</h6>
                                 <div class="month-year" id="monthYear"></div>

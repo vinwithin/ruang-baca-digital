@@ -39,7 +39,7 @@ class CariDokumenController extends Controller
         }
 
         if ($tahun) {
-            $query->whereYear('created_at', $tahun); // Atau gunakan field 'tahun_terbit' jika ada
+            $query->where('tahun', $tahun); // Atau gunakan field 'tahun_terbit' jika ada
             $judul = 'Hasil Pencarian Anda';
         }
         $title = $judul ? $judul : 'Daftar skripsi dan laporan magang terbaru di Fakultas Sains dan Teknologi';
