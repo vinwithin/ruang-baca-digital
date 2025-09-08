@@ -536,6 +536,690 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    {{-- <script>
+        const canvas = document.getElementById("pdf-canvas");
+        const ctx = canvas.getContext("2d");
+        const loading = document.getElementById("loading");
+        const pageInfo = document.getElementById("page-info");
+        const bookCover = document.getElementById("book-cover");
+        const bookPages = document.getElementById("book-pages");
+        const controls = document.getElementById("controls");
+        const zoomControls = document.querySelector(".zoom-controls");
+        const searchToggle = document.getElementById("search-toggle");
+        const searchPanel = document.getElementById("search-panel");
+        const searchInput = document.getElementById("search-input");
+        const searchInfo = document.getElementById("search-info");
+
+        // Create a separate overlay canvas for highlights
+        const highlightCanvas = document.createElement('canvas');
+        const highlightCtx = highlightCanvas.getContext('2d');
+
+        // Position overlay canvas on top of main canvas
+        highlightCanvas.style.position = 'absolute';
+        highlightCanvas.style.top = '0';
+        highlightCanvas.style.left = '0';
+        highlightCanvas.style.pointerEvents = 'none';
+        highlightCanvas.style.zIndex = '10';
+
+        // Ensure canvas has crisp rendering and proper container behavior
+        canvas.style.imageRendering = 'pixelated';
+        canvas.style.imageRendering = '-moz-crisp-edges';
+        canvas.style.imageRendering = 'crisp-edges';
+        canvas.style.display = 'block';
+        canvas.style.margin = '0 auto';
+        canvas.style.position = 'relative';
+
+        // Ensure the parent container can accommodate the canvas
+        if (canvas.parentElement) {
+            canvas.parentElement.style.overflow = 'auto';
+            canvas.parentElement.style.display = 'flex';
+            canvas.parentElement.style.flexDirection = 'column';
+            canvas.parentElement.style.alignItems = 'center';
+            canvas.parentElement.style.justifyContent = 'center';
+            canvas.parentElement.style.minHeight = '100%';
+            canvas.parentElement.style.position = 'relative';
+
+            // Insert highlight canvas after main canvas
+            canvas.parentElement.insertBefore(highlightCanvas, canvas.nextSibling);
+        }
+
+        // PDF URL - replace with your PDF
+        const pdfUrl = "/dokumen/{{ $data->judul }}/stream";
+
+        const pdfjsLib = window["pdfjs-dist/build/pdf"];
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js";
+
+        const state = {
+            pdfDoc: null,
+            currentPage: 1,
+            zoom: 1.2, // Start with slightly larger zoom by default
+            totalPages: 0,
+            isOpen: false,
+            searchResults: [],
+            currentSearchIndex: -1,
+            searchTerm: '',
+            allTextContent: [] // Store text content for all pages
+        };
+
+        function showLoading() {
+            loading.classList.add('active');
+        }
+
+        function hideLoading() {
+            loading.classList.remove('active');
+        }
+
+        function updateUI() {
+            pageInfo.textContent = `Page ${state.currentPage} of ${state.totalPages}`;
+            document.getElementById("zoom-reset").textContent = `${Math.round(state.zoom * 100)}%`;
+
+            document.getElementById("prev-page").disabled = state.currentPage <= 1;
+            document.getElementById("next-page").disabled = state.currentPage >= state.totalPages;
+            document.getElementById("zoom-in").disabled = state.zoom >= 3.0;
+            document.getElementById("zoom-out").disabled = state.zoom <= 0.5;
+        }
+
+        function openBook() {
+            state.isOpen = true;
+            bookCover.classList.add('opened');
+
+            setTimeout(() => {
+                bookPages.style.display = 'block';
+                controls.style.display = 'flex';
+                pageInfo.style.display = 'block';
+                zoomControls.style.display = 'flex';
+                searchToggle.style.display = 'block';
+
+                if (!state.pdfDoc) {
+                    loadPDF();
+                } else {
+                    renderPage(state.currentPage);
+                }
+            }, 10);
+        }
+
+        function closeBook() {
+            state.isOpen = false;
+            bookCover.classList.remove('opened');
+            bookPages.style.display = 'none';
+            controls.style.display = 'none';
+            pageInfo.style.display = 'none';
+            zoomControls.style.display = 'none';
+            searchToggle.style.display = 'none';
+            searchPanel.style.display = 'none';
+        }
+
+        function renderPage(pageNumber) {
+            if (!state.pdfDoc) return;
+
+            showLoading();
+
+            state.pdfDoc.getPage(pageNumber).then(page => {
+                const devicePixelRatio = window.devicePixelRatio || 1;
+
+                const viewport = page.getViewport({
+                    scale: state.zoom
+                });
+
+                // Set main canvas dimensions
+                canvas.width = viewport.width * devicePixelRatio;
+                canvas.height = viewport.height * devicePixelRatio;
+                canvas.style.width = viewport.width + 'px';
+                canvas.style.height = viewport.height + 'px';
+
+                // Set highlight canvas to EXACTLY same dimensions
+                highlightCanvas.width = viewport.width * devicePixelRatio;
+                highlightCanvas.height = viewport.height * devicePixelRatio;
+                highlightCanvas.style.width = viewport.width + 'px';
+                highlightCanvas.style.height = viewport.height + 'px';
+
+                // Position highlight canvas exactly over main canvas
+                const canvasRect = canvas.getBoundingClientRect();
+                const parentRect = canvas.parentElement.getBoundingClientRect();
+                highlightCanvas.style.left = (canvasRect.left - parentRect.left) + 'px';
+                highlightCanvas.style.top = (canvasRect.top - parentRect.top) + 'px';
+
+                // Scale contexts - IMPORTANT: scale highlight context to match
+                ctx.scale(devicePixelRatio, devicePixelRatio);
+                highlightCtx.scale(devicePixelRatio, devicePixelRatio);
+
+                // Clear both canvases
+                ctx.clearRect(0, 0, viewport.width, viewport.height);
+                highlightCtx.clearRect(0, 0, viewport.width, viewport.height);
+
+                // Enable high quality rendering
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+
+                page.render(renderContext).promise.then(() => {
+                    hideLoading();
+                    updateUI();
+
+                    // Highlight search results dengan delay untuk memastikan render selesai
+                    setTimeout(() => {
+                        if (state.searchResults.length > 0) {
+                            highlightSearchResults();
+                        }
+                    }, 100);
+                }).catch(err => {
+                    hideLoading();
+                    console.error("Error rendering page:", err);
+                });
+            }).catch(err => {
+                hideLoading();
+                console.error("Error getting page:", err);
+            });
+        }
+
+        function loadPDF() {
+            showLoading();
+
+            // Configure PDF.js for better quality rendering
+            const loadingTask = pdfjsLib.getDocument({
+                url: pdfUrl,
+                // Enable text content extraction for better quality
+                useSystemFonts: true,
+                // Disable font face loading for better performance
+                disableFontFace: false,
+                // Enable worker for better performance
+                useWorkerFetch: true
+            });
+
+            loadingTask.promise.then(pdfDoc => {
+                state.pdfDoc = pdfDoc;
+                state.totalPages = pdfDoc.numPages;
+
+                // Load text content for all pages for search functionality
+                loadAllTextContent().then(() => {
+                    renderPage(state.currentPage);
+                    console.log("PDF loaded successfully");
+                });
+            }).catch(error => {
+                hideLoading();
+                console.error("Error loading PDF:", error);
+                alert("Error loading PDF. Please check the file path.");
+            });
+        }
+
+        async function loadAllTextContent() {
+            state.allTextContent = [];
+
+            for (let i = 1; i <= state.totalPages; i++) {
+                try {
+                    const page = await state.pdfDoc.getPage(i);
+                    const textContent = await page.getTextContent();
+
+                    // Store complete text items with all properties
+                    const textItems = textContent.items.map(item => ({
+                        str: item.str,
+                        transform: [...item.transform], // Copy array
+                        width: item.width,
+                        height: item.height,
+                        fontName: item.fontName,
+                        dir: item.dir,
+                        hasEOL: item.hasEOL
+                    }));
+
+                    state.allTextContent[i - 1] = textItems;
+                } catch (error) {
+                    console.error(`Error loading text content for page ${i}:`, error);
+                    state.allTextContent[i - 1] = [];
+                }
+            }
+        }
+
+
+        // Fungsi untuk menghitung lebar karakter berdasarkan font
+        function getCharWidth(textItem, char) {
+            // Estimasi sederhana berdasarkan lebar total dibagi panjang string
+            return textItem.width / textItem.str.length;
+        }
+
+        // Fungsi untuk mencari posisi exact match dalam string
+        function findExactMatches(text, searchTerm) {
+            const matches = [];
+            const lowerText = text.toLowerCase();
+            const lowerSearchTerm = searchTerm.toLowerCase();
+
+            let startIndex = 0;
+            while (startIndex < lowerText.length) {
+                const foundIndex = lowerText.indexOf(lowerSearchTerm, startIndex);
+                if (foundIndex === -1) break;
+
+                matches.push({
+                    start: foundIndex,
+                    end: foundIndex + searchTerm.length
+                });
+                startIndex = foundIndex + 1;
+            }
+
+            return matches;
+        }
+
+        function performSearch(searchTerm) {
+            if (!searchTerm || !state.allTextContent.length) {
+                state.searchResults = [];
+                state.currentSearchIndex = -1;
+                updateSearchUI();
+                clearHighlights();
+                return;
+            }
+
+            state.searchTerm = searchTerm;
+            state.searchResults = [];
+
+            // Search through all pages with improved text matching
+            state.allTextContent.forEach((pageContent, pageIndex) => {
+                pageContent.forEach((textItem, itemIndex) => {
+                    // Normalize text for better matching (preserve original for highlighting)
+                    const normalizedText = textItem.str.toLowerCase();
+                    const normalizedSearchTerm = searchTerm.toLowerCase();
+
+                    let startIndex = 0;
+                    while (startIndex < normalizedText.length) {
+                        const foundIndex = normalizedText.indexOf(normalizedSearchTerm, startIndex);
+                        if (foundIndex === -1) break;
+
+                        state.searchResults.push({
+                            pageNumber: pageIndex + 1,
+                            itemIndex: itemIndex,
+                            text: textItem.str,
+                            matchText: textItem.str.substring(foundIndex, foundIndex + searchTerm
+                                .length),
+                            transform: textItem.transform,
+                            width: textItem.width,
+                            height: textItem.height,
+                            fontName: textItem.fontName,
+                            matchStart: foundIndex,
+                            matchEnd: foundIndex + searchTerm.length,
+                            // Store original text item for precise positioning
+                            originalTextItem: textItem
+                        });
+
+                        startIndex = foundIndex + 1;
+                    }
+                });
+            });
+
+            state.currentSearchIndex = state.searchResults.length > 0 ? 0 : -1;
+            updateSearchUI();
+
+            // Navigate to first result
+            if (state.searchResults.length > 0) {
+                navigateToSearchResult(0);
+            }
+        }
+
+
+
+        function navigateToSearchResult(index) {
+            if (index < 0 || index >= state.searchResults.length) return;
+
+            state.currentSearchIndex = index;
+            const result = state.searchResults[index];
+
+            // Clear highlights first - PENTING!
+            clearHighlights();
+
+            if (state.currentPage !== result.pageNumber) {
+                // Jika beda halaman, render ulang
+                state.currentPage = result.pageNumber;
+                renderPage(state.currentPage);
+            } else {
+                // Jika sama halaman, langsung update highlight
+                // Tambahkan small delay untuk memastikan clearHighlights selesai
+                setTimeout(() => {
+                    highlightSearchResults();
+                }, 50);
+            }
+
+            updateSearchUI();
+        }
+
+        function highlightSearchResults() {
+            if (!state.searchResults.length || !state.pdfDoc) return;
+
+            // Clear dengan method yang lebih thorough
+            clearHighlights();
+
+            // Get current page results
+            const currentPageResults = state.searchResults.filter(
+                result => result.pageNumber === state.currentPage
+            );
+
+            if (currentPageResults.length === 0) return;
+
+            state.pdfDoc.getPage(state.currentPage).then(page => {
+                page.getTextContent().then(textContent => {
+                    const viewport = page.getViewport({
+                        scale: state.zoom
+                    });
+
+                    // Sort results by position untuk consistent highlighting
+                    currentPageResults.sort((a, b) => {
+                        const aItem = textContent.items[a.itemIndex];
+                        const bItem = textContent.items[b.itemIndex];
+                        if (!aItem || !bItem) return 0;
+
+                        // Sort by Y position first, then X position
+                        const yDiff = bItem.transform[5] - aItem.transform[
+                            5]; // Y coordinate (inverted)
+                        if (Math.abs(yDiff) > 1) return yDiff;
+                        return aItem.transform[4] - bItem.transform[4]; // X coordinate
+                    });
+
+                    currentPageResults.forEach((result, index) => {
+                        const globalIndex = state.searchResults.indexOf(result);
+                        const textItem = textContent.items[result.itemIndex];
+
+                        if (!textItem) return;
+
+                        // Dapatkan transformation matrix
+                        const transform = textItem.transform;
+                        const [a, b, c, d, e, f] = transform;
+
+                        // Hitung font size yang sebenarnya
+                        const fontHeight = Math.abs(d);
+                        const fontSize = fontHeight * state.zoom;
+
+                        // Setup context untuk measurement
+                        highlightCtx.save();
+                        highlightCtx.font = `${fontSize}px ${getFontFamily(textItem.fontName)}`;
+                        highlightCtx.textBaseline = 'alphabetic';
+
+                        // Hitung posisi base dari transformation matrix
+                        const baseX = e * state.zoom;
+                        const baseY = viewport.height - (f * state.zoom);
+
+                        // Ukur text sebelum match
+                        const beforeText = result.text.substring(0, result.matchStart);
+                        const beforeWidth = highlightCtx.measureText(beforeText).width;
+
+                        // Ukur match text
+                        const matchWidth = highlightCtx.measureText(result.matchText).width;
+
+                        // Hitung posisi highlight yang tepat
+                        const highlightX = baseX + beforeWidth;
+                        const highlightY = baseY - fontSize * 0.8;
+                        const highlightWidth = matchWidth;
+                        const highlightHeight = fontSize * 1.0;
+
+                        // Tentukan apakah ini current result
+                        const isCurrentResult = globalIndex === state.currentSearchIndex;
+
+                        if (isCurrentResult) {
+                            // Current result - highlight yang lebih mencolok
+                            highlightCtx.fillStyle = 'rgba(255, 140, 0, 0.8)';
+                            highlightCtx.fillRect(highlightX - 2, highlightY - 2, highlightWidth +
+                                4, highlightHeight + 4);
+
+                            // Border tebal untuk current result
+                            highlightCtx.strokeStyle = 'rgba(255, 100, 0, 1)';
+                            highlightCtx.lineWidth = 2;
+                            highlightCtx.strokeRect(highlightX - 2, highlightY - 2, highlightWidth +
+                                4, highlightHeight + 4);
+                        } else {
+                            // Other results - highlight yang lebih subtle
+                            highlightCtx.fillStyle = 'rgba(255, 255, 0, 0.4)';
+                            highlightCtx.fillRect(highlightX, highlightY, highlightWidth,
+                                highlightHeight);
+                        }
+
+                        highlightCtx.restore();
+
+                        // Debug untuk current result
+                        if (isCurrentResult) {
+                            console.log(`Current result "${result.matchText}" highlighted at:`, {
+                                globalIndex: globalIndex,
+                                currentSearchIndex: state.currentSearchIndex,
+                                position: {
+                                    x: highlightX,
+                                    y: highlightY
+                                },
+                                size: {
+                                    width: highlightWidth,
+                                    height: highlightHeight
+                                },
+                                pageNumber: result.pageNumber,
+                                currentPage: state.currentPage
+                            });
+                        }
+                    });
+                }).catch(error => {
+                    console.error('Error getting text content for highlighting:', error);
+                });
+            }).catch(error => {
+                console.error('Error getting page for highlighting:', error);
+            });
+        }
+
+
+
+        function getFontFamily(pdfFontName) {
+            if (!pdfFontName) return 'serif';
+
+            const fontName = pdfFontName.toLowerCase();
+
+            // Map common PDF fonts to web-safe fonts
+            if (fontName.includes('arial') || fontName.includes('helvetica')) {
+                return 'Arial, sans-serif';
+            } else if (fontName.includes('times') || fontName.includes('roman')) {
+                return 'Times, serif';
+            } else if (fontName.includes('courier')) {
+                return 'Courier, monospace';
+            } else if (fontName.includes('sans')) {
+                return 'sans-serif';
+            } else if (fontName.includes('mono')) {
+                return 'monospace';
+            }
+
+            return 'serif'; // Default fallback
+        }
+
+
+        function clearHighlights() {
+            // Save current transform
+            highlightCtx.save();
+
+            // Reset transform to identity matrix
+            highlightCtx.setTransform(1, 0, 0, 1, 0, 0);
+
+            // Clear entire canvas
+            highlightCtx.clearRect(0, 0, highlightCanvas.width, highlightCanvas.height);
+
+            // Restore transform
+            highlightCtx.restore();
+        }
+
+        function setupSearchNavigation() {
+            document.getElementById("search-prev").addEventListener("click", () => {
+                if (state.currentSearchIndex > 0) {
+                    console.log(`Navigating from ${state.currentSearchIndex} to ${state.currentSearchIndex - 1}`);
+                    navigateToSearchResult(state.currentSearchIndex - 1);
+                }
+            });
+
+            document.getElementById("search-next").addEventListener("click", () => {
+                if (state.currentSearchIndex < state.searchResults.length - 1) {
+                    console.log(`Navigating from ${state.currentSearchIndex} to ${state.currentSearchIndex + 1}`);
+                    navigateToSearchResult(state.currentSearchIndex + 1);
+                }
+            });
+        }
+
+        function updateSearchUI() {
+            const totalResults = state.searchResults.length;
+            const currentResult = state.currentSearchIndex + 1;
+
+            if (totalResults === 0) {
+                searchInfo.textContent = state.searchTerm ? 'No results found' : '0 results';
+            } else {
+                searchInfo.textContent = `${currentResult} of ${totalResults} results`;
+            }
+
+            document.getElementById("search-prev").disabled = state.currentSearchIndex <= 0;
+            document.getElementById("search-next").disabled = state.currentSearchIndex >= totalResults - 1;
+        }
+
+        function toggleSearchPanel() {
+            const isVisible = searchPanel.style.display === 'flex';
+
+            if (isVisible) {
+                searchPanel.style.display = 'none';
+                // Clear search results and highlights when closing
+                state.searchResults = [];
+                state.currentSearchIndex = -1;
+                clearHighlights(); // Clear highlights using separate canvas
+            } else {
+                searchPanel.style.display = 'flex';
+                searchInput.focus();
+            }
+        }
+
+        // Event Listeners
+        document.getElementById("open-book").addEventListener("click", openBook);
+        document.getElementById("close-book").addEventListener("click", closeBook);
+
+        document.getElementById("prev-page").addEventListener("click", () => {
+            if (state.currentPage > 1) {
+                state.currentPage--;
+                renderPage(state.currentPage);
+            }
+        });
+
+        document.getElementById("next-page").addEventListener("click", () => {
+            if (state.currentPage < state.totalPages) {
+                state.currentPage++;
+                renderPage(state.currentPage);
+            }
+        });
+
+        document.getElementById("zoom-in").addEventListener("click", () => {
+            if (state.pdfDoc) {
+                state.zoom = Math.min(state.zoom * 1.2, 3.0);
+                renderPage(state.currentPage);
+            }
+        });
+
+        document.getElementById("zoom-out").addEventListener("click", () => {
+            if (state.pdfDoc) {
+                state.zoom = Math.max(state.zoom * 0.8, 0.5);
+                renderPage(state.currentPage);
+            }
+        });
+
+        document.getElementById("zoom-reset").addEventListener("click", () => {
+            if (state.pdfDoc) {
+                state.zoom = 1.0;
+                renderPage(state.currentPage);
+            }
+        });
+
+        // Search Event Listeners
+        searchToggle.addEventListener("click", toggleSearchPanel);
+
+        document.getElementById("search-close").addEventListener("click", () => {
+            toggleSearchPanel();
+        });
+
+        searchInput.addEventListener("input", (e) => {
+            const searchTerm = e.target.value.trim();
+            if (searchTerm.length >= 2) { // Reduced from 3 to 2 for better responsiveness
+                performSearch(searchTerm);
+            } else if (searchTerm.length === 0) {
+                performSearch('');
+            }
+        });
+
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (state.searchResults.length > 0) {
+                    const nextIndex = (state.currentSearchIndex + 1) % state.searchResults.length;
+                    navigateToSearchResult(nextIndex);
+                }
+            } else if (e.key === 'Escape') {
+                toggleSearchPanel();
+            }
+        });
+
+        document.getElementById("search-prev").addEventListener("click", () => {
+            if (state.currentSearchIndex > 0) {
+                navigateToSearchResult(state.currentSearchIndex - 1);
+            }
+        });
+
+        document.getElementById("search-next").addEventListener("click", () => {
+            if (state.currentSearchIndex < state.searchResults.length - 1) {
+                navigateToSearchResult(state.currentSearchIndex + 1);
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (!state.isOpen) return;
+
+            // Don't handle shortcuts when search input is focused
+            if (document.activeElement === searchInput) return;
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    if (state.currentPage > 1) {
+                        state.currentPage--;
+                        renderPage(state.currentPage);
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (state.currentPage < state.totalPages) {
+                        state.currentPage++;
+                        renderPage(state.currentPage);
+                    }
+                    break;
+                case '+':
+                case '=':
+                    state.zoom = Math.min(state.zoom * 1.2, 3.0);
+                    renderPage(state.currentPage);
+                    break;
+                case '-':
+                    state.zoom = Math.max(state.zoom * 0.8, 0.5);
+                    renderPage(state.currentPage);
+                    break;
+                case 'Escape':
+                    if (searchPanel.style.display === 'flex') {
+                        toggleSearchPanel();
+                    } else {
+                        closeBook();
+                    }
+                    break;
+                case 'f':
+                case 'F':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        toggleSearchPanel();
+                    }
+                    break;
+            }
+        });
+
+        // Handle window resize to re-fit PDF pages
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            if (!state.isOpen || !state.pdfDoc) return;
+
+            // Debounce resize events
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Re-render current page
+                renderPage(state.currentPage);
+            }, 150);
+        });
+    </script> --}}
     <script>
         const canvas = document.getElementById("pdf-canvas");
         const ctx = canvas.getContext("2d");
@@ -550,6 +1234,8 @@
         const searchInput = document.getElementById("search-input");
         const searchInfo = document.getElementById("search-info");
 
+        const highlightCanvas = document.createElement('canvas');
+        const highlightCtx = highlightCanvas.getContext('2d');
         // PDF URL - replace with your PDF
         const pdfUrl = "/dokumen/{{ $data->judul }}/stream";
 
@@ -618,38 +1304,60 @@
         }
 
         function renderPage(pageNumber) {
-            if (!state.pdfDoc) return;
+            if (!state.pdfDoc) return Promise.reject('No PDF document loaded');
 
             showLoading();
 
-            state.pdfDoc.getPage(pageNumber).then(page => {
+            return state.pdfDoc.getPage(pageNumber).then(page => {
+                const devicePixelRatio = window.devicePixelRatio || 1;
+
+                // Scale for crisp rendering on high DPI displays
+                const scaleFactor = state.zoom * devicePixelRatio;
+
                 const viewport = page.getViewport({
-                    scale: state.zoom
+                    scale: scaleFactor
                 });
 
+                // Set actual canvas size in memory (scaled up for high DPI)
                 canvas.width = viewport.width;
                 canvas.height = viewport.height;
+
+                // Set display size (CSS pixels)
+                canvas.style.width = (viewport.width / devicePixelRatio) + 'px';
+                canvas.style.height = (viewport.height / devicePixelRatio) + 'px';
+
+                // Clear canvas completely
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Enable image smoothing for better quality
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
 
                 const renderContext = {
                     canvasContext: ctx,
                     viewport: viewport
                 };
 
-                page.render(renderContext).promise.then(() => {
+                return page.render(renderContext).promise.then(() => {
                     hideLoading();
                     updateUI();
 
-                    // Highlight search results on current page if any
+                    // Only highlight search results after page rendering is complete
                     if (state.searchResults.length > 0) {
-                        highlightSearchResults();
+                        // Add a small delay to ensure rendering is completely finished
+                        setTimeout(() => {
+                            highlightSearchResults();
+                        }, 10);
                     }
                 }).catch(err => {
                     hideLoading();
                     console.error("Error rendering page:", err);
+                    throw err;
                 });
             }).catch(err => {
                 hideLoading();
                 console.error("Error getting page:", err);
+                throw err;
             });
         }
 
@@ -776,9 +1484,17 @@
 
             if (state.currentPage !== result.pageNumber) {
                 state.currentPage = result.pageNumber;
-                renderPage(state.currentPage);
+                // Render page first, then highlight after rendering is complete
+                renderPage(state.currentPage).then(() => {
+                    highlightSearchResults();
+                });
             } else {
-                highlightSearchResults();
+                // Clear existing highlights before adding new ones
+                clearHighlights();
+                // Add slight delay to ensure page is fully rendered before highlighting
+                setTimeout(() => {
+                    highlightSearchResults();
+                }, 50);
             }
 
             updateSearchUI();
@@ -795,21 +1511,28 @@
             if (currentPageResults.length === 0) return;
 
             state.pdfDoc.getPage(state.currentPage).then(page => {
+                // Use same scaling factor as renderPage for consistency
+                const devicePixelRatio = window.devicePixelRatio || 1;
+                const scaleFactor = state.zoom * devicePixelRatio;
+
                 const viewport = page.getViewport({
-                    scale: state.zoom
+                    scale: scaleFactor
                 });
 
                 // Create a temporary canvas for text measurement (more accurate)
                 const tempCanvas = document.createElement('canvas');
                 const tempCtx = tempCanvas.getContext('2d');
 
+                // Save current canvas state
+                ctx.save();
+
                 currentPageResults.forEach((result, index) => {
                     const globalIndex = state.searchResults.indexOf(result);
                     const transform = result.transform;
 
-                    // Set font for accurate measurement
-                    const fontSize = Math.abs(transform[3]) * state.zoom;
-                    tempCtx.font = `${fontSize}px serif`; // Default font approximation
+                    // Set font for accurate measurement (scaled for device pixel ratio)
+                    const fontSize = Math.abs(transform[3]) * scaleFactor;
+                    tempCtx.font = `${fontSize}px serif`;
 
                     // Measure text before the match
                     const textBeforeMatch = result.text.substring(0, result.matchStart);
@@ -818,29 +1541,38 @@
                     // Measure the actual match text
                     const matchTextWidth = tempCtx.measureText(result.matchText).width;
 
-                    // Calculate precise position
-                    const baseX = transform[4] * state.zoom;
-                    const baseY = viewport.height - (transform[5] * state.zoom);
+                    // Calculate precise position (already scaled by viewport)
+                    const baseX = transform[4] * scaleFactor;
+                    const baseY = viewport.height - (transform[5] * scaleFactor);
 
                     const highlightX = baseX + textBeforeWidth;
-                    const highlightY = baseY - (fontSize * 0.8); // Adjust for baseline
+                    const highlightY = baseY - (fontSize * 0.8);
                     const highlightWidth = matchTextWidth;
                     const highlightHeight = fontSize;
 
+                    // Set blend mode to overlay for proper highlighting
+                    ctx.globalCompositeOperation = 'multiply';
+                    ctx.globalAlpha = 0.3; // Set transparency
+
                     // Highlight color
                     const isCurrentResult = globalIndex === state.currentSearchIndex;
-                    ctx.fillStyle = isCurrentResult ? 'rgba(255, 165, 0, 0.4)' : 'rgba(255, 255, 0, 0.3)';
+                    ctx.fillStyle = isCurrentResult ? '#FFA500' :
+                        '#FFFF00'; // Orange for current, yellow for others
 
+                    // Draw highlight rectangle
                     ctx.fillRect(highlightX, highlightY, highlightWidth, highlightHeight);
-
-                    // Optional: Add border for current result
-                    if (isCurrentResult) {
-                        ctx.strokeStyle = 'rgba(255, 140, 0, 0.8)';
-                        ctx.lineWidth = 1;
-                        ctx.strokeRect(highlightX, highlightY, highlightWidth, highlightHeight);
-                    }
                 });
+
+                // Restore canvas state
+                ctx.restore();
             });
+        }
+
+        function clearHighlights() {
+            // Re-render the current page to remove all highlights
+            if (state.pdfDoc && state.currentPage) {
+                renderPage(state.currentPage);
+            }
         }
 
         function updateSearchUI() {

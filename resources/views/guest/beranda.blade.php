@@ -35,13 +35,13 @@
                         <a class="nav-link text-white" href="">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="/#announcement">Jenis Koleksi</a>
+                        <a class="nav-link text-white " href="/program-studi">Jenis Koleksi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="/#berita">Layanan</a>
+                        <a class="nav-link text-white " href="/layanan">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="/daftar-publikasi">Berita</a>
+                        <a class="nav-link text-white " href="/berita">Berita</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white " href="/#tentang">Tentang</a>
@@ -58,7 +58,7 @@
 
                     @auth
                         <a href="/dashboard" class="fw-semibold">
-                            Dashboard <i class="fa-solid fa-arrow-right ms-2"></i>
+                            Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
                         </a>
                     @endauth
 
@@ -120,7 +120,7 @@
             <div class=" d-flex flex-row justify-content-between align-items-center pt-5 mb-4 mt-5"
                 id="wrap-title-prodi">
                 <h1 class="text-dark ">PROGRAM STUDI</h1>
-                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+                <a href="/program-studi" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
 
             </div>
 
@@ -132,9 +132,10 @@
 
                 <div class="d-flex gap-4 overflow-auto" id="scroll-container">
                     @foreach ($prodi as $item)
-                        <div class="card flex-shrink-0" id="card-list"
+                        <div class="card card-list flex-shrink-0"
                             onclick="window.location.href='/koleksi/program-studi/{{ $item->nama }}'"
-                            style="cursor: pointer; ">
+                            style="cursor: pointer; background: url({{ $item->logo }}) no-repeat center center/cover;
+                             ">
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->nama }}</h5>
@@ -149,7 +150,7 @@
         <div class="wrapper">
             <div class="container d-flex justify-content-between align-items-center mb-5">
                 <h1 class="text-white text-center mb-5 pt-5">KATEGORI KOLEKSI</h1>
-                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+                {{-- <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a> --}}
             </div>
             <div class="container">
                 <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
@@ -209,7 +210,7 @@
         <div class="wrap-berita">
             <div class="d-flex justify-content-between align-items-center mb-5 pb-4">
                 <h1 class="text-dark">INFORMASI/BERITA</h1>
-                <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+                <a href="/berita" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>
             <div class="">
                 {{-- <div class="row g-5"> --}}

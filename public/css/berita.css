@@ -1,0 +1,28 @@
+#berita {
+    padding: 1.5rem 8%;
+}
+#berita .title {
+    color: #1a1a1a;
+    /* Heading/h1/SemiBold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 58px; /* 131.818% */
+}
+
+.news-card {
+    width: 450px;
+    height: 350px;
+    flex-shrink: 0;
+    aspect-ratio: 3/4;
+    /* background:black; */
+}
+
+.news-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    filter: brightness(60%);
+}

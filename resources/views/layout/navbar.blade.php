@@ -20,13 +20,13 @@
                  <a class="nav-link text-dark" href="/">Beranda</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link text-dark " href="/#announcement">Jenis Koleksi</a>
+                 <a class="nav-link text-dark " href="/program-studi">Jenis Koleksi</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link text-dark " href="/#berita">Layanan</a>
+                 <a class="nav-link text-dark " href="/layanan">Layanan</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link text-dark " href="/daftar-publikasi">Berita</a>
+                 <a class="nav-link text-dark " href="/berita">Berita</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link text-dark " href="/#galeri">Tentang</a>
@@ -43,7 +43,7 @@
 
              @auth
                  <a href="/dashboard" class="fw-semibold">
-                     Dashboard <i class="fa-solid fa-arrow-right ms-2"></i>
+                     Masuk <i class="fa-solid fa-arrow-right ms-2"></i>
                  </a>
              @endauth
 

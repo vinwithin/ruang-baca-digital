@@ -19,4 +19,7 @@ class BerandaController extends Controller
     public function tentang(){
         return view('guest.tentang');
     }
+    public function layanan(){
+        return view('guest.layanan');
+    }
 }

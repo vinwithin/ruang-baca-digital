@@ -10,6 +10,7 @@ class ProgramStudi extends Model
     public $program_studi = 'program_studi';
     protected $fillable = [
         'nama',
+        'logo',
         'fakultas_id'
     ];
     public function getRouteKeyName(): string

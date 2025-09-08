@@ -1,0 +1,42 @@
+#layanan {
+    padding: 1.5rem 8%;
+}
+#layanan .title {
+    color: #043471;
+
+    /* Heading/h1/SemiBold */
+    font-family: "Plus Jakarta Sans";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 58px; /* 131.818% */
+}
+#subtitle {
+    font-size: 25px !important;
+}
+
+.img-layanan {
+    width: 474px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    filter: brightness(60%);
+}
+#layanan p {
+    color: #000;
+    text-align: justify;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+#layanan ul li {
+    color: #000;
+    text-align: justify;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}

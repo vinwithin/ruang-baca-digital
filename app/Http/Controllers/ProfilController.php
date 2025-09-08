@@ -14,4 +14,8 @@ class ProfilController extends Controller
             'data' => User::where('id', Auth::user()->id)->firstOrFail(),
         ]);
     }
+
+    public function store(Request $request){
+        
+    }
 }
