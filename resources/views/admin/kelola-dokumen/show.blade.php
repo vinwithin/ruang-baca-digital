@@ -78,9 +78,9 @@
                                         if ($data->status === 'Diproses') {
                                             $badgeClass = 'bg-warning';
                                         } elseif ($data->status === 'Disetujui') {
-                                            $badgeClass = 'bg-success';
+                                            $badgeClass = 'bg-success-subtle ';
                                         } elseif ($data->status === 'Revisi') {
-                                            $badgeClass = 'bg-danger';
+                                            $badgeClass = 'bg-secondary-subtle';
                                         }
                                     @endphp
                                     <span class="badge px-3 py-2 {{ $badgeClass }}"

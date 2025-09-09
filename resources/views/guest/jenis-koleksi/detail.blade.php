@@ -34,7 +34,20 @@
                         </tr>
                         <tr>
                             <td class="fw-semibold">Jenis Koleksi</td>
-                            <td><span class="badge text-bg-warning">{{ $data->jenis_dokumen->nama }}</span></td>
+                            <td>
+                                @php
+                                    $jenisNama = $data->jenis_dokumen->nama;
+                                    $badgeClass = 'bg-info'; // default
+
+                                    if ($jenisNama === 'Skripsi') {
+                                        $badgeClass = 'bg-secondary';
+                                    } elseif ($jenisNama === 'Laporan Magang') {
+                                        $badgeClass = 'bg-info';
+                                    }
+                                @endphp
+
+                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="fw-semibold">Tahun</td>

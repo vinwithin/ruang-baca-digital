@@ -35,9 +35,9 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold" style="width: 50%;">Jenis Koleksi</td>
-                                <td style="width: 50%;">
+                                <td>
                                     @php
-                                        $jenisNama = $data->jenis_dokumen->nama;
+                                        $jenisNama = $item->jenis_dokumen->nama;
                                         $badgeClass = 'bg-info'; // default
 
                                         if ($jenisNama === 'Skripsi') {

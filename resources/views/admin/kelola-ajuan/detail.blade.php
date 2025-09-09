@@ -78,9 +78,9 @@
                                         if ($data->status === 'Diproses') {
                                             $badgeClass = 'bg-warning';
                                         } elseif ($data->status === 'Disetujui') {
-                                            $badgeClass = 'bg-success';
+                                            $badgeClass = 'bg-success-subtle ';
                                         } elseif ($data->status === 'Revisi') {
-                                            $badgeClass = 'bg-danger';
+                                            $badgeClass = 'bg-secondary-subtle';
                                         }
                                     @endphp
                                     <span class="badge {{ $badgeClass }}"
@@ -89,7 +89,7 @@
                                             style="cursor: pointer" @endif>
                                         {{ $data->status }}
                                         @if ($data->status === 'Revisi')
-                                            <i class="fa-solid fa-circle-info"></i>
+                                            <i class="fa-solid fa-circle-info ms-2"></i>
                                         @endif
                                     </span>
 

@@ -14,6 +14,7 @@ use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/informasi/dokumen', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
         Route::get('/informasi/dokumen/{laporanmahasiswa}', [InformasiUpload::class, 'detail'])->name('informasi-dokumen.detail');
         Route::get('/informasi/dokumen/view/{filename}', [InformasiUpload::class, 'view'])->name('informasi-dokumen-view'); // supaya hanya user login yang bisa akses
+        Route::post('/pdf/generate', [PDFController::class, 'generateReport'])->name('pdf.generate');
 
         Route::get('/search/dokumen', [CariDokumenController::class, 'index'])->name('cari-dokumen');
         Route::get('/search/dokumen/{laporanmahasiswa}', [CariDokumenController::class, 'show'])->name('dokumen-detail');

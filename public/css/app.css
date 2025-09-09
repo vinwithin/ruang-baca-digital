@@ -4452,8 +4452,8 @@ fieldset:disabled .btn {
     color: var(--bs-list-group-action-active-color);
 }
 .list-group-item {
-    background-color:white !important;
-    
+    background-color: white !important;
+
     border: var(--bs-list-group-border-width) solid
         var(--bs-list-group-border-color);
     color: var(--bs-list-group-color);
@@ -6845,11 +6845,9 @@ fieldset:disabled .btn {
 }
 .bg-secondary {
     --bs-bg-opacity: 1;
-    color:#CC3C14;
-    background-color: rgba(
-       255, 237, 222, 1
-    ) !important;
-    padding:8px 30px;
+    color: #cc3c14;
+    background-color: rgba(255, 237, 222, 1) !important;
+    padding: 8px 30px;
 }
 .bg-success {
     --bs-bg-opacity: 1;
@@ -6860,9 +6858,9 @@ fieldset:disabled .btn {
 }
 .bg-info {
     --bs-bg-opacity: 1;
-    background-color: #A2D2FF !important;
-    color:black;
-    padding:8px 30px;
+    background-color: #a2d2ff !important;
+    color: black;
+    padding: 8px 30px;
 }
 .bg-warning {
     --bs-bg-opacity: 1;
@@ -6870,6 +6868,7 @@ fieldset:disabled .btn {
         var(--bs-warning-rgb),
         var(--bs-bg-opacity)
     ) !important;
+    padding: 8px 30px;
 }
 .bg-danger {
     --bs-bg-opacity: 1;
@@ -6947,10 +6946,14 @@ fieldset:disabled .btn {
     background-color: var(--bs-primary-bg-subtle) !important;
 }
 .bg-secondary-subtle {
-    background-color: var(--bs-secondary-bg-subtle) !important;
+    background-color: #ffcece !important;
+    color: #ed374d;
+    padding: 8px 30px;
 }
 .bg-success-subtle {
-    background-color: var(--bs-success-bg-subtle) !important;
+    background-color: #ecfae5 !important;
+    color: #9cdc7e;
+    padding: 8px 30px;
 }
 .bg-info-subtle {
     background-color: var(--bs-info-bg-subtle) !important;
@@ -12133,7 +12136,7 @@ body {
 }
 .sidebar,
 .sidebar-content {
-    background:  #FFF;
+    background: #fff;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
     transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out,
         margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
@@ -12173,7 +12176,7 @@ a.sidebar-link svg {
     outline: 0;
 }
 .sidebar-link:hover {
-    background: rgba(6, 77, 63, 1);
+    background: #3b7ddd;
     border-left-color: transparent;
 }
 .sidebar-link:hover,
@@ -12183,7 +12186,7 @@ a.sidebar-link svg {
 }
 .sidebar-item.active .sidebar-link:hover,
 .sidebar-item.active > .sidebar-link {
-    background: #023E8A;
+    background: #023e8a;
     border-left-color: #3b7ddd;
     color: #e9ecef;
 }

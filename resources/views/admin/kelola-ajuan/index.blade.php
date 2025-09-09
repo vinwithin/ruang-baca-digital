@@ -60,7 +60,7 @@
                                    
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-12 text-end">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-filter me-1"></i> Terapkan Filter
                                 </button>
@@ -132,9 +132,9 @@
                                             if ($item->status === 'Diproses') {
                                                 $badgeClass = 'bg-warning';
                                             } elseif ($item->status === 'Disetujui') {
-                                                $badgeClass = 'bg-success';
+                                                $badgeClass = 'bg-success-subtle ';
                                             } elseif ($item->status === 'Revisi') {
-                                                $badgeClass = 'bg-danger';
+                                                $badgeClass = 'bg-secondary-subtle';
                                             }
                                         @endphp
                                         <span class="badge {{ $badgeClass }}"
@@ -143,7 +143,7 @@
                                             style="cursor: pointer" @endif>
                                             {{ $item->status }}
                                             @if ($item->status === 'Revisi')
-                                                <i class="fa-solid fa-circle-info"></i>
+                                                <i class="fa-solid fa-circle-info ms-2"></i>
                                             @endif
                                         </span>
 

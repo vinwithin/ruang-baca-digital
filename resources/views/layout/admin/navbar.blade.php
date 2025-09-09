@@ -30,14 +30,6 @@
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
-                        <i class="fa-regular fa-message" style="color: #ffffff;"></i>
-                        <span class="indicator">4</span>
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                    <div class="position-relative">
                         <i class="fa-regular fa-bell" style="color: #ffffff;"></i>
                         <span class="indicator">4</span>
                     </div>

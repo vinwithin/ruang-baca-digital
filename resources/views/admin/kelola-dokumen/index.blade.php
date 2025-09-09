@@ -50,7 +50,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-12 text-end">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-filter me-1"></i> Terapkan Filter
                                 </button>
@@ -103,8 +103,20 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->program_studi->nama }}</td>
                                     <td>
-                                        <span class="badge bg-primary px-4 py-2">{{ $item->jenis_dokumen->nama }}</span>
+                                        @php
+                                            $jenisNama = $item->jenis_dokumen->nama;
+                                            $badgeClass = 'bg-info'; // default
+
+                                            if ($jenisNama === 'Skripsi') {
+                                                $badgeClass = 'bg-secondary';
+                                            } elseif ($jenisNama === 'Laporan Magang') {
+                                                $badgeClass = 'bg-info';
+                                            }
+                                        @endphp
+
+                                        <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                                     </td>
+                                
 
                                     <td>
                                         <a href="/admin/kelola-dokumen/detail/{{ $item->uuid }}"
