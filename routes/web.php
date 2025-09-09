@@ -15,6 +15,7 @@ use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
@@ -32,6 +33,8 @@ Route::get('/koleksi/program-studi/{programstudi}', [KoleksiController::class, '
 
 
 
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
