@@ -14,6 +14,7 @@ use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\PanduanController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
@@ -45,6 +46,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+    Route::get('/panduan', [PanduanController::class, 'index'])->name('panduan.index');
 
     Route::middleware(['role:mahasiswa'])->group(function () {
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
@@ -88,6 +90,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/berita/edit/{berita:slug}', [BeritaController::class, 'edit'])->name('berita.edit');
             Route::post('/berita/update/{berita:slug}', [BeritaController::class, 'update'])->name('berita.update');
             Route::get('/berita/delete/{berita:slug}', [BeritaController::class, 'destroy'])->name('berita.delete');
+
             Route::get('/calendar/month', [DashboardController::class, 'getMonth'])->name('calendar.month');
         });
     });

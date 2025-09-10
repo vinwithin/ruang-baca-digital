@@ -18,6 +18,11 @@
             font-weight: 400;
             line-height: 17px;
         }
+        .bg-primary{
+            background: #023E8A !important;
+            border-radius: 10px;
+            color: white;
+        }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.2);
@@ -368,33 +373,57 @@
                                 <button type="submit" class="btn btn-sm btn-primary ms-2">Filter</button>
                             </form>
                         </div>
-                        <div id="curve_chart" style="height: 300px;"></div>
+                        <div id="curve_chart" style="height: 340px;"></div>
 
                     </div>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="mb-4">Dokumen Paling Sering Dibaca</h5>
-                            @foreach ($data as $item)
-                                <h6 class="mb-1">{{ $item->judul }}</h6>
-                                <p class="mb-1 text-muted small">{{ $item->view_count }} Kali dilihat</p>
-                                @php
-                                    $jenisNama = $item->jenis_dokumen->nama;
-                                    $badgeClass = 'bg-info'; // default
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="mb-4 bg-primary p-3">Dokumen Paling Sering Dibaca</h5>
+                                    @foreach ($data as $item)
+                                        <h6 class="mb-1">{{ $item->judul }}</h6>
+                                        <p class="mb-1 text-muted small">{{ $item->view_count }} Kali dilihat</p>
+                                        @php
+                                            $jenisNama = $item->jenis_dokumen->nama;
+                                            $badgeClass = 'bg-info'; // default
 
-                                    if ($jenisNama === 'Skripsi') {
-                                        $badgeClass = 'bg-secondary';
-                                    } elseif ($jenisNama === 'Laporan Magang') {
-                                        $badgeClass = 'bg-info';
-                                    }
-                                @endphp
+                                            if ($jenisNama === 'Skripsi') {
+                                                $badgeClass = 'bg-secondary';
+                                            } elseif ($jenisNama === 'Laporan Magang') {
+                                                $badgeClass = 'bg-info';
+                                            }
+                                        @endphp
 
-                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
-                                @if (!$loop->last)
-                                    <hr class="my-3">
-                                @endif
-                            @endforeach
+                                        <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                        @if (!$loop->last)
+                                            <hr class="my-3">
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="card p-3 border rounded-3 shadow-sm">
+                                <h2 class="text-center  fw-bold">
+                                    {{ $skripsi_count }}
+                                </h2>
+                                <div class="text-center">
+                                    Total Skripsi dibaca
+                                </div>
+                            </div>
+                            <div class="card p-3 border rounded-3 shadow-sm">
+                                <h2 class="text-center  fw-bold">
+                                    {{ $laporan_count }}
+                                </h2>
+                                <div class="text-center">
+                                    Total Laporan Magang dibaca
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-3">
@@ -591,7 +620,7 @@
             ]);
 
             var options = {
-                title: 'Total Ajuan per Bulan',
+                
                 curveType: 'function',
                 legend: {
                     position: 'bottom'

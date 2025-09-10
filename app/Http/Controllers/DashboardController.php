@@ -44,6 +44,8 @@ class DashboardController extends Controller
             'prodi' => ProgramStudi::all(),
             'data' => LaporanMahasiswa::where('status', 'Disetujui')->orderBy('view_count', 'desc')->take(5)->get(),
             'data_count' => LaporanMahasiswa::orderBy('view_count', 'desc')->get(),
+            'skripsi_count' => LaporanMahasiswa::where('status', 'Disetujui')->where('jenis_dokumen_id', 1)->sum('view_count'),
+            'laporan_count' => LaporanMahasiswa::where('status', 'Disetujui')->where('jenis_dokumen_id', 2)->sum('view_count'),
             'dateRange' => [
                 'start' => $startDate->format('Y-m-d'),
                 'end' => $endDate->format('Y-m-d')

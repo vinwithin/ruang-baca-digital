@@ -12,8 +12,8 @@
         <div class="text-center my-3">
             <img class="img-thumbnail rounded-circle" src="/img/photos/unsplash-1.jpg" alt=""
                 style="width: 6rem; height: 6rem; object-fit: cover;">
-                <h5 class="mt-2">{{auth()->user()->name}}</h5>
-                <h5 class="text-muted">{{auth()->user()->identifier}}</h5>
+            <h5 class="mt-2">{{ auth()->user()->name }}</h5>
+            <h5 class="text-muted">{{ auth()->user()->identifier }}</h5>
         </div>
 
 
@@ -80,8 +80,8 @@
                 </li>
             @endrole
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="">
+            <li class="sidebar-item {{ Request::is('panduan*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="/panduan">
                     <i class="fa-solid fa-wand-sparkles"></i> <span class="align-middle">Panduan</span>
                 </a>
             </li>

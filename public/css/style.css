@@ -55,11 +55,18 @@ html {
     color: rgba(255, 255, 255, 1);
 }
 #hero {
-    height: 105vh;
+    min-height: 105vh;
+    display: flex;
+    flex-direction: column;
+    /* flex: wrap; */
+    justify-content: start;
+    align-items: start;
+    gap: 7rem;
     padding: 1.5rem 8%;
     z-index: 1;
     position: relative;
     margin-bottom: -200px;
+    overflow: hidden;
 }
 .search-bar {
     margin-top: 4rem;
@@ -69,6 +76,7 @@ html {
     padding: 1.2rem 3rem;
     display: flex;
     align-items: center;
+    overflow: hidden;
     gap: 1rem;
 }
 .form-control {
@@ -121,14 +129,7 @@ html {
     color: white;
 }
 .hero-title {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    width: 60%;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    transform: translate(-50%, -50%);
+    padding-bottom: 14rem;
 }
 .hero-title h1 {
     color: #fff;
@@ -142,16 +143,17 @@ html {
     background: url("/assets/Subtract.png") no-repeat center center/cover;
     z-index: 10;
     position: relative;
-
     display: flex;
     flex-direction: column;
-    justify-content: start; /* Horizontal */
+    justify-content: center; /* Horizontal */
     align-items: center;
-    padding-top: 200px;
-    height: 100vh;
+    /* padding-top: 200px; */
+    min-height: 100vh;
 }
 .wrap-prodi {
     padding: 1.5rem 8%;
+    padding-bottom: 5rem;
+
     width: 95%;
 }
 .btn-more {
@@ -173,6 +175,7 @@ html {
 }
 #scroll-container {
     overflow-x: auto;
+    overflow: hidden;
     /* white-space: nowrap; */
     padding-bottom: 10px;
     display: flex;
@@ -187,7 +190,7 @@ html {
     width: 370px;
     height: 250px;
     display: flex;
-
+    overflow: hidden;
     justify-content: center;
     align-items: center;
     color: black;
@@ -259,7 +262,7 @@ html {
 }
 
 #koleksi {
-    height: 130vh;
+    min-height: 130vh;
     background: url("/assets/koleksi.png") no-repeat center center/cover;
     z-index: 1;
     position: relative;
@@ -279,6 +282,7 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* padding-bottom: 10rem; */
     align-items: center;
     width: 200px;
     height: 540px;
@@ -407,13 +411,13 @@ html {
 }
 
 #tentang {
-    height: 85vh;
+    min-height: 100vh;
     padding: 1.5rem 8%;
+    overflow: hidden;
 }
 #tentang h1 {
     color: #1a1a1a;
     text-align: center;
-
     /* Heading/h1/SemiBold */
     font-family: "Plus Jakarta Sans";
     font-size: 44px;
@@ -421,6 +425,7 @@ html {
     font-weight: 600;
     line-height: 58px; /* 131.818% */
 }
+
 #tentang .deskripsi {
     color: #000;
     text-align: justify;
@@ -431,11 +436,14 @@ html {
     font-weight: 500;
     line-height: 24px; /* 150% */
 }
+
 .image-about {
-    width: 750px;
-    height: 500px;
-    flex-shrink: 0;
+    width: 100%; /* skala sesuai lebar parent */
+    width: 700px; /* batasi maksimal */
+    height: auto; /* jaga rasio */
+    flex-shrink: 1; /* izinkan mengecil kalau space terbatas */
 }
+
 .btn-deskripsi {
     display: flex;
     width: 250px;
@@ -456,7 +464,7 @@ html {
     text-decoration: none;
 }
 #berita {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     /* place-items: center; */
@@ -464,6 +472,7 @@ html {
     align-items: center; /* Vertical */
 }
 .wrap-berita {
+    overflow: hidden;
     padding: 1.5rem 8%;
     width: 100%;
 }

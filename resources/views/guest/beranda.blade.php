@@ -66,8 +66,8 @@
             </div>
         </nav>
 
-        <section class=" position-relative" id="hero">
-            <div class="">
+        <section class="" id="hero">
+            <div class="" style="width:100%;">
                 <form action="/hasil-pencarian" method="GET">
                     @csrf
                     <div class="search-bar text-white shadow">
@@ -104,7 +104,7 @@
             </div>
 
             <!-- Hero Title di tengah section -->
-            <div class="hero-title position-absolute">
+            <div class="hero-title ">
                 <h1 class="text-white fw-bold" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.6);">
                     SELAMAT DATANG DI RUANG BACA DIGITAL<br>
                     FAKULTAS SAINS DAN TEKNOLOGI<br>
@@ -124,7 +124,7 @@
 
             </div>
 
-            <div class=" position-relative">
+            <div class="position-relative">
                 <div class="arrow-icon" onclick="scrollRight('scroll-container')">
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
@@ -153,7 +153,7 @@
                 {{-- <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a> --}}
             </div>
             <div class="container">
-                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap" style="padding-bottom:10rem;">
                     <div class="kategori-box tugas-akhir" id="tugas-akhir">
                         <h1 class="kategori-title">Tugas Akhir</h1>
                         <p class="kategori-subtitle d-none">Kumpulan Koleksi Tugas Akhir Mahasiswa Fakultas Sains dan
@@ -184,7 +184,7 @@
         <h1 class="text-dark text-start pt-5 mb-5">TENTANG RUANG BACA</h1>
         <div class="wrap-tentang d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
 
-            <div>
+            <div class="img-about">
                 <img class="image-about" src="/assets/tentang-img.png" alt="">
             </div>
             <div>
