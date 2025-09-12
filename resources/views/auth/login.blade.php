@@ -24,7 +24,7 @@
                 </h1>
             </div>
 
-            <div class="card shadow-lg p-5 " style="border-radius: 20px;">
+            <div class="card shadow-lg p-5" style="border-radius: 20px; padding-bottom:8rem;">
                 @if (session()->has('error'))
                     <div class="alert alert-danger" role="alert">
                         {{ session('error') }}
@@ -35,7 +35,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <div class="card-body" >
+                <div class="card-body">
                     <h4 class="text-center fw-bold fs-2 ">Masuk ke akun anda</h4>
                     <form method="POST" class="pt-4 px-4 mx-auto w-100" action="{{ route('login') }}">
                         @csrf

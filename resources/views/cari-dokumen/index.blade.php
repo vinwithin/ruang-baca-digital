@@ -95,7 +95,7 @@
             </div>
         @endif
         <h3 class="pb-3 fw-bold">{{ $title }}</h3>
-        <div class="table-wrapper border rounded-3 overflow-hidden">
+        <div class="table-wrapper border rounded-3 overflow-scroll">
             <table class="table align-middle mb-0">
                 <thead class="table-light text-start">
                     <tr>

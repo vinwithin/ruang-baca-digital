@@ -17,7 +17,7 @@
     <div class="w-100 ">
         <div class="card p-5 border rounded-3 shadow-sm">
             <h3 class="fw-bold mb-4">Daftar dokumen bacaan favorit anda</h3>
-            <div class="table-wrapper border rounded-3 overflow-hidden">
+            <div class="table-wrapper border rounded-3 overflow-scroll">
 
                 <table class="table align-middle rounded-2 overflow-hidden">
                     <thead class="table-light text-start">

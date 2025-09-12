@@ -5,7 +5,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         .card-list {
-            width: 350px;
+            max-width: 350px;
             height: 220px;
             display: flex;
 
@@ -55,13 +55,12 @@
     </style>
     <section id="berita" class="">
         <h2 class="title text-center mt-4 mb-5">PROGRAM STUDI</h2>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 g-4">
             @foreach ($data as $item)
                 <div class="col">
                     <div class="card card-list flex-shrink-0"
                         onclick="window.location.href='/koleksi/program-studi/{{ $item->nama }}'"
                         style="cursor: pointer; background: url({{ $item->logo }}) no-repeat center center/cover;">
-
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->nama }}</h5>
                         </div>

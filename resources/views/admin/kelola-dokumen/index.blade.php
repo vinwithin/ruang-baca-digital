@@ -76,7 +76,7 @@
                 </form>
             </div>
             <div class="card-body">
-                <div class="table-wrapper border rounded-3 overflow-hidden">
+                <div class="table-wrapper border rounded-3 overflow-scroll">
 
                     <table class="table align-middle  overflow-hidden">
                         <thead class="table-light text-start">

@@ -11,8 +11,9 @@ html {
 }
 .wrapper {
     background: url("/assets/hero-login.png") no-repeat center center/cover;
-    height: 100vh;
+    min-height: 100vh;
     position: relative; /* ← Tambahkan ini */
+    padding-bottom:8rem;
 }
 
 .overlay-img {
