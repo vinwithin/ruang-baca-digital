@@ -530,6 +530,17 @@ html {
     font-weight: 500;
     line-height: 18px; /* 150% */
 }
+#lokasi{
+    padding: 1.5rem 8%;
+    overflow: hidden;
+}
+#card-lokasi{
+    height:400px;
+}
+#card-lokasi iframe{
+    width:100%;
+    height:100%;
+}
 footer {
     padding: 1.5rem 8%;
     background: #043471;

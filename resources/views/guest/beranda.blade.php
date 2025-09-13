@@ -117,10 +117,10 @@
 
     <section id="prodi">
         <div class="wrap-prodi">
-            <div class=" d-flex justify-content-between align-items-center pt-5 mb-4 mt-5"
-                id="wrap-title-prodi">
+            <div class=" d-flex justify-content-between align-items-center pt-5 mb-4 mt-5" id="wrap-title-prodi">
                 <h1 class="text-dark ">PROGRAM STUDI</h1>
-                <a href="/program-studi" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
+                <a href="/program-studi" class="btn-more">Lihat Semuanya <i
+                        class="fa-solid fa-circle-arrow-right"></i></a>
 
             </div>
 
@@ -153,7 +153,8 @@
                 {{-- <a href="" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a> --}}
             </div>
             <div class="container">
-                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap" style="padding-bottom:10rem;">
+                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap"
+                    style="padding-bottom:10rem;">
                     <div class="kategori-box tugas-akhir" id="tugas-akhir">
                         <h1 class="kategori-title">Tugas Akhir</h1>
                         <p class="kategori-subtitle d-none">Kumpulan Koleksi Tugas Akhir Mahasiswa Fakultas Sains dan
@@ -242,6 +243,19 @@
         </div>
         </div>
 
+    </section>
+    <section id="lokasi">
+        <div class="d-flex justify-content-between align-items-center pb-4" id="berita-title">
+            <h1 class="text-dark">Lokasi</h1>
+        </div>
+        <div class="card pt-0">
+            <div class="card-body" id="card-lokasi">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.2336937817568!2d103.51725007591736!3d-1.6148749983700863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2f62c01aa6b39b%3A0x79e2b7ce458689aa!2sFakultas%20Sains%20dan%20Teknologi%20UNJA!5e0!3m2!1sid!2sid!4v1757774350263!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
     </section>
     <footer>
 

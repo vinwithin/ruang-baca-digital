@@ -7,6 +7,7 @@ use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -43,6 +44,7 @@ class DashboardController extends Controller
             'chartData' => $laporanPerBulan,
             'prodi' => ProgramStudi::all(),
             'data' => LaporanMahasiswa::where('status', 'Disetujui')->orderBy('view_count', 'desc')->take(5)->get(),
+            'data_ajuan' => LaporanMahasiswa::where('user_id', Auth::user()->id)->get(),
             'data_count' => LaporanMahasiswa::orderBy('view_count', 'desc')->get(),
             'skripsi_count' => LaporanMahasiswa::where('status', 'Disetujui')->where('jenis_dokumen_id', 1)->sum('view_count'),
             'laporan_count' => LaporanMahasiswa::where('status', 'Disetujui')->where('jenis_dokumen_id', 2)->sum('view_count'),

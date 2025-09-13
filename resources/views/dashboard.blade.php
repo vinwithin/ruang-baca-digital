@@ -490,27 +490,27 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data_count->where('jenis_dokumen_id', 1)->where('status', 'Disetujui')->count() }}
+                                    {{ $data_ajuan->where('status', 'Diproses')->count() }}
                                 </h2>
-                                <div class="text-center">Tugas Akhir/Skripsi</div>
+                                <div class="text-center">Diproses</div>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data_count->where('jenis_dokumen_id', 2)->where('status', 'Disetujui')->count() }}
+                                    {{ $data_ajuan->where('status', 'Direvisi')->count() }}
                                 </h2>
-                                <div class="text-center">Laporan Magang</div>
+                                <div class="text-center">Direvisi</div>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data_count->whereIn('status', ['Diproses', 'Revisi'])->count() }}
+                                    {{ $data_ajuan->whereIn('status', 'Disetujui')->count() }}
                                 </h2>
-                                <div class="text-center">Ajuan Mahasiswa</div>
+                                <div class="text-center">Disetujui</div>
                             </div>
                         </div>
                     </div>
