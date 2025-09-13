@@ -37,7 +37,7 @@
 
         <h1 id="koleksi-title" class="text-center mb-5">{{ $title->nama }}</h1>
         <h3 id="koleksi-deskripsi">Daftar {{ $title->nama }} terbaru di fakultas sains dan teknologi</h3>
-        <div class="table-wrapper border rounded-4 overflow-hidden">
+        <div class="table-wrapper border rounded-4 overflow-scroll">
             <table class="table align-middle  overflow-hidden">
                 <thead class="table-light text-start">
                     <tr>

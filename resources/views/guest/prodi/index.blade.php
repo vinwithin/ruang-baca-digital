@@ -88,7 +88,7 @@
         @endif
 
         <h3 class="mt-5" id="koleksi-deskripsi"> Laporan Magang </h3>
-        <div class="table-wrapper border rounded-4 overflow-hidden">
+        <div class="table-wrapper border rounded-4 overflow-scroll">
             <table class="table align-middle  overflow-hidden">
                 <thead class="table-light text-start">
                     <tr>

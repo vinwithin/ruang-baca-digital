@@ -36,7 +36,7 @@
         </form>
 
         <h1 id="koleksi-title" class="text-center mb-5">Hasil Pencarian Anda</h1>
-        <div class="table-wrapper border rounded-4 overflow-hidden">
+        <div class="table-wrapper border rounded-4 overflow-scroll">
             <table class="table align-middle  overflow-hidden">
                 <thead class="table-light text-start">
                     <tr>

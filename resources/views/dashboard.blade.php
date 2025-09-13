@@ -18,7 +18,8 @@
             font-weight: 400;
             line-height: 17px;
         }
-        .bg-primary{
+
+        .bg-primary {
             background: #023E8A !important;
             border-radius: 10px;
             color: white;
@@ -460,176 +461,261 @@
                 </div>
             </div>
             @elserole('mahasiswa')
-            <div class="card">
-                <div class="d-flex flex-column g-2 align-items-start p-3">
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Selamat Datang di Dashboard Ruang Baca Digital
-                        Fakultas Sains dan Teknologi Universitas Jambi</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda belum pernah mengupload dokumen</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mengupload Tugas akhir atau Laporan
-                        magang
-                        pada menu “Upload Dokumen”</p>
-                    <p><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Anda dapat mencari file Tugas akhir atau Laporan
-                        magang untuk anda baca</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Card Welcome -->
+                    <div class="card mb-4">
+                        <div class="d-flex flex-column g-2 align-items-start p-3">
+                            <p>
+                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+                                Selamat Datang di Dashboard Ruang Baca Digital Fakultas Sains dan Teknologi Universitas Jambi
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+                                Anda belum pernah mengupload dokumen
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+                                Anda dapat mengupload Tugas akhir atau Laporan magang pada menu “Upload Dokumen”
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+                                Anda dapat mencari file Tugas akhir atau Laporan magang untuk anda baca
+                            </p>
+                        </div>
+                    </div>
 
+                    <!-- Statistik Dokumen -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card p-3 border rounded-3 shadow-sm h-100">
+                                <h2 class="text-center fw-bold">
+                                    {{ $data_count->where('jenis_dokumen_id', 1)->where('status', 'Disetujui')->count() }}
+                                </h2>
+                                <div class="text-center">Tugas Akhir/Skripsi</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 border rounded-3 shadow-sm h-100">
+                                <h2 class="text-center fw-bold">
+                                    {{ $data_count->where('jenis_dokumen_id', 2)->where('status', 'Disetujui')->count() }}
+                                </h2>
+                                <div class="text-center">Laporan Magang</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 border rounded-3 shadow-sm h-100">
+                                <h2 class="text-center fw-bold">
+                                    {{ $data_count->whereIn('status', ['Diproses', 'Revisi'])->count() }}
+                                </h2>
+                                <div class="text-center">Ajuan Mahasiswa</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen Populer -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="mb-4 bg-primary text-white p-3 rounded">Dokumen Populer</h5>
+                            @foreach ($data as $item)
+                                <h6 class="mb-1">{{ $item->judul }}</h6>
+                                <p class="mb-1 text-muted small">{{ $item->view_count }} kali dilihat</p>
+                                @php
+                                    $jenisNama = $item->jenis_dokumen->nama;
+                                    $badgeClass = $jenisNama === 'Skripsi' ? 'bg-secondary' : 'bg-info';
+                                @endphp
+                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                @if (!$loop->last)
+                                    <hr class="my-3">
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="/dashboard/skripsi" class="text-dark"
+                                        style="text-decoration:none;">Skripsi</a></li>
+                                <li class="list-group-item"><a href="/dashboard/laporan-magang" class="text-dark"
+                                        style="text-decoration:none;">Laporan Magang</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card
+                                        shadow-sm">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                @foreach ($prodi as $item)
+                                    <li class="list-group-item">{{ $item->nama }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endrole
-    </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        let currentDate = new Date();
-        let events = {};
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            let currentDate = new Date();
+            let events = {};
 
-        const monthNames = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
+            const monthNames = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
 
-        function getDaysInMonth(year, month) {
-            return new Date(year, month + 1, 0).getDate();
-        }
-
-        function getFirstDayOfMonth(year, month) {
-            return new Date(year, month, 1).getDay();
-        }
-
-        function generateCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const today = new Date();
-
-            // Update month/year display
-            document.getElementById('monthYear').textContent =
-                `${monthNames[month]} ${year}`;
-
-            // Get calendar info
-            const daysInMonth = getDaysInMonth(year, month);
-            const firstDay = getFirstDayOfMonth(year, month);
-            const daysInPrevMonth = getDaysInMonth(year, month - 1);
-
-
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.innerHTML = '';
-
-            // Previous month's trailing days
-            for (let i = firstDay - 1; i >= 0; i--) {
-                const dayDiv = document.createElement('div');
-                dayDiv.className = 'calendar-day other-month';
-                dayDiv.textContent = daysInPrevMonth - i;
-                calendarGrid.appendChild(dayDiv);
+            function getDaysInMonth(year, month) {
+                return new Date(year, month + 1, 0).getDate();
             }
 
-            // Current month's days
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.className = 'calendar-day';
-                dayDiv.textContent = day;
+            function getFirstDayOfMonth(year, month) {
+                return new Date(year, month, 1).getDay();
+            }
 
-                // Check if it's today
-                if (year === today.getFullYear() &&
-                    month === today.getMonth() &&
-                    day === today.getDate()) {
-                    dayDiv.classList.add('today');
+            function generateCalendar() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                const today = new Date();
+
+                // Update month/year display
+                document.getElementById('monthYear').textContent =
+                    `${monthNames[month]} ${year}`;
+
+                // Get calendar info
+                const daysInMonth = getDaysInMonth(year, month);
+                const firstDay = getFirstDayOfMonth(year, month);
+                const daysInPrevMonth = getDaysInMonth(year, month - 1);
+
+
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+
+                // Previous month's trailing days
+                for (let i = firstDay - 1; i >= 0; i--) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.className = 'calendar-day other-month';
+                    dayDiv.textContent = daysInPrevMonth - i;
+                    calendarGrid.appendChild(dayDiv);
                 }
 
-                // Check for events
+                // Current month's days
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.className = 'calendar-day';
+                    dayDiv.textContent = day;
+
+                    // Check if it's today
+                    if (year === today.getFullYear() &&
+                        month === today.getMonth() &&
+                        day === today.getDate()) {
+                        dayDiv.classList.add('today');
+                    }
+
+                    // Check for events
+                    const dateKey = `${year}-${month}-${day}`;
+                    if (events[dateKey]) {
+                        dayDiv.classList.add('has-event');
+                        const eventDot = document.createElement('div');
+                        eventDot.className = 'event-dot';
+                        dayDiv.appendChild(eventDot);
+                    }
+
+                    // Add click event to toggle event
+                    dayDiv.addEventListener('click', () => toggleEvent(year, month, day, dayDiv));
+
+                    calendarGrid.appendChild(dayDiv);
+                }
+
+                // Next month's leading days
+                const totalCells = calendarGrid.children.length;
+                const remainingCells = 42 - totalCells; // 6 rows × 7 days
+
+                for (let day = 1; day <= remainingCells; day++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.className = 'calendar-day other-month';
+                    dayDiv.textContent = day;
+                    calendarGrid.appendChild(dayDiv);
+                }
+            }
+
+            function goToToday() {
+                currentDate = new Date();
+                generateCalendar();
+            }
+
+            function toggleEvent(year, month, day, element) {
                 const dateKey = `${year}-${month}-${day}`;
+
                 if (events[dateKey]) {
-                    dayDiv.classList.add('has-event');
+                    delete events[dateKey];
+                    element.classList.remove('has-event');
+                    const eventDot = element.querySelector('.event-dot');
+                    if (eventDot) eventDot.remove();
+                } else {
+                    events[dateKey] = true;
+                    element.classList.add('has-event');
                     const eventDot = document.createElement('div');
                     eventDot.className = 'event-dot';
-                    dayDiv.appendChild(eventDot);
+                    element.appendChild(eventDot);
                 }
-
-                // Add click event to toggle event
-                dayDiv.addEventListener('click', () => toggleEvent(year, month, day, dayDiv));
-
-                calendarGrid.appendChild(dayDiv);
             }
 
-            // Next month's leading days
-            const totalCells = calendarGrid.children.length;
-            const remainingCells = 42 - totalCells; // 6 rows × 7 days
+            function addSampleEvents() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
 
-            for (let day = 1; day <= remainingCells; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.className = 'calendar-day other-month';
-                dayDiv.textContent = day;
-                calendarGrid.appendChild(dayDiv);
+                // Add some sample events
+                events[`${year}-${month}-5`] = true;
+                events[`${year}-${month}-15`] = true;
+                events[`${year}-${month}-22`] = true;
+
+                generateCalendar();
             }
-        }
 
-        function goToToday() {
-            currentDate = new Date();
-            generateCalendar();
-        }
-
-        function toggleEvent(year, month, day, element) {
-            const dateKey = `${year}-${month}-${day}`;
-
-            if (events[dateKey]) {
-                delete events[dateKey];
-                element.classList.remove('has-event');
-                const eventDot = element.querySelector('.event-dot');
-                if (eventDot) eventDot.remove();
-            } else {
-                events[dateKey] = true;
-                element.classList.add('has-event');
-                const eventDot = document.createElement('div');
-                eventDot.className = 'event-dot';
-                element.appendChild(eventDot);
+            function clearEvents() {
+                events = {};
+                generateCalendar();
             }
-        }
 
-        function addSampleEvents() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-
-            // Add some sample events
-            events[`${year}-${month}-5`] = true;
-            events[`${year}-${month}-15`] = true;
-            events[`${year}-${month}-22`] = true;
-
+            // Initialize calendar
             generateCalendar();
-        }
+        </script>
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
 
-        function clearEvents() {
-            events = {};
-            generateCalendar();
-        }
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Bulan', 'Jumlah Ajuan'],
+                    @if ($chartData->count() > 0)
+                        @foreach ($chartData as $row)
+                            ['{{ $row->bulan }}', {{ $row->total }}],
+                        @endforeach
+                    @else
+                        ['No Data', 0]
+                    @endif
+                ]);
 
-        // Initialize calendar
-        generateCalendar();
-    </script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+                var options = {
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Bulan', 'Jumlah Ajuan'],
-                @if ($chartData->count() > 0)
-                    @foreach ($chartData as $row)
-                        ['{{ $row->bulan }}', {{ $row->total }}],
-                    @endforeach
-                @else
-                    ['No Data', 0]
-                @endif
-            ]);
+                    curveType: 'function',
+                    legend: {
+                        position: 'bottom'
+                    },
 
-            var options = {
-                
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
+                };
 
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-            chart.draw(data, options);
-        }
-    </script>
-@endsection
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                chart.draw(data, options);
+            }
+        </script>
+    @endsection

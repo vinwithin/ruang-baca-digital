@@ -52,5 +52,25 @@ class DashboardController extends Controller
             ]
         ]);
     }
-   
+
+    public function laporanMagang()
+    {
+        return view('dashboard.laporan-magang', [
+            'data' => LaporanMahasiswa::with('jenis_dokumen')
+                ->where('status', 'Disetujui')
+                ->whereHas('jenis_dokumen', function ($q) {
+                    $q->where('nama', 'Laporan Magang');
+                })->get()
+        ]);
+    }
+    public function skripsi()
+    {
+        return view('dashboard.skripsi', [
+            'data' => LaporanMahasiswa::with('jenis_dokumen')
+                ->where('status', 'Disetujui')
+                ->whereHas('jenis_dokumen', function ($q) {
+                    $q->where('nama', 'Skripsi');
+                })->get()
+        ]);
+    }
 }

@@ -21,7 +21,7 @@ html {
     color: white;
     justify-content: space-between;
     flex-direction: row;
-    gap: 15rem;
+    gap: 6rem;
     align-items: center;
     padding: 1.5rem 8%;
     left: 0;
@@ -438,8 +438,7 @@ html {
 }
 
 .image-about {
-    width: 100%; /* skala sesuai lebar parent */
-    width: 700px; /* batasi maksimal */
+    width: 600px; /* batasi maksimal */
     height: auto; /* jaga rasio */
     flex-shrink: 1; /* izinkan mengecil kalau space terbatas */
 }
@@ -655,10 +654,10 @@ footer {
     }
     .hero-title {
         display: flex;
-        justify-content: start;
-        align-items: start;
-        width: 80%;
-        left: 50%;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        /* left: 50%; */
     }
     .hero-title h1 {
         color: #fff;
@@ -692,9 +691,12 @@ footer {
     #prodi {
         height: 70vh;
     }
+
     #wrap-title-prodi {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
+        /* padding: 0 !important; */
+
+        display: flex;
+        flex-direction: column;
     }
     .wrap-prodi h1 {
         font-size: 15px;
@@ -865,7 +867,7 @@ footer {
     }
 
     #tentang {
-        height: 140vh;
+        min-height: 140vh;
         padding: 1.5rem 8%;
     }
     #tentang h1 {
@@ -927,9 +929,11 @@ footer {
         justify-content: center; /* Horizontal */
         align-items: center; /* Vertical */
     }
-    .wrap-berita {
+    #berita-title {
         padding: 1.5rem 8%;
         width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     #berita h1 {
         color: #1a1a1a;
@@ -1064,11 +1068,6 @@ footer {
         display: flex;
         justify-content: start;
         align-items: start;
-        /* width: 60%; */
-        /* position: absolute;
-        top: 40%;
-        left: 40%; */
-        transform: translate(-50%, -50%);
     }
     .hero-title h1 {
         color: #fff;
@@ -1077,6 +1076,10 @@ footer {
         font-style: normal;
         font-weight: 700;
         line-height: 58px; /* 131.818% */
+    }
+    #wrap-title-prodi {
+        display: flex;
+        flex-direction: column;
     }
     .search-bar select {
         display: none;
@@ -1093,6 +1096,12 @@ footer {
         width: 100%;
         height: 400px;
         flex-shrink: 0;
+    }
+    #berita-title {
+        padding: 1.5rem 8%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -1134,7 +1143,7 @@ footer {
         display: none;
     }
     #tentang {
-        height: 85vh;
+        min-height: 85vh;
         padding: 1.5rem 8%;
     }
     .wrap-tentang {
@@ -1153,7 +1162,7 @@ footer {
         line-height: 24px; /* 150% */
     }
     .image-about {
-        width: 120%;
+        width: 100%;
         height: 400px;
         flex-shrink: 0;
     }

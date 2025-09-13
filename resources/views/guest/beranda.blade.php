@@ -117,7 +117,7 @@
 
     <section id="prodi">
         <div class="wrap-prodi">
-            <div class=" d-flex flex-row justify-content-between align-items-center pt-5 mb-4 mt-5"
+            <div class=" d-flex justify-content-between align-items-center pt-5 mb-4 mt-5"
                 id="wrap-title-prodi">
                 <h1 class="text-dark ">PROGRAM STUDI</h1>
                 <a href="/program-studi" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
@@ -182,7 +182,7 @@
 
     <section class="" id="tentang">
         <h1 class="text-dark text-start pt-5 mb-5">TENTANG RUANG BACA</h1>
-        <div class="wrap-tentang d-flex justify-content-between align-items-start pt-3" style="gap: 120px;">
+        <div class="wrap-tentang d-flex justify-content-between align-items-start pt-3" style="gap: 60px;">
 
             <div class="img-about">
                 <img class="image-about" src="/assets/tentang-img.png" alt="">
@@ -208,7 +208,7 @@
     </section>
     <section id="berita">
         <div class="wrap-berita">
-            <div class="d-flex justify-content-between align-items-center mb-5 pb-4">
+            <div class="d-flex justify-content-between align-items-center mb-5 pb-4" id="berita-title">
                 <h1 class="text-dark">INFORMASI/BERITA</h1>
                 <a href="/berita" class="btn-more">Lihat Semuanya <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>

@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/panduan', [PanduanController::class, 'index'])->name('panduan.index');
 
     Route::middleware(['role:mahasiswa'])->group(function () {
+        Route::get('/dashboard/skripsi', [DashboardController::class, 'skripsi'])->name('dashboard.skripsi');
+        Route::get('/dashboard/laporan-magang', [DashboardController::class, 'laporanMagang'])->name('dashboard.laporan-magang');
+        Route::get('/dashboard/{laporanmahasiswa}', [CariDokumenController::class, 'show'])->name('dashboard.show');
+
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
         Route::post('/dokumen/unggah', [DokumenController::class, 'store'])->name('unggah-dokumen');
         Route::get('/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');
