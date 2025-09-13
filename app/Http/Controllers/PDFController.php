@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanMahasiswa;
+use Spatie\LaravelPdf\Facades\Pdf;
+use Spatie\LaravelPdf\Enums\Format;
+
 use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
-    public function generateReport(Request $request)
+    public function generateReport(Request $request, LaporanMahasiswa $laporanmahasiswa)
     {
+        $dataLaporan = LaporanMahasiswa::with(['user', 'jenis_dokumen'])
+            ->findOrFail($laporanmahasiswa->id);
         // Sample data - replace with actual data from your database
         $data = [
             'header' => [
                 'kementerian' => 'KEMENTERIAN PENDIDIKAN, KEBUDAYAAN,',
                 'riset' => 'RISET, DAN TEKNOLOGI',
-                'universitas' => 'UNIVERSITAS JAMI NURUL ULM',
+                'universitas' => 'UNIVERSITAS JAMBI',
                 'fakultas' => 'FAKULTAS DAN TEKNOLOGI INFORMASI',
                 'jurusan' => 'JURUSAN TEKNIK ELEKTRO DAN INFORMATIKA',
                 'program_studi' => 'PROGRAM STUDI SISTEM INFORMASI',
@@ -21,28 +27,31 @@ class PDFController extends Controller
                 'kode_pos' => 'Kode Pos 36361',
                 'website' => 'http://fst.uinjambi.ac.id'
             ],
+            'title' => [
+                'nama' => $dataLaporan->jenis_dokumen->nama
+            ],
             'form_data' => [
-                'nama' => $request->input('nama', 'Nama Mahasiswa'),
-                'nomor_mahasiswa' => $request->input('nomor_mahasiswa', '123456'),
-                'prodi' => $request->input('prodi', 'Sistem Informasi'),
-                'judul_magang' => $request->input('judul_magang', 'Magang Teknologi Informasi')
+                'nama' => $dataLaporan->nama,
+                'nomor_mahasiswa' => $dataLaporan->identifier,
+                'prodi' => $dataLaporan->program_studi->nama,
+                'judul_magang' => $dataLaporan->judul
             ],
             'evaluasi' => [
-                'komunikasi' => $request->input('komunikasi', ''),
-                'inisiatif' => $request->input('inisiatif', ''),
-                'kerjasama' => $request->input('kerjasama', ''),
-                'publikasi_media' => $request->input('publikasi_media', '')
+                'komunikasi' => '',
+                'inisiatif' => '',
+                'kerjasama' => '',
+                'publikasi_media' => ''
             ],
             'penilaian' => [
-                'tanda_tangan' => $request->input('tanda_tangan', ''),
-                'prodi_signature' => $request->input('prodi_signature', ''),
-                'pembimbing' => $request->input('pembimbing', ''),
-                'perpustakaan_edukasi' => $request->input('perpustakaan_edukasi', '')
+                'tanda_tangan' => '',
+                'prodi_signature' => '',
+                'pembimbing' => '',
+                'perpustakaan_edukasi' => ''
             ],
             'nama_penerna' => [
-                'no_1' => $request->input('no_1', ''),
-                'no_2' => $request->input('no_2', ''),
-                'no_3' => $request->input('no_3', '')
+                'no_1' => '',
+                'no_2' => '',
+                'no_3' => ''
             ],
             'informasi' => [
                 'nama_pembimbing' => 'Pembimbing',
@@ -52,25 +61,15 @@ class PDFController extends Controller
             'tanggal' => [
                 'tempat' => 'Jambi',
                 'program_studi' => 'Program Studi',
-                'ketua_program' => 'Ketua Program Informasi',
-                'nama_ketua' => 'Reni Apriyanti, S.Kom, M.SI',
-                'nip' => 'NIP. 198012201350420'
+                'ketua_program' => $dataLaporan->program_studi->nama,
+                'nama_ketua' => '',
+                'nip' => 'NIP. '
             ]
         ];
 
-        $pdf = Pdf::loadView('pdf.report-template', compact('data'))
-            ->setPaper('a4', 'portrait')
-            ->setOptions([
-                'isHtml5ParserEnabled' => true,
-                'isPhpEnabled' => true,
-                'defaultFont' => 'sans-serif'
-            ]);
+        $pdf = Pdf::view('pdf.surat')
+            ->format(Format::A4);
 
-        return $pdf->download('laporan-evaluasi.pdf');
-    }
-
-    public function showForm()
-    {
-        return view('pdf.form');
+        $pdf->save(public_path('assets/invoice.pdf'));
     }
 }

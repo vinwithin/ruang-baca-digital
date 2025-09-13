@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/bookmarks/{laporanmahasiswa}', [FavoritController::class, 'detail'])->name('bookmark.detail');
         Route::get('/bookmark/tambah/{laporanmahasiswa}', [CariDokumenController::class, 'store'])->name('bookmark-tambah');
         Route::get('/bookmark/hapus/{laporanmahasiswa}', [CariDokumenController::class, 'destroy'])->name('bookmark-hapus');
+        
+        Route::get('/pdf/generate/{laporanmahasiswa}', [PdfController::class, 'generateReport'])->name('pdf.generate');
     });
 
     Route::prefix('admin')->group(function () {
