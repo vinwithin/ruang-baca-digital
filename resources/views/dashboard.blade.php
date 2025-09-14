@@ -499,7 +499,7 @@
                         <div class="col-md-4">
                             <div class="card p-3 border rounded-3 shadow-sm h-100">
                                 <h2 class="text-center fw-bold">
-                                    {{ $data_ajuan->where('status', 'Direvisi')->count() }}
+                                    {{ $data_ajuan->where('status', 'Revisi')->count() }}
                                 </h2>
                                 <div class="text-center">Direvisi</div>
                             </div>

@@ -99,7 +99,7 @@
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     @if ($item->status === 'Disetujui')
-                                        <a class="btn btn-info" href="/pdf/generate/{{$item->uuid}}"><i
+                                        <a class="btn btn-info" href="/pdf/generate/{{$item->uuid}}" target="_blank"><i
                                                 class="fa-solid fa-print"></i></a>
                                     @endif
                                 </td>

@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
-    public function generateReport(Request $request, LaporanMahasiswa $laporanmahasiswa)
+    public function generateReport(LaporanMahasiswa $laporanmahasiswa)
     {
+        // dd($laporanmahasiswa);
         $dataLaporan = LaporanMahasiswa::with(['user', 'jenis_dokumen'])
             ->findOrFail($laporanmahasiswa->id);
         // Sample data - replace with actual data from your database
@@ -34,7 +35,7 @@ class PDFController extends Controller
                 'nama' => $dataLaporan->nama,
                 'nomor_mahasiswa' => $dataLaporan->identifier,
                 'prodi' => $dataLaporan->program_studi->nama,
-                'judul_magang' => $dataLaporan->judul
+                'judul' => $dataLaporan->judul
             ],
             'evaluasi' => [
                 'komunikasi' => '',
@@ -67,9 +68,9 @@ class PDFController extends Controller
             ]
         ];
 
-        $pdf = Pdf::view('pdf.surat')
+        $pdf = Pdf::view('pdf.surat', ['data' => $data])
             ->format(Format::A4);
 
-        $pdf->save(public_path('assets/invoice.pdf'));
+        return $pdf->download();
     }
 }

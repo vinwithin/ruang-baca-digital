@@ -14,9 +14,9 @@
     </style>
     <section id="berita" class="">
         <h2 class="title text-center mt-4 mb-5">BERITA</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 g-4">
             @foreach ($data as $item)
-                <div class="col">
+                <div class="col" style="">
                     <div class="card news-card position-relative overflow-hidden rounded-3 shadow-sm"
                         onclick="window.location.href='/berita/{{ $item->slug }}'">
                         <img src="/storage/{{ $item->image }}" class="object-fit-cover position-absolute top-0 start-0"

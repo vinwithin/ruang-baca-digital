@@ -12,10 +12,10 @@
 }
 
 .news-card {
-    width: 450px;
+    max-width: 450px;
     height: 350px;
     flex-shrink: 0;
-    aspect-ratio: 3/4;
+    /* aspect-ratio: 3/4; */
     /* background:black; */
 }
 
