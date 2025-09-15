@@ -11,18 +11,19 @@ class KelolaAjuanController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->all());
         $jenisDokumen = $request->input('jenis_dokumen');
         $prodi = $request->input('prodi');
         $search = $request->input('search');
         $status = $request->input('status');
- 
+
+        // Inisialisasi query dengan eager loading
         $data = LaporanMahasiswa::with('user.roles')
             ->whereHas('user.roles', function ($q) {
                 $q->where('name', 'mahasiswa');
             });
 
-        if ($search) {
+        // Filter pencarian
+        if (!empty($search)) {
             $data->where(function ($query) use ($search) {
                 $query->where('judul', 'like', "%{$search}%")
                     ->orWhere('nama', 'like', "%{$search}%")
@@ -31,17 +32,25 @@ class KelolaAjuanController extends Controller
             });
         }
 
-        if ($jenisDokumen) {
+        // Filter jenis dokumen
+        if (!empty($jenisDokumen)) {
             $data->where('jenis_dokumen_id', $jenisDokumen);
         }
-        if ($prodi) {
+
+        // Filter program studi
+        if (!empty($prodi)) {
             $data->where('program_studi_id', $prodi);
         }
-        if ($status) {
+
+        // Filter status
+        if (!empty($status)) {
             $data->where('status', $status);
         }
+        // dd($data->toSql(), $data->getBindings());
+
+        $data = $data->latest()->paginate(10);
         return view('admin.kelola-ajuan.index', [
-            'data' => $data->latest()->paginate(10),
+            'data' => $data,
             'jenis_dokumen' => JenisDokumen::all(),
             'prodi' => ProgramStudi::all()
         ]);

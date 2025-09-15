@@ -139,6 +139,11 @@
             transition: all 0.3s ease;
         }
 
+        .btn-light:hover {
+            background: #023e8a;
+            color: white !important;
+        }
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
@@ -190,7 +195,8 @@
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm" method="POST" action="{{ route('admin.kelola-dokumen.unggah') }}" enctype="multipart/form-data">
+                <form id="inputDokumenForm" method="POST" action="{{ route('admin.kelola-dokumen.unggah') }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -228,7 +234,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
-                                <input type="text" class="form-control" id="nimMahasiswa" name="identifier" 
+                                <input type="text" class="form-control" id="nimMahasiswa" name="identifier"
                                     value="{{ old('identifier) ') }}">
                             </div>
                         </div>

@@ -139,6 +139,11 @@
             transition: all 0.3s ease;
         }
 
+        .btn-light:hover {
+            background: #023e8a;
+            color: white !important;
+
+        }
 
         .btn-primary:hover {
             transform: translateY(-2px);

@@ -139,6 +139,11 @@
             text-align: right;
             margin-top: 30px;
         }
+         .btn-light:hover {
+            background: #023e8a;
+            color: white !important;
+
+        }
 
         .button-group .btn {
             margin-left: 15px;

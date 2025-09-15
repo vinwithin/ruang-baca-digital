@@ -140,7 +140,7 @@
                     <a href="/informasi/dokumen" class="btn btn-primary">
                         <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                     </a>
-                    @if ($data->status === 'Revisi' || $data->status === 'Diproses')
+                    @if ($data->status === 'Revisi')
                         <a href="/dokumen/edit/{{ $data->uuid }}" class="btn btn-outline-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>

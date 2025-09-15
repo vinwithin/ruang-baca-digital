@@ -61,6 +61,9 @@ class DokumenController extends Controller
 
     public function edit(LaporanMahasiswa $laporanmahasiswa)
     {
+        if ($laporanmahasiswa->status !== "Revisi") {
+            return redirect()->back()->with('error', 'Tidak dapat mengedit dokumen.');
+        }
         return view('laporan.edit', [
             'data' => LaporanMahasiswa::find($laporanmahasiswa->id),
             'prodi' => ProgramStudi::all(),

@@ -53,11 +53,11 @@
                             <div class="col-md-4">
                                 <label for="status" class="form-label text-dark fw-semibold">Status</label>
                                 <select name="status" id="status" class="form-select">
-                                    <option value="Status">Status</option>
+                                    <option value="">Status</option>
                                     <option value="Diproses">Diproses</option>
                                     <option value="Revisi">Revisi</option>
                                     <option value="Disetujui">Disetujui</option>
-                                   
+
                                 </select>
                             </div>
                             <div class="col-md-12 text-end">
@@ -85,7 +85,7 @@
             </div>
             <div class="card-body">
                 <div class="table-wrapper border rounded-3 overflow-scroll">
-
+                    {{-- {{dd($data)}} --}}
                     <table class="table align-middle  overflow-hidden">
                         <thead class="table-light text-start">
                             <tr>
@@ -179,6 +179,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $data->links() }}
             </div>
 
         </div>
