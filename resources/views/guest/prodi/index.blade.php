@@ -102,7 +102,7 @@
                 <tbody>
                     @foreach ($data_laporan as $item)
                         <tr>
-                            <td style="max-width: 300px;">
+                            <td style="max-width: 300px; cursor: pointer;" onclick="window.location.href='/koleksi/detail/{{ $item->uuid }}'">
                                 {{ $item->judul }}
                             </td>
                             <td>{{ $item->nama }}</td>

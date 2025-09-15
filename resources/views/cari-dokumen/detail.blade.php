@@ -31,7 +31,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold" style="width: 50%;">Kontributor/Dosen Pembimbing</td>
-                                <td style="width: 50%;">{{ $data->dosen1->name }}</td>
+                                <td style="width: 50%;">{{ $data->dospem1 }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold" style="width: 50%;">Jenis Koleksi</td>

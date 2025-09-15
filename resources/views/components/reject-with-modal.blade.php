@@ -21,8 +21,8 @@
                     {{ $slot }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">{{ $buttonText }}</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
                 </div>
             </div>
         </form>

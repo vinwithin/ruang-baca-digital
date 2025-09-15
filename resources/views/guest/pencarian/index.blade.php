@@ -59,16 +59,16 @@
                             <td>
                                 @php
                                     $jenisNama = $item->jenis_dokumen->nama;
-                                    $badgeClass = 'bg-warning text-dark'; // default
+                                    $badgeClass = 'bg-info'; // default
 
                                     if ($jenisNama === 'Skripsi') {
                                         $badgeClass = 'bg-secondary';
                                     } elseif ($jenisNama === 'Laporan Magang') {
-                                        $badgeClass = 'bg-primary';
+                                        $badgeClass = 'bg-info';
                                     }
                                 @endphp
 
-                                <span class="badge py-2 px-4 {{ $badgeClass }}">{{ $jenisNama }}</span>
+                                <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                             </td>
                             <td>
                                 {{ $item->tahun }}

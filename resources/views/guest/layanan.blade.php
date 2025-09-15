@@ -3,9 +3,10 @@
     <link rel="stylesheet" href="/css/layanan.css">
     <section id="layanan" class="">
         <h2 class="title text-center mb-5 mt-4">Layanan</h2>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-5 gap-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start mb-3 pb-5 gap-5">
             <div class="d-flex flex-column gap-3">
-                <h2 class="text-start" id="subtitle" style="font-weight: 600">Selamat datang di Ruang Baca Digital FST Universitas Jambi!</h2>
+                <h2 class="text-start" id="subtitle" style="font-weight: 600">Selamat datang di Ruang Baca Digital FST
+                    Universitas Jambi!</h2>
                 <p>Kami hadir untuk memudahkan Anda dalam mencari referensi akademik seperti skripsi dan laporan magang
                     secara online. Dengan sistem yang terintegrasi, semua koleksi tersusun rapi, mudah dicari, dan bisa
                     diakses kapan saja serta di mana saja. Selain itu, Anda juga bisa langsung mengunggah dokumen secara

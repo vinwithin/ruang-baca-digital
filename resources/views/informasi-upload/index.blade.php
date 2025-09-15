@@ -99,8 +99,12 @@
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     @if ($item->status === 'Disetujui')
-                                        <a class="btn btn-info" href="/pdf/generate/{{$item->uuid}}" target="_blank"><i
+                                        <a class="btn btn-info" href="/pdf/generate/{{ $item->uuid }}" target="_blank"><i
                                                 class="fa-solid fa-print"></i></a>
+                                    @elseif($item->status === 'Revisi')
+                                        <a href="/dokumen/edit/{{ $item->uuid }}" class="btn btn-outline-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

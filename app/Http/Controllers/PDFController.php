@@ -13,7 +13,7 @@ class PDFController extends Controller
     public function generateReport(LaporanMahasiswa $laporanmahasiswa)
     {
         // dd($laporanmahasiswa);
-        $dataLaporan = LaporanMahasiswa::with(['user', 'jenis_dokumen'])
+        $dataLaporan = LaporanMahasiswa::with(['user', 'jenis_dokumen', 'program_studi.jurusan'])
             ->findOrFail($laporanmahasiswa->id);
         // Sample data - replace with actual data from your database
         $data = [
@@ -22,8 +22,8 @@ class PDFController extends Controller
                 'riset' => 'RISET, DAN TEKNOLOGI',
                 'universitas' => 'UNIVERSITAS JAMBI',
                 'fakultas' => 'FAKULTAS DAN TEKNOLOGI INFORMASI',
-                'jurusan' => 'JURUSAN TEKNIK ELEKTRO DAN INFORMATIKA',
-                'program_studi' => 'PROGRAM STUDI SISTEM INFORMASI',
+                'jurusan' => $dataLaporan->program_studi->jurusan->nama,
+                'program_studi' => $dataLaporan->program_studi->nama,
                 'alamat' => 'Jalan Raya Jambi - Muara Bulian Km.15 Mendalo Darat',
                 'kode_pos' => 'Kode Pos 36361',
                 'website' => 'http://fst.uinjambi.ac.id'

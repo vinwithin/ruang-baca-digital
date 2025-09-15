@@ -11,14 +11,14 @@ class ProgramStudi extends Model
     protected $fillable = [
         'nama',
         'logo',
-        'fakultas_id'
+        'jurusan_id'
     ];
     public function getRouteKeyName(): string
     {
         return 'nama';
     }
-    public function fakultas()
+    public function jurusan()
     {
-        return $this->hasMany(Fakultas::class);
+        return $this->belongsTo(Jurusan::class);
     }
 }

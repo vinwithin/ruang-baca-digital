@@ -2,8 +2,8 @@
 @section('content')
     <section id="tentang-kami" class="">
         <h2 class="text-center mb-4">Tentang Kami</h2>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-5 gap-5 ">
-            <img class="img-tentang-kami" src="/assets/image-about.png" alt="Gambar Perpustakaan" srcset="">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start mb-3 pb-5 gap-5">
+            <img class="img-tentang-kami img-fluid" src="/assets/image-about.png" alt="Gambar Perpustakaan" srcset="">
             <p>
                 Ruang Baca Fakultas Sains dan Teknologi (FST) Universitas Jambi merupakan salah satu fasilitas penting yang
                 disediakan untuk mendukung kegiatan akademik sivitas akademika, khususnya mahasiswa dalam mengakses berbagai
@@ -18,7 +18,7 @@
             </p>
 
         </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-5 gap-5">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start mb-3 pb-5 gap-5">
             <p>Dalam rangka meningkatkan efisiensi dan kenyamanan pengguna, pengelolaan Ruang Baca FST terus berupaya
                 melakukan inovasi, salah satunya dengan mengembangkan sistem Ruang Baca Digital. Sistem ini bertujuan untuk
                 menjawab tantangan keterbatasan ruang, waktu operasional, dan aksesibilitas koleksi, khususnya bagi

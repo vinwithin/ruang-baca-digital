@@ -11,11 +11,12 @@ class KelolaAjuanController extends Controller
 {
     public function index(Request $request)
     {
+        // dd($request->all());
         $jenisDokumen = $request->input('jenis_dokumen');
         $prodi = $request->input('prodi');
         $search = $request->input('search');
         $status = $request->input('status');
-
+ 
         $data = LaporanMahasiswa::with('user.roles')
             ->whereHas('user.roles', function ($q) {
                 $q->where('name', 'mahasiswa');

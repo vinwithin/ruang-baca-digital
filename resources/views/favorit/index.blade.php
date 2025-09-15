@@ -59,12 +59,13 @@
                                     {{ $item->laporan->tahun }}
                                 </td>
                                 <td>
+                                    <a href="/bookmarks/{{ $item->laporan->uuid }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
                                     <a href="/bookmark/hapus/{{ $item->laporan->uuid }}" class="btn btn-danger">
                                         <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
                                     </a>
-                                    <a href="/bookmarks/{{$item->laporan->uuid}}" class="btn btn-primary">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
+
                                 </td>
                             </tr>
                         @endforeach
