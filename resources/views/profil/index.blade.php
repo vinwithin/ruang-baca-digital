@@ -282,9 +282,9 @@
 
                         <dd class="col-5 mb-3">: ***********</dd>
                         <dt class="col-7 mb-3"></dt>
-                        <dd class="col-5 mb-3"><button class="btn" data-bs-toggle="modal"
+                        {{-- <dd class="col-5 mb-3"><button class="btn" data-bs-toggle="modal"
                                 data-bs-target="#changePasswordModal">Ganti Kata
-                                Sandi<i class="fa-solid fa-lock ms-2"></i></button></dd>
+                                Sandi<i class="fa-solid fa-lock ms-2"></i></button></dd> --}}
 
                         <div class="modal fade change-password-modal" id="changePasswordModal" tabindex="-1"
                             aria-labelledby="changePasswordModalLabel" aria-hidden="true">
