@@ -67,10 +67,15 @@ class PDFController extends Controller
                 'nip' => 'NIP. '
             ]
         ];
+        if ($dataLaporan->jenis_dokumen->nama === "Skripsi") {
+            $pdf = Pdf::view('pdf.surat', ['data' => $data])
+                ->format(Format::A4);
+        } else {
+            $pdf = Pdf::view('pdf.laporan', ['data' => $data])
+                ->format(Format::A4);
+        }
 
-        $pdf = Pdf::view('pdf.surat', ['data' => $data])
-            ->format(Format::A4);
 
-        return $pdf->download();
+        return $pdf;
     }
 }

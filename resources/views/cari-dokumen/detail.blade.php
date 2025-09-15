@@ -82,7 +82,7 @@
                                 Simpan ke favorit <i class="fa-regular fa-star ms-2"></i>
                             </a>
                         @else
-                            <a href="/bookmark/hapus/{{ $data->uuid }}" class="btn btn-outline-primary w-100">
+                            <a href="/bookmark/hapus/{{ $data->uuid }}" class="btn btn-primary text-white w-100">
                                 Hapus ke favorit <i class="fa-regular fa-star ms-2"></i>
                             </a>
                         @endif
