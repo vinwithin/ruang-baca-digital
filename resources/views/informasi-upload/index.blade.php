@@ -56,9 +56,9 @@
                                         if ($item->status === 'Diproses') {
                                             $badgeClass = 'bg-warning';
                                         } elseif ($item->status === 'Disetujui') {
-                                            $badgeClass = 'bg-success';
+                                            $badgeClass = 'bg-success-subtle ';
                                         } elseif ($item->status === 'Revisi') {
-                                            $badgeClass = 'bg-danger';
+                                            $badgeClass = 'bg-secondary-subtle';
                                         }
                                     @endphp
                                     <span class="badge {{ $badgeClass }}"
