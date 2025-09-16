@@ -1491,6 +1491,9 @@
             .x9 {
                 left: 294.378272pt;
             }
+            .xr{
+                left: 315.378272pt;
+            }
 
             .xb {
                 left: 297.437824pt;
@@ -2080,7 +2083,16 @@
                 <div class="t m0 x4 h3 y3 ff2 fs1 fc1 sc0 ls5 ws0">UNIVERSITAS JAMBI<span class="ls2"> </span></div>
                 <div class="t m0 x5 h4 y4 ff3 fs1 fc1 sc0 ls6 ws0">FAKULTAS SAINS DAN TEKNOLOGI<span class="ls2">
                     </span></div>
-                <div class="t m0 x6 h4 y5 ff3 fs1 fc1 sc0 ls7 ws0">JURUSAN {{ $data['header']['jurusan'] }}<span
+                @php
+                        $position = match($data['header']['jurusan']) {
+                            'MIPA'   => 'x4',
+                            'TEKNIK ELEKTRO DAN INFORMATIKA'  => 'x6',
+                            'TEKNIK SIPIL, KIMIA & LINGKUNGAN'  => 'x6',
+                            'TEKNIK KEBUMIAN' => 'xr',
+                            default     => 'x5',
+                        };
+                 @endphp
+                <div class="t m0 {{$position}} h4 y5 ff3 fs1 fc1 sc0 ls7 ws0">JURUSAN {{ $data['header']['jurusan'] }}<span
                         class="ls2"></span></div>
                 <div class="t m0 x7 h4 y6 ff3 fs1 fc1 sc0 ls6 ws0">PROGRAM STUDI {{ strtoupper($data['header']['program_studi']) }}<span class="ls2"></span></div>
                 <div class="t m0 x8 h5 y7 ff4 fs2 fc0 sc0 ls2 ws0">Jalan Raya Jambi - Ma. Bulian, KM.15, Mendalo Indah, Jambi. Kode Pos 36361 </div>

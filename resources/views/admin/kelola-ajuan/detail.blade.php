@@ -107,7 +107,7 @@
                                                     {{ $data->komentar ?? 'Tidak ada catatan revisi.' }}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
+                                                    <button type="button" class="btn btn-primary"
                                                         data-bs-dismiss="modal">Tutup</button>
                                                 </div>
                                             </div>

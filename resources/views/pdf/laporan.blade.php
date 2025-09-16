@@ -1952,7 +1952,16 @@
                             class="_ _1"></span>A<span class="_ _0"></span>M<span class="_ _1"></span>BI </div>
                     <div class="t m0 x4 h4 y4 ff2 fs1 fc1 sc0 ls0 ws0">FAKULT<span class="_ _1"></span>AS SAINS DAN <span class="_ _1"></span>TEKNOLO<span class="_ _1"></span>GI<span class="_ _1"></span>
                     </div>
-                    <div class="t m0 x5 h4 y5 ff2 fs1 fc1 sc0 ls0 ws0">JURUSAN {{ $data['header']['jurusan'] }} </div>
+                    @php
+                        $position = match($data['header']['jurusan']) {
+                            'MIPA'   => 'x3',
+                            'TEKNIK ELEKTRO DAN INFORMATIKA'  => 'x5',
+                            'TEKNIK SIPIL, KIMIA & LINGKUNGAN'  => 'x5',
+                            'TEKNIK KEBUMIAN' => 'x10',
+                            default     => 'x5',
+                        };
+                    @endphp
+                    <div class="t m0 {{$position}} h4 y5 ff2 fs1 fc1 sc0 ls0 ws0">JURUSAN {{ $data['header']['jurusan'] }} </div>
                     <div class="t m0 x6 h4 y6 ff2 fs1 fc1 sc0 ls0 ws0">PROGRAM<span class="_ _1"></span> STUDI<span
                             class="_ _1"></span> {{ strtoupper($data['header']['program_studi']) }} </div>
                     <div class="t m0 x7 h5 y7 ff1 fs2 fc0 sc0 ls0 ws0">Jalan Raya<span class="_ _0"></span> Jambi -<span class="ls1"> </span>Ma. Bu<span class="_ _1"></span>li<span class="_ _2"></span>a<span class="_ _1"></span>n<span class="_ _0"></span>, <span class="_ _1"></span>K<span class="_ _0"></span>M.15, Me<span class="_ _1"></span>n<span class="_ _0"></span>dalo Indah, Jambi<span class="_ _0"></span>. <span class="_ _1"></span>K<span class="_ _0"></span>ode <span class="_ _1"></span>Pos 36361<span class="_ _1"></span> </div>
