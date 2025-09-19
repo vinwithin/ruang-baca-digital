@@ -1,5 +1,6 @@
 #berita {
     padding: 1.5rem 8%;
+    min-height:100vh;
 }
 #berita .title {
     color: #1a1a1a;

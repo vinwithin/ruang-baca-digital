@@ -14,11 +14,15 @@ use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\MasterDataController;
 use App\Http\Controllers\PanduanController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/tentang-kami', [BerandaController::class, 'tentang'])->name('tentang-kami');
@@ -31,9 +35,28 @@ Route::get('/koleksi/{jenisdokumen}', [KoleksiController::class, 'index'])->name
 Route::get('/koleksi/detail/{laporanmahasiswa}', [KoleksiController::class, 'show'])->name('koleksi-detail');
 Route::get('/koleksi/program-studi/{programstudi}', [KoleksiController::class, 'koleksi'])->name('koleksi-program-studi');
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
 
 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::ResetLinkSent
+        ? back()->with(['success' => 'Silahkan cek email untuk melakukan update password'])
+        : back()->withErrors(['email' => __($status)]);
+})->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'passwordReset'])->name('password.update');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
@@ -43,7 +66,24 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::middleware('auth')->group(function () {
+Route::get('/email/verify', function () {
+    return view('auth.email-verification');
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
     Route::get('/panduan', [PanduanController::class, 'index'])->name('panduan.index');
@@ -98,6 +138,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/berita/edit/{berita:slug}', [BeritaController::class, 'edit'])->name('berita.edit');
             Route::post('/berita/update/{berita:slug}', [BeritaController::class, 'update'])->name('berita.update');
             Route::get('/berita/delete/{berita:slug}', [BeritaController::class, 'destroy'])->name('berita.delete');
+
+            Route::get('/kelola-pengguna', [MasterDataController::class, 'index'])->name('kelola-pengguna.index');
 
             Route::get('/calendar/month', [DashboardController::class, 'getMonth'])->name('calendar.month');
         });

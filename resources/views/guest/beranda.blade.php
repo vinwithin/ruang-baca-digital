@@ -223,7 +223,8 @@
                     <div class="d-flex gap-4 overflow-auto" id="scroll-container2">
                         @foreach ($berita as $item)
                             {{-- <div class="col-md-4 col-4 gap-sm-6"> --}}
-                            <div class="news-card position-relative text-white">
+                            <div class="news-card position-relative text-white"
+                                onclick="window.location.href='/berita/{{ $item->slug }}'" style="cursor: pointer;">
                                 <img src="/storage/{{ $item->image }}"
                                     class="object-fit-cover position-absolute top-0 start-0" alt="..." />
                                 <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>

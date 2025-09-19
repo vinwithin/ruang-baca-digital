@@ -19,6 +19,7 @@ class PanduanController extends Controller
             'data' => Panduan::first()
         ]);
     }
+    
     public function update(Request $request, $id)
     {
         $data = $request->validate([

@@ -38,24 +38,22 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <h4 class="text-center fw-bold fs-2 ">Masuk ke akun anda</h4>
-                    <form method="POST" class="pt-4 px-4 mx-auto w-100" action="{{ route('login') }}">
+                    <h4 class="text-center fw-bold fs-2 ">Lupa Kata Sandi</h4>
+                    <form method="POST" class="pt-4 px-4 mx-auto w-100" action="{{ route('password.update') }}">
                         @csrf
                         <!-- Email Input -->
+                        <input type="hidden" name="token" value="{{$token}}">
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">Nama Pengguna atau NIM</label>
+                            <label for="email" class="form-label">Email</label>
                             <div class="input-group">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" value="{{ old('email') }}"
-                                    placeholder="Masukkan Nama Pengguna atau NIM" required>
-
-
+                                    id="email" name="email" value="{{ old('email') }}" placeholder="Email"
+                                    required>
                             </div>
                         </div>
                         @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-
                         <!-- Password Input -->
                         <div class="form-group mb-3">
                             <label for="password" class="form-label">Kata Sandi</label>
@@ -71,33 +69,27 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 
-                        <!-- Remember Me Checkbox -->
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">Ingat Saya</label>
+                        <div class="form-group mb-3">
+                            <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
+                            <div class="input-group">
+                                <input type="password"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    id="password_confirmation" name="password_confirmation"
+                                    placeholder="Konfirmasi Kata Sandi" required>
+                                <span class="input-group-text" id="togglePasswordConfirmation" style="cursor: pointer;">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
                         </div>
+                        @error('password_confirmation')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn-custom w-100 mt-3">Masuk</button>
                     </form>
                 </div>
-                <div class="d-flex flex-row justify-content-between gap-2 px-4">
-                    <div class="d-flex justify-content-start gap-2">
-                        <p>
-                            <small>Belum Punya Akun?</small>
-                        </p>
-                        <a href="/login" class="text-decoration-none text-primary">
-                            Masuk Sekarang
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{{ route('password.request') }}" class="text-decoration-none text-primary fs-6 ">
-                            Lupa Kata Sandi Anda?
-                        </a>
-                    </div>
 
-
-                </div>
             </div>
         </div>
         <div class="overlay-img">
@@ -118,33 +110,6 @@
     </script>
     <script src="https://kit.fontawesome.com/f10456a175.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
-
-
-    <script>
-        // Toggle password utama
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-        togglePassword.addEventListener('click', function() {
-            // ubah type input
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-
-            // ganti icon
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
-        });
-
-        // Toggle password konfirmasi
-        const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
-        const passwordConfirmation = document.querySelector('#password_confirmation');
-        togglePasswordConfirmation.addEventListener('click', function() {
-            const type = passwordConfirmation.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordConfirmation.setAttribute('type', type);
-
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
-        });
-    </script>
     <script>
         @if (session('success'))
             Swal.fire({

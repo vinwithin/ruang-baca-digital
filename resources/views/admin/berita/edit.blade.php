@@ -1,6 +1,8 @@
 @extends('layout.admin.app')
 @section('title', 'Unggah Berita')
 @section('content')
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+
     <style>
         .btn-file {
             min-width: 100%;
@@ -34,8 +36,16 @@
                         @enderror
                     </div>
 
-
                     <div class="mb-3">
+                        <div id="editor">
+                            {!! $data->content !!}
+                        </div>
+                    </div>
+
+                    <textarea class="form-control" id="hiddenContent" placeholder="Enter the Description" rows="5" name="content"
+                        style="display: none"></textarea>
+
+                    {{-- <div class="mb-3">
                         <div class="form-floating">
                             <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Isi deskripsi" id="floatingTextarea2"
                                 style="height: 100px" name="content">{{ $data->content }}</textarea>
@@ -47,7 +57,7 @@
                             @enderror
                         </div>
 
-                    </div>
+                    </div> --}}
 
                     <!-- Tanggal Mulai -->
                     <p>Unggah Foto</p>
@@ -68,13 +78,18 @@
                     </div>
 
                     <!-- Tanggal Berakhir -->
-                    <a href="/admin/berita" class="btn btn-outline-info me-2">Batalkan <i class="fa-solid fa-xmark ms-2"></i></a>
-                    <button type="submit" class="btn btn-primary">Kirim <i class="fa-solid fa-circle-arrow-right ms-2"></i></button>
+                    <a href="/admin/berita" class="btn btn-outline-info me-2">Batalkan <i
+                            class="fa-solid fa-xmark ms-2"></i></a>
+                    <button type="submit" class="btn btn-primary">Kirim <i
+                            class="fa-solid fa-circle-arrow-right ms-2"></i></button>
 
                 </form>
             </div>
         </div>
     </div>
+    <script src="//cdn.quilljs.com/1.2.2/quill.min.js"></script>
+    <script src="/js/image-resize.min.js"></script>
+
     <script>
         const imageInput = document.getElementById('imageInput');
         const imagePreview = document.getElementById('imagePreview');
@@ -91,5 +106,92 @@
         function inputImage() {
             document.getElementById('imageInput').click();
         }
+    </script>
+    <script>
+        // Inisialisasi Quill
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                imageResize: {
+                    displaySize: true
+                },
+                toolbar: {
+                    container: [
+                        [{
+                            header: [1, 2, false]
+                        }],
+                        ['bold', 'italic', 'underline'],
+                        [{
+                            'color': []
+                        }, {
+                            'background': []
+                        }],
+                        [{
+                            'align': []
+                        }],
+                        ['image', 'code-block']
+                    ],
+                    handlers: {
+                        image: imageHandler
+                    }
+                }
+            }
+        });
+
+        // Handler untuk upload gambar
+        function imageHandler() {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/png, image/jpg, image/jpeg');
+            input.click();
+
+            input.onchange = () => {
+                const file = input.files[0];
+
+                // Validasi ukuran file (opsional)
+                if (file.size > 2000000) { // 5MB
+                    var modal = new bootstrap.Modal(document.getElementById('fileSizeModal'));
+                    modal.show();
+                    event.target.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = () => {
+                    const range = quill.getSelection(true);
+                    quill.insertEmbed(range.index, 'image', reader.result);
+                    quill.setSelection(range.index + 1);
+
+                    // Update textarea setiap kali ada perubahan
+                    updateTextarea();
+                };
+
+                reader.readAsDataURL(file);
+            };
+        }
+
+        // Fungsi untuk update textarea
+        function updateTextarea() {
+            const content = quill.root.innerHTML;
+            document.getElementById('hiddenContent').value = content;
+        }
+
+        // Update textarea setiap kali konten berubah
+        quill.on('text-change', function() {
+            updateTextarea();
+        });
+
+        // Handler untuk form submission
+        document.getElementById('editorForm').onsubmit = function(e) {
+            // Pastikan textarea terupdate dengan konten terbaru
+            updateTextarea();
+
+            // Log konten untuk debugging (opsional)
+            console.log('Submitting content:', document.getElementById('hiddenContent').value);
+
+            // Form akan submit secara normal ke backend
+            return true;
+        };
     </script>
 @endsection

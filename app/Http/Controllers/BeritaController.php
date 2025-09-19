@@ -6,6 +6,7 @@ use App\Models\Berita;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -33,8 +34,26 @@ class BeritaController extends Controller
         $validateData["excerpt"] =  Str::limit(strip_tags($request->content), 100);
         if ($request->hasFile('image')) {
             $thumbnail_name = time() . '_' . $request->image->getClientOriginalName();
-            $path = $request->image->storeAs('berita', $thumbnail_name, 'public');
+            $path = $request->image->storeAs('berita/thumbnails', $thumbnail_name, 'public');
             $validateData['image'] = $path;
+        }
+
+        preg_match_all('/data:image\/[a-zA-Z]+;base64,([^\"]+)/', $validateData['content'], $matches);
+        $imageTags = $matches[0];
+        if (count($imageTags) > 0) {
+            foreach ($imageTags as $tagImage) {
+                $image = preg_replace('/^data:image\/\w+;base64,/', '', $tagImage);
+                $extension = explode('/', explode(':', substr($tagImage, 0, strpos($tagImage, ';')))[1])[1];
+                $allowedTypes = ['jpeg', 'jpg', 'png', 'gif'];
+                if (!in_array($extension, $allowedTypes)) {
+                    return response()->json([
+                        'message' => 'Invalid image type. Allowed types: ' . implode(', ', $allowedTypes)
+                    ], 422);
+                }
+                $imageName = Str::random(10) . '.' . $extension;
+                Storage::disk('public')->put('berita/' . $imageName, base64_decode($image));
+                $validateData['content'] = str_replace($tagImage,  asset('/storage/media/' . $imageName), $validateData['content']);
+            }
         }
 
         $result = Berita::create($validateData);
@@ -70,9 +89,28 @@ class BeritaController extends Controller
 
         if ($request->hasFile('image')) {
             $thumbnail_name = time() . '_' . $request->image->getClientOriginalName();
-            $path = $request->image->storeAs('berita', $thumbnail_name, 'public');
+            $path = $request->image->storeAs('berita/thumbnails', $thumbnail_name, 'public');
             $validateData['image'] = $path;
         }
+        
+        preg_match_all('/data:image\/[a-zA-Z]+;base64,([^\"]+)/', $validateData['content'], $matches);
+        $imageTags = $matches[0];
+        if (count($imageTags) > 0) {
+            foreach ($imageTags as $tagImage) {
+                $image = preg_replace('/^data:image\/\w+;base64,/', '', $tagImage);
+                $extension = explode('/', explode(':', substr($tagImage, 0, strpos($tagImage, ';')))[1])[1];
+                $allowedTypes = ['jpeg', 'jpg', 'png', 'gif'];
+                if (!in_array($extension, $allowedTypes)) {
+                    return response()->json([
+                        'message' => 'Invalid image type. Allowed types: ' . implode(', ', $allowedTypes)
+                    ], 422);
+                }
+                $imageName = Str::random(10) . '.' . $extension;
+                Storage::disk('public')->put('media/' . $imageName, base64_decode($image));
+                $validateData['content'] = str_replace($tagImage,  asset('/storage/media/' . $imageName), $validateData['content']);
+            }
+        }
+
         $result = Berita::where('id', $berita->id)->update($validateData);
 
         if ($result) {
