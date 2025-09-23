@@ -1,7 +1,10 @@
 @extends('layout.admin.app')
 @section('title', 'Unggah Berita')
 @section('content')
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/scrapooo/quill-resize-module@1.0.2/dist/quill-resize-module.js"></script>
+
 
     <style>
         .btn-file {
@@ -60,7 +63,7 @@
                     </div> --}}
 
                     <!-- Tanggal Mulai -->
-                    <p>Unggah Foto</p>
+                    <p>Unggah Thumbnail</p>
                     <div class="mb-3">
                         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
                             accept="image/png, image/jpeg, image/jpg" id="imageInput">
@@ -87,8 +90,6 @@
             </div>
         </div>
     </div>
-    <script src="//cdn.quilljs.com/1.2.2/quill.min.js"></script>
-    <script src="/js/image-resize.min.js"></script>
 
     <script>
         const imageInput = document.getElementById('imageInput');
@@ -109,6 +110,8 @@
     </script>
     <script>
         // Inisialisasi Quill
+        Quill.register('modules/imageResize', QuillResizeModule);
+
         const quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
@@ -193,5 +196,22 @@
             // Form akan submit secara normal ke backend
             return true;
         };
+    </script>
+     <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        @endif
     </script>
 @endsection

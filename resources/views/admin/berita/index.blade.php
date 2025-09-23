@@ -34,67 +34,81 @@
             @if (request('search'))
                 <p class="text-muted">Hasil pencarian untuk: <strong>{{ request('search') }}</strong></p>
             @endif
+            <div class="card-body">
 
-            <div class="table-wrapper border rounded-3 overflow-scroll">
+                <div class="table-wrapper border rounded-3 overflow-scroll">
 
-                <table class="table align-middle overflow-hidden">
-                    <thead class="table-light text-start">
-                        <tr>
-                            <th style="width: 5%">No</th>
-                            <th class="d-none d-md-table-cell"style="width: 20%">Pembuat</th>
-                            <th class="d-none d-md-table-cell" style="width: 40%">Judul</th>
-
-                            <th class="d-none d-md-table-cell" style="width: 20%">Thumbnails</th>
-                            <th class="d-none d-md-table-cell" style="width: 20%">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $item)
+                    <table class="table align-middle overflow-hidden ">
+                        <thead class="table-light text-start px-3">
                             <tr>
+                                <th style="width: 5%">No</th>
+                                <th class="d-none d-md-table-cell"style="width: 20%">Pembuat</th>
+                                <th class="d-none d-md-table-cell" style="width: 40%">Judul</th>
 
-                                <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    {{ $item->user->name }}
-                                </td>
-                                <td class="d-none d-md-table-cell">
-                                    {{ $item->title }}
-                                </td>
-
-                                <td class="d-none d-xl-table-cell"><img class="img-thumbnail"
-                                        src="/storage/{{ $item->image }}" alt=""
-                                        style="max-width: 80px; max-height:80px;">
-                                </td>
-
-
-                                <td class="d-none d-md-table-cell">
-
-
-                                    <a href="/admin/berita/edit/{{ $item->slug }}" class="btn btn-outline-warning">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i>
-                                    </a>
-                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ $item->id }}">
-                                        <i class="fa-solid fa-trash-can" style="color: #ff2600;"></i>
-                                    </button>
-                                    <!-- Gunakan komponen modal -->
-                                    <x-confirm-modal modalId="deleteModal{{ $item->id }}"
-                                        title="Konfirmasi Persetujuan"
-                                        message="Apakah Anda yakin ingin menghapus berita ini?"
-                                        action-url="/admin/berita/delete/{{ $item->slug }}"
-                                        confirm-text="Iya, Setujui" />
-
-
-
-
-                                </td>
+                                <th class="d-none d-md-table-cell" style="width: 20%">Thumbnails</th>
+                                <th class="d-none d-md-table-cell" style="width: 20%">Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+                                <tr>
+
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        {{ $item->user->name }}
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        {{ $item->title }}
+                                        <div class=" d-flex flex-column gap-2 justify-content-center align-items-start">
+                                            @if ($item->created_at->eq($item->updated_at))
+                                            @else
+                                                <small class="text-warning fst-italic">
+                                                    *Berita ini terakhir diedit pada
+                                                    {{ $item->updated_at->translatedFormat('d F Y') }}
+                                                </small>
+                                            @endif
+                                        </div>
+
+                                    </td>
+
+                                    <td class="d-none d-xl-table-cell"><img class="img-thumbnail"
+                                            src="/storage/{{ $item->image }}" alt=""
+                                            style="max-width: 80px; max-height:80px;">
+                                    </td>
+
+
+                                    <td class="d-none d-md-table-cell">
+
+
+                                        <a href="/admin/berita/edit/{{ $item->slug }}" class="btn btn-outline-warning">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $item->id }}">
+                                            <i class="fa-solid fa-trash-can" style="color: #ff2600;"></i>
+                                        </button>
+                                        <!-- Gunakan komponen modal -->
+                                        <x-confirm-modal modalId="deleteModal{{ $item->id }}"
+                                            title="Konfirmasi Persetujuan"
+                                            message="Apakah Anda yakin ingin menghapus berita ini?"
+                                            action-url="/admin/berita/delete/{{ $item->slug }}"
+                                            confirm-text="Iya, Setujui" />
+
+
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $data->links() }}
+                </div>
             </div>
-            <div class="d-flex justify-content-center mt-4">
-                {{ $data->links() }}
-            </div>
+
+
         </div>
     </div>
     <script>

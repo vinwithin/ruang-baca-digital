@@ -38,17 +38,22 @@
             @role('admin')
                 <li class="sidebar-item {{ Request::is('admin/dokumen*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/admin/dokumen">
-                        <i class="fa-regular fa-circle-info"></i> <span class="align-middle">Kelola Ajuan Mahasiswa</span>
+                        <i class="fa-regular fa-clipboard-check"></i> <span class="align-middle">Validasi Dokumen</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ Request::is('admin/kelola-dokumen*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.kelola-dokumen') }}">
-                        <i class="fa-solid fa-magnifying-glass"></i> <span class="align-middle">Kelola Dokumen</span>
+                        <i class="fa-solid fa-database"></i> <span class="align-middle">Kelola Dokumen</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ Request::is('admin/berita*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/admin/berita">
-                        <i class="fa-regular fa-star"></i> <span class="align-middle">Kelola Informasi/Berita</span>
+                        <i class="fa-solid fa-newspaper"></i> <span class="align-middle">Kelola Informasi/Berita</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Request::is('admin/kelola-pengguna*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="/admin/kelola-pengguna">
+                        <i class="fa-regular fa-circle-user"></i> <span class="align-middle">Kelola Pengguna</span>
                     </a>
                 </li>
             @endrole

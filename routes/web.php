@@ -86,6 +86,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+    Route::get('/profil/edit', [ProfilController::class, 'profile'])->name('profil.edit');
+    Route::post('/profil/update', [ProfilController::class, 'storeProfile'])->name('profil.update');
+    Route::get('/profil/password/edit', [ProfilController::class, 'password'])->name('profi.passwordl');
+    Route::post('/profil/password/update', [ProfilController::class, 'storePassword'])->name('profil.storePassword');
     Route::get('/panduan', [PanduanController::class, 'index'])->name('panduan.index');
 
     Route::middleware(['role:mahasiswa'])->group(function () {
@@ -140,6 +144,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/berita/delete/{berita:slug}', [BeritaController::class, 'destroy'])->name('berita.delete');
 
             Route::get('/kelola-pengguna', [MasterDataController::class, 'index'])->name('kelola-pengguna.index');
+            Route::get('/kelola-pengguna/create', [MasterDataController::class, 'create'])->name('kelola-pengguna.create');
+            Route::post('/kelola-pengguna/store', [MasterDataController::class, 'store'])->name('kelola-pengguna.store');
+            Route::get('/kelola-pengguna/{id}/edit', [MasterDataController::class, 'edit'])->name('kelola-pengguna.edit');
+            Route::post('/kelola-pengguna/{id}/update', [MasterDataController::class, 'update'])->name('kelola-pengguna.update');
+            Route::get('/kelola-pengguna/{id}/active', [MasterDataController::class, 'active'])->name('kelola-pengguna.active');
+            Route::get('/kelola-pengguna/{id}/nonactive', [MasterDataController::class, 'nonactive'])->name('kelola-pengguna.nonactive');
 
             Route::get('/calendar/month', [DashboardController::class, 'getMonth'])->name('calendar.month');
         });

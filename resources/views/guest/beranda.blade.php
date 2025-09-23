@@ -224,7 +224,8 @@
                         @foreach ($berita as $item)
                             {{-- <div class="col-md-4 col-4 gap-sm-6"> --}}
                             <div class="news-card position-relative text-white"
-                                onclick="window.location.href='/berita/{{ $item->slug }}'" style="cursor: pointer;">
+                                onclick="window.location.href='/berita/{{ $item->slug }}'"
+                                style="cursor: pointer;">
                                 <img src="/storage/{{ $item->image }}"
                                     class="object-fit-cover position-absolute top-0 start-0" alt="..." />
                                 <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
@@ -232,7 +233,7 @@
                                     class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center">
                                     <h4 class="fw-bold">{{ $item->title }}</h4>
                                     <p class="mt-3 small">
-                                        {{ Str::limit($item->content, 100, '...') }}
+                                        {{ $item->excerpt }}
                                     </p>
                                 </div>
                             </div>

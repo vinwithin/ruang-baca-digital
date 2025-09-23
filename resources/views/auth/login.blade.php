@@ -86,8 +86,8 @@
                         <p>
                             <small>Belum Punya Akun?</small>
                         </p>
-                        <a href="/login" class="text-decoration-none text-primary">
-                            Masuk Sekarang
+                        <a href="/register" class="text-decoration-none text-primary">
+                            Daftar Sekarang
                         </a>
                     </div>
                     <div>

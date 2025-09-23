@@ -26,17 +26,8 @@
             line-height: 20px;
         }
 
-        .btn {
-            display: flex;
-            height: 28px;
-            color: #ffffff;
-            padding: 0 8px;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            align-self: stretch;
-            border-radius: 10px;
-            background: #023E8A;
+        dd a {
+            font-size: 10px !important;
         }
 
         /* Modal Backdrop */
@@ -282,9 +273,18 @@
 
                         <dd class="col-5 mb-3">: ***********</dd>
                         <dt class="col-7 mb-3"></dt>
-                        {{-- <dd class="col-5 mb-3"><button class="btn" data-bs-toggle="modal"
-                                data-bs-target="#changePasswordModal">Ganti Kata
-                                Sandi<i class="fa-solid fa-lock ms-2"></i></button></dd> --}}
+                        <dd class="col-5 mb-3 d-flex flex-row gap-3">
+                            <a href="/profil/edit" class="btn btn-outline-primary px-4 d-inline-flex align-items-center">
+                                Edit Profil
+                                <i class="fa-solid fa-pen-to-square ms-2"></i>
+                            </a>
+
+                            <a href="profil/password/edit" class="btn btn-primary px-4 d-inline-flex align-items-center">
+                                Ganti Kata Sandi
+                                <i class="fa-solid fa-lock ms-2"></i>
+                            </a>
+
+                        </dd>
 
                         <div class="modal fade change-password-modal" id="changePasswordModal" tabindex="-1"
                             aria-labelledby="changePasswordModalLabel" aria-hidden="true">

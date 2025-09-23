@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-       .title{
+        .title {
             color: #043471;
             font-family: "Plus Jakarta Sans";
             font-size: 25px;
@@ -26,7 +26,7 @@
                             class="card-content position-relative p-4 h-100 d-flex flex-column justify-content-end align-items-center text-center">
                             <h4 class="fw-bold text-white">{{ $item->title }}</h4>
                             <p class="mt-3 small text-light">
-                                {{ Str::limit($item->content, 100, '...') }}
+                                {{ $item->excerpt }}
                             </p>
                         </div>
                     </div>

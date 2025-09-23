@@ -120,11 +120,20 @@
                 </div>
 
                 <div class="container mt-3 pt-5">
-                    <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
+                    <a class="btn btn-primary w-100" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
                         target="_blank">
                         Baca Dokumen <i class="fa-solid fa-book-open"></i>
                     </a>
+
                 </div>
+
+                @if ($data->created_at->eq($data->updated_at))
+                @else
+                    <small class="text-warning fst-italic">
+                        *Dokumen ini terakhir diedit pada
+                        {{ $data->updated_at->translatedFormat('d F Y') }}
+                    </small>
+                @endif
 
 
                 <div class="d-flex justify-content-between mt-2 flex-wrap gap-2">
@@ -144,7 +153,6 @@
                     </div>
 
                 </div>
-
 
             </div>
 

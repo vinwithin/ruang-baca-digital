@@ -52,7 +52,7 @@ class BeritaController extends Controller
                 }
                 $imageName = Str::random(10) . '.' . $extension;
                 Storage::disk('public')->put('berita/' . $imageName, base64_decode($image));
-                $validateData['content'] = str_replace($tagImage,  asset('/storage/media/' . $imageName), $validateData['content']);
+                $validateData['content'] = str_replace($tagImage,  asset('/storage/berita/' . $imageName), $validateData['content']);
             }
         }
 
@@ -106,8 +106,8 @@ class BeritaController extends Controller
                     ], 422);
                 }
                 $imageName = Str::random(10) . '.' . $extension;
-                Storage::disk('public')->put('media/' . $imageName, base64_decode($image));
-                $validateData['content'] = str_replace($tagImage,  asset('/storage/media/' . $imageName), $validateData['content']);
+                Storage::disk('public')->put('berita/' . $imageName, base64_decode($image));
+                $validateData['content'] = str_replace($tagImage,  asset('/storage/berita/' . $imageName), $validateData['content']);
             }
         }
 
