@@ -251,7 +251,7 @@
         <div class="card p-5">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="/img/avatars/avatar-2.jpg" class=mb-2" alt="Foto Profil"
+                    <img src="/storage/{{$data->foto_profil}}" class=mb-2" alt="Foto Profil"
                         style="width: 150px; height:150px; border-radius: 50% !important; border: 1px solid black;">
                     <!-- Tombol Ganti Foto -->
                 </div>

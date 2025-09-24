@@ -2,7 +2,7 @@
     <div class="sidebar-content js-simplebar">
         <div class="d-flex justify-content-between align-items-center my-3 mx-4 ">
             <a href="#" class="navbar-brand d-flex align-items-center">
-                <img src="/assets/logo.png" alt="Logo" style="height: 40px;">
+                <img src="/storage/{{Auth::user()->foto_profil}}" alt="Logo" style="height: 40px;">
             </a>
             <div class="d-flex flex-column justify-content-center mt-2">
                 <h1 class="text-aside mb-0">Ruang Baca Digital</h1>
