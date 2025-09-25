@@ -26,7 +26,7 @@ class RegisterController extends Controller
         $validateData['department'] = 'Fakultas Sains dan Teknologi';
         $validateData['progam_studi_id'] = 13;
         $validateData['password'] = Hash::make($validateData['password']);
-        // try {
+        try {
 
             $user = User::create($validateData);
             $user->assignRole('mahasiswa');
@@ -34,10 +34,10 @@ class RegisterController extends Controller
 
             return redirect()->route('login')
                 ->with('success', 'Registrasi berhasil! Silakan cek email untuk verifikasi sebelum login.');
-        // } catch (\Exception $e) {
-        //     return redirect()->back()
-        //         ->withInput()
-        //         ->with('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
-        // }
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
+        }
     }
 }
