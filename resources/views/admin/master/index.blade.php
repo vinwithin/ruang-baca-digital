@@ -25,14 +25,14 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <a class="btn btn-primary" href="/admin/kelola-pengguna/create"><i class="fa-solid fa-plus me-2"></i>Tambah
                     Pengguna</a>
-                <form action="{{ route('admin-dokumen') }}" method="GET">
+                <form action="{{ route('kelola-pengguna.index') }}" method="GET">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Cari kegiatan..."
                             value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa fa-search"></i> Cari
                         </button>
-                        <a href="{{ route('admin-dokumen') }}" class="btn btn-primary ms-2">Atur Ulang</a>
+                        <a href="{{ route('kelola-pengguna.index') }}" class="btn btn-primary ms-2">Atur Ulang</a>
 
                     </div>
                 </form>

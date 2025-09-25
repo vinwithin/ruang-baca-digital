@@ -9,10 +9,21 @@ use Illuminate\Support\Facades\Hash;
 
 class MasterDataController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+        $data = User::query();
+        if ($search) {
+            $data->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('identifier', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+        $data = $data->latest()->paginate(10);
+
         return view('admin.master.index', [
-            'data' => User::latest()->paginate(10),
+            'data' => $data,
         ]);
     }
     public function create()

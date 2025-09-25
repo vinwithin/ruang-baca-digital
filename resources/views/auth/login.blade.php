@@ -43,16 +43,16 @@
                         @csrf
                         <!-- Email Input -->
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">Nama Pengguna atau NIM</label>
+                            <label for="identifier" class="form-label">Nama Pengguna atau NIM</label>
                             <div class="input-group">
-                                <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" value="{{ old('email') }}"
+                                <input type="text" class="form-control @error('identifier') is-invalid @enderror"
+                                    id="identifier" name="identifier" value="{{ old('identifier') }}"
                                     placeholder="Masukkan Nama Pengguna atau NIM" required>
 
 
                             </div>
                         </div>
-                        @error('email')
+                        @error('identifier')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 

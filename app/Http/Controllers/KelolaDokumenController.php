@@ -35,7 +35,7 @@ class KelolaDokumenController extends Controller
         if ($prodi) {
             $data->where('program_studi_id', $prodi);
         }
-        
+
         $data = $data->latest()->paginate(10);
 
         return view('admin.kelola-dokumen.index', [
@@ -55,7 +55,6 @@ class KelolaDokumenController extends Controller
     {
         return view('admin.kelola-dokumen.create', [
             'prodi' => ProgramStudi::all(),
-            'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
@@ -102,7 +101,6 @@ class KelolaDokumenController extends Controller
         return view('admin.kelola-dokumen.edit', [
             'data' => LaporanMahasiswa::find($laporanmahasiswa->id),
             'prodi' => ProgramStudi::all(),
-            'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }

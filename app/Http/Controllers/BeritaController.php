@@ -12,10 +12,26 @@ use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+        $data = Berita::query();
+
+        if ($search) {
+            $data->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('excerpt', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%")
+                            ->orWhere('email', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $data = $data->latest()->paginate(10);
         return view('admin.berita.index', [
-            'data' => Berita::paginate(10)
+            'data' => $data
         ]);
     }
     public function create()
@@ -92,7 +108,7 @@ class BeritaController extends Controller
             $path = $request->image->storeAs('berita/thumbnails', $thumbnail_name, 'public');
             $validateData['image'] = $path;
         }
-        
+
         preg_match_all('/data:image\/[a-zA-Z]+;base64,([^\"]+)/', $validateData['content'], $matches);
         $imageTags = $matches[0];
         if (count($imageTags) > 0) {

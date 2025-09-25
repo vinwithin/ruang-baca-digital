@@ -15,7 +15,6 @@ class DokumenController extends Controller
     {
         return view('laporan.index', [
             'prodi' => ProgramStudi::all(),
-            'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
@@ -67,7 +66,6 @@ class DokumenController extends Controller
         return view('laporan.edit', [
             'data' => LaporanMahasiswa::find($laporanmahasiswa->id),
             'prodi' => ProgramStudi::all(),
-            'dospem' => User::role('dosen')->get(),
             'jenis_dokumen' => JenisDokumen::all(),
         ]);
     }
