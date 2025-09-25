@@ -1,8 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <div class="d-flex justify-content-between align-items-center my-3 mx-4 ">
-            <a href="/assets/unja.png" class="navbar-brand d-flex align-items-center">
-                <img src="" alt="Logo" style="height: 40px;">
+            <a href="" class="navbar-brand d-flex align-items-center">
+                <img src="/assets/unja.png" alt="Logo" style="height: 40px;">
             </a>
             <div class="d-flex flex-column justify-content-center mt-2">
                 <h1 class="text-aside mb-0">Ruang Baca Digital</h1>
