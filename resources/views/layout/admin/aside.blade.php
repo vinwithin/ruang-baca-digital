@@ -1,8 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <div class="d-flex justify-content-between align-items-center my-3 mx-4 ">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <img src="/storage/{{Auth::user()->foto_profil}}" alt="Logo" style="height: 40px;">
+            <a href="/assets/unja.png" class="navbar-brand d-flex align-items-center">
+                <img src="" alt="Logo" style="height: 40px;">
             </a>
             <div class="d-flex flex-column justify-content-center mt-2">
                 <h1 class="text-aside mb-0">Ruang Baca Digital</h1>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="text-center my-3">
-            <img class="img-thumbnail rounded-circle" src="/img/photos/unsplash-1.jpg" alt=""
+            <img class="img-thumbnail rounded-circle" src="/storage/{{Auth::user()->foto_profil}}" alt=""
                 style="width: 6rem; height: 6rem; object-fit: cover;">
             <h5 class="mt-2">{{ auth()->user()->name }}</h5>
             <h5 class="text-muted">{{ auth()->user()->identifier }}</h5>
