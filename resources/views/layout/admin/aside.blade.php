@@ -10,8 +10,9 @@
             </div>
         </div>
         <div class="text-center my-3">
-            <img class="img-thumbnail rounded-circle" src="/storage/{{Auth::user()->foto_profil}}" alt=""
-                style="width: 6rem; height: 6rem; object-fit: cover;">
+            <img class="img-thumbnail rounded-circle"
+                src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('img/avatars/avatar-2.jpg') }}"
+                alt="" style="width: 6rem; height: 6rem; object-fit: cover;">
             <h5 class="mt-2">{{ auth()->user()->name }}</h5>
             <h5 class="text-muted">{{ auth()->user()->identifier }}</h5>
         </div>
