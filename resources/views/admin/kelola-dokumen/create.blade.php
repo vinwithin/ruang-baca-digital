@@ -311,7 +311,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Unggah File</label>
                                 <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                    id="fileInput" name="file" accept=".pdf,.doc,.docx">
+                                    id="fileInput" name="file" accept=".pdf">
                                 @error('file')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
