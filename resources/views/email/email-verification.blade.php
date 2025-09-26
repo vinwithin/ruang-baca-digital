@@ -243,10 +243,8 @@
             <div class="info-text">
                 <p><strong>Informasi Penting:</strong></p>
                 <ul style="text-align: left; color: #6b7280;">
-                    <li>Link verifikasi ini berlaku selama <strong>24 jam</strong></li>
                     <li>Jika Anda tidak mendaftar untuk akun ini, abaikan email ini</li>
                     <li>Untuk keamanan, jangan bagikan kode verifikasi kepada siapapun</li>
-                    <li>Jika mengalami kendala, hubungi tim support kami</li>
                 </ul>
             </div>
 

@@ -91,6 +91,7 @@ class CariDokumenController extends Controller
 
     public function view(LaporanMahasiswa $laporanmahasiswa)
     {
+
         return view('cari-dokumen.view', [
             'data' => $laporanmahasiswa
         ]);
@@ -104,12 +105,12 @@ class CariDokumenController extends Controller
         if (!file_exists($path)) {
             abort(404);
         }
-        $sessionKey = 'viewed_laporan_' . $laporanmahasiswa->id;
+        $laporanmahasiswa->increment('view_count');
+        // $sessionKey = 'viewed_laporan_' . $laporanmahasiswa->id;
 
-        if (!session()->has($sessionKey)) {
-            $laporanmahasiswa->increment('view_count');
-            session()->put($sessionKey, true);
-        }
+        // if (!session()->has($sessionKey)) {
+        //     session()->put($sessionKey, true);
+        // }
 
         return response()->file($path, [
             'Content-Type' => 'application/pdf',
