@@ -419,7 +419,7 @@
         .zoom-controls {
             position: absolute;
             top: -60px;
-            right: 0;
+            right: 150px;
             display: flex;
             gap: 10px;
             z-index: 20;
@@ -427,7 +427,7 @@
 
         .book-container.fullscreen .zoom-controls {
             top: 20px;
-            right: 20px;
+            right: 150px;
             background: rgba(26, 26, 26, 0.9);
             padding: 10px;
             border-radius: 10px;
@@ -462,6 +462,7 @@
         .search-panel {
             position: absolute;
             top: -70px;
+            right: 0;
             background: #3A77BF;
             backdrop-filter: blur(10px);
             padding: 15px 20px;
@@ -545,8 +546,9 @@
         }
 
         /* Search Toggle Button */
-        .search-toggle {
+        .back {
             position: absolute;
+            text-decoration: none;
             top: -60px;
             left: 0;
             background: #3A77BF;
@@ -562,9 +564,26 @@
             z-index: 20;
         }
 
+        .search-toggle {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: #3A77BF;
+            color: #f4e4bc;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: none;
+            z-index: 20;
+        }
+
         .book-container.fullscreen .search-toggle {
             top: 20px;
-            left: 20px;
+            right: 20px;
             background: rgba(58, 119, 191, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -581,7 +600,7 @@
         .fullscreen-toggle {
             position: absolute;
             top: -60px;
-            right: 200px;
+            left: 150px;
             background: #28a745;
             color: white;
             border: none;
@@ -597,7 +616,7 @@
 
         .book-container.fullscreen .fullscreen-toggle {
             top: 20px;
-            right: 120px;
+            left: 120px;
             background: rgba(220, 53, 69, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -650,32 +669,32 @@
 
             .zoom-controls {
                 top: -120px;
-                right: 0;
+                right: 150;
             }
 
             .book-container.fullscreen .zoom-controls {
                 top: 10px;
-                right: 10px;
+                right: 150px;
             }
 
             .search-toggle {
                 top: -120px;
-                left: 0;
+                right: 0;
             }
 
             .book-container.fullscreen .search-toggle {
                 top: 10px;
-                left: 10px;
+                right: 10px;
             }
 
             .fullscreen-toggle {
                 top: -120px;
-                right: 80px;
+                left: 150px;
             }
 
             .book-container.fullscreen .fullscreen-toggle {
                 top: 10px;
-                right: 60px;
+                left: 150px;
             }
         }
 
@@ -702,6 +721,9 @@
             Page 1 of 1
         </div>
 
+        <a href="/search/dokumen" class="back" id="back" style="display: none;">
+            <i class="fa-solid fa-circle-arrow-left ms-2"></i> Kembali
+        </a>
         <button class="search-toggle" id="search-toggle" style="display: none;">
             Search
         </button>
@@ -749,19 +771,21 @@
 
         <div class="controls" id="controls" style="display: none;">
             <button class="btn" id="prev-page">
-                ← Previous Page
+                ← Halaman Sebelumnya
+            </button>
+
+            <button class="btn" id="close-book">
+                Tutup Buku
+            </button>
+            <button class="btn" id="next-page">
+                Halaman Selanjutnya →
             </button>
             <button class="btn fullscreen-btn" id="fullscreen-btn">
                 <span id="fullscreen-btn-icon">⛶</span> <span id="fullscreen-btn-text">Fullscreen</span>
             </button>
-            <button class="btn" id="close-book">
-                Close Book
-            </button>
-            <button class="btn" id="next-page">
-                Next Page →
-            </button>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/f10456a175.js" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script>
@@ -774,6 +798,7 @@
         const controls = document.getElementById("controls");
         const zoomControls = document.querySelector(".zoom-controls");
         const searchToggle = document.getElementById("search-toggle");
+        const back = document.getElementById("back");
         const searchPanel = document.getElementById("search-panel");
         const searchInput = document.getElementById("search-input");
         const searchInfo = document.getElementById("search-info");
@@ -898,6 +923,7 @@
                 pageInfo.style.display = 'block';
                 zoomControls.style.display = 'flex';
                 searchToggle.style.display = 'block';
+                back.style.display = 'block';
                 fullscreenToggle.style.display = 'block';
 
                 if (!state.pdfDoc) {
