@@ -25,8 +25,6 @@ class ProfilController extends Controller
     public function storeProfile(Request $request)
     {
         $validateData = $request->validate([
-            'identifier' => 'required|string|max:255|unique:users,identifier,' . Auth::user()->id,
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
             'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

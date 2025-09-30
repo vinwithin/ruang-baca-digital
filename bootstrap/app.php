@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth' => Illuminate\Auth\Middleware\Authenticate::class,
             'guest' => Illuminate\Auth\Middleware\RedirectIfAuthenticated::class,
+            'active' => App\Http\Middleware\ActiveMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,

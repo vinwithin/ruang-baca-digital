@@ -26,11 +26,11 @@
                 <form method="POST" action="/profil/update" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-3">
-                        <label for="text" class="form-label">Nama Pengguna/NIM</label>
+                        <label for="text" class="form-label">NIM</label>
                         <div class="input-group">
                             <input type="text" class="form-control @error('identifier') is-invalid @enderror"
-                                id="identifier" name="identifier" value="{{ $data->identifier }}" placeholder="Masukkan NIM"
-                                required>
+                                id="identifier" name="identifier" value={{$data->identifier}}
+                                disabled >
                         </div>
                     </div>
                     @error('identifier')
@@ -40,7 +40,7 @@
                         <label for="name" class="form-label text-dark">Nama</label>
                         <div class="input-group">
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" value="{{ $data->name }}" placeholder="Masukkan Nama" required>
+                                name="name" value="{{ $data->name }}" disabled>
 
                         </div>
                     </div>
