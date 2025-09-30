@@ -145,7 +145,7 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                     @elseif($data->status === 'Disetujui')
-                        <a class="btn btn-outline-success" href="/dokumen/{{ $data->uuid }}"><i class="fa-solid fa-print"></i></a>
+                        <a class="btn btn-outline-success" href="/pdf/generate/{{ $data->uuid }}"><i class="fa-solid fa-print"></i></a>
                     @endif
 
 
