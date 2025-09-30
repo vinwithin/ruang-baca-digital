@@ -34,7 +34,6 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                
                                 <td style="text-align: center;"><i class="fa-solid fa-star"></i></td>
                                 <td style="max-width: 300px;">
                                     {{ $item->laporan->judul }}

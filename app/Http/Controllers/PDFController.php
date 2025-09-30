@@ -26,7 +26,7 @@ class PDFController extends Controller
                 'program_studi' => $dataLaporan->program_studi->nama,
                 'alamat' => 'Jalan Raya Jambi - Muara Bulian Km.15 Mendalo Darat',
                 'kode_pos' => 'Kode Pos 36361',
-                'website' => 'http://fst.uinjambi.ac.id'
+                'website' => 'https://fst.unja.ac.id'
             ],
             'title' => [
                 'nama' => $dataLaporan->jenis_dokumen->nama
