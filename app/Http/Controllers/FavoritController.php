@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoritController extends Controller
 {
+
     public function index()
     {
         $data = Favorit::where('user_id', Auth::user()->id)
