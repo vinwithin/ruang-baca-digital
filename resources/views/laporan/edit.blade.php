@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Edit Dokumen Anda')
+@section('title', 'Informasi Status Upload')
 @section('content')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -196,7 +196,7 @@
             <div class="form-container">
                 <h2 class="form-title">Input Dokumen</h2>
 
-                <form id="inputDokumenForm" method="POST" action="/dokumen/update/{{ $data->uuid }}"
+                <form id="inputDokumenForm" method="POST" action="/informasi/dokumen/update/{{ $data->uuid }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="row">

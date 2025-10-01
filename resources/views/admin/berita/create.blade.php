@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Unggah Berita')
+@section('title', 'Kelola Informasi/Berita')
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">

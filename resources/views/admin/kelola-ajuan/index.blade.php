@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Kelola Ajuan Mahasiswa')
+@section('title', 'Validasi Dokumen Ajuan Mahasiswa')
 @section('content')
     <style>
         .table-wrapper {

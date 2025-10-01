@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Pengaturan Profil')
+@section('title', 'Pengaturan')
 @section('content')
     <style>
         h3 {

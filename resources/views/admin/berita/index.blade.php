@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Berita')
+@section('title', 'Kelola Informasi/Berita')
 @section('content')
     <style>
         .table-wrapper {

@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Unggah Berita')
+@section('title', 'Kelola Pengguna')
 @section('content')
     <div class="w-100">
         <div class="card">

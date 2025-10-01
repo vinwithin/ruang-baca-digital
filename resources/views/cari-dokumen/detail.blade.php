@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Informasi Status Upload')
+@section('title', 'Cari Dokumen Bacaan')
 @section('content')
     <style>
         .search-box {

@@ -99,8 +99,8 @@ Route::middleware(['auth', 'verified', 'active'])->group(function () {
 
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
         Route::post('/dokumen/unggah', [DokumenController::class, 'store'])->name('unggah-dokumen');
-        Route::get('/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');
-        Route::post('/dokumen/update/{laporanmahasiswa}', [DokumenController::class, 'update'])->name('update-dokumen');
+        Route::get('/informasi/dokumen/edit/{laporanmahasiswa}', [DokumenController::class, 'edit'])->name('edit-dokumen');
+        Route::post('/informasi/dokumen/update/{laporanmahasiswa}', [DokumenController::class, 'update'])->name('update-dokumen');
         Route::get('/informasi/dokumen', [InformasiUpload::class, 'index'])->name('informasi-dokumen');
         Route::get('/informasi/dokumen/{laporanmahasiswa}', [InformasiUpload::class, 'detail'])->name('informasi-dokumen.detail');
         Route::get('/informasi/dokumen/view/{filename}', [InformasiUpload::class, 'view'])->name('informasi-dokumen-view'); // supaya hanya user login yang bisa akses
