@@ -23,7 +23,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+                    <button type="submit" class="btn btn-primary">{{ $buttonText }} <i class="fa-solid fa-circle-arrow-right ms-2"></i></button>
                 </div>
             </div>
         </form>

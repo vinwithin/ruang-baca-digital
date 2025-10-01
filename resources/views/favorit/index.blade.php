@@ -61,13 +61,17 @@
                                     <a href="/bookmarks/{{ $item->laporan->uuid }}" class="btn btn-primary">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="/bookmark/hapus/{{ $item->laporan->uuid }}" class="btn btn-danger">
+                                    <a href="" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#bookmarkDelete-{{$item->id}}">
                                         <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
                                     </a>
+                                    <x-confirm-action modal-id="bookmarkDelete-{{$item->id}}"
+                                        action-url="/bookmark/hapus/{{ $item->laporan->uuid }}"
+                                        title="Anda yakin ingin menghapus dari Favorit?" confirm-text="Hapus" />
+
 
                                 </td>
                             </tr>
-                            
                         @endforeach
 
                     </tbody>

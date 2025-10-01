@@ -1,5 +1,5 @@
 @extends('layout.admin.app')
-@section('title', 'Kelola Dokumen')
+@section('title', 'Panduan')
 @section('content')
     <style>
         .bg-primary {

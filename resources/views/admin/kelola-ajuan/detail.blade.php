@@ -98,17 +98,21 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalRevisiLabel-{{ $data->id }}">
-                                                        Catatan Revisi</h5>
+                                                    <h5 class="modal-title text-danger"
+                                                        id="modalRevisiLabel-{{ $data->id }}">
+                                                        Komentar Revisi</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Tutup"></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    {{ $data->komentar ?? 'Tidak ada catatan revisi.' }}
+                                                <div class="modal-body ">
+                                                    <div class="border border-danger p-2" style="border-radius: 10px;">
+                                                        {{ $data->komentar ?? 'Tidak ada catatan revisi.' }}
+
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">Tutup</button>
+                                                        data-bs-dismiss="modal">Oke</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -43,7 +43,7 @@
                         @csrf
                         <!-- Email Input -->
                         <div class="form-group mb-3">
-                            <label for="identifier" class="form-label">Nama Pengguna atau NIM</label>
+                            <label for="identifier" class="form-label">Nama Pengguna/NIP</label>
                             <div class="input-group">
                                 <input type="text" class="form-control @error('identifier') is-invalid @enderror"
                                     id="identifier" name="identifier" value="{{ old('identifier') }}"
@@ -74,7 +74,7 @@
                         <!-- Remember Me Checkbox -->
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">Ingat Saya</label>
+                            <label class="form-check-label" for="remember">Ingatkan info masuk</label>
                         </div>
 
                         <!-- Submit Button -->
@@ -91,7 +91,7 @@
                         </a>
                     </div>
                     <div>
-                        <a href="{{ route('password.request') }}" class="text-decoration-none text-primary fs-6 ">
+                        <a href="{{ route('password.request') }}" class="text-decoration-none text-primary fs-6" style="font-style: italic;">
                             Lupa Kata Sandi Anda?
                         </a>
                     </div>

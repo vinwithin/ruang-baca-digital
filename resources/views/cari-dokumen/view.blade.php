@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Book Reader</title>
+    <title>Ruang Baca Digital</title>
     <style>
         * {
             margin: 0;
@@ -79,12 +79,17 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            color: #f4e4bc;
+            color: white;
             text-align: center;
         }
 
         .book-cover.opened {
             transform: rotateY(-180deg);
+        }
+
+        .book-cover img {
+            width: 100px;
+            height: 100px;
         }
 
         .book-cover h1 {
@@ -394,21 +399,21 @@
 
         .open-book-btn {
             position: absolute;
-            top: 50%;
+            top: 68%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 15;
-            background: linear-gradient(135deg, #f4e4bc 0%, #e6d7b8 100%);
-            color: #8b4513;
+            background: #023E8A;
+            color: white;
             border: 2px solid #8b4513;
             padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: inherit;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); */
         }
 
         .open-book-btn:hover {
@@ -753,6 +758,7 @@
             <div class="bookmark"></div>
 
             <div class="book-cover" id="book-cover">
+                <img src="/assets/unja.png" alt="" srcset="">
                 <h1>Ruang Baca </h1>
                 <p>Fakultas Sains dan Teknologi</p>
                 <button class="open-book-btn" id="open-book">Buka Dokumen</button>

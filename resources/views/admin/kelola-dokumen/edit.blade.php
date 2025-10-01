@@ -262,17 +262,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
-                                <select class="dospem form-select @error('dospem1') is-invalid @enderror" id="dospem1"
-                                    name="dospem1">
-                                    <option value="">Pilih Pembimbing Anda</option>
-                                    @foreach ($dospem as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ $data->dospem1 == $item->id ? 'selected' : '' }}>
-                                            {{ $item->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <label for="dospem1" class="form-label">Dosen Pembimbing 2</label>
+                                <input type="text" class="form-control" id="dospem1" name="dospem1"
+                                    value="{{ $data->dospem1 }}">
                                 @error('dospem1')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -295,16 +287,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="dospem2" class="form-label">Dosen Pembimbing 2</label>
-                                <select class="dospem form-select @error('dospem2') is-invalid @enderror" id="dospem2"
-                                    name="dospem2">
-                                    <option value="">Pilih Pembimbing Anda</option>
-                                    @foreach ($dospem as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ $data->dospem2 == $item->id ? 'selected' : '' }}>
-                                            {{ $item->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" id="dospem2" name="dospem2"
+                                    value="{{ $data->dospem2 }}">
                                 @error('dospem2')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

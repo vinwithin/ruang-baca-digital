@@ -128,7 +128,7 @@
                                         @if ($item->status === 'Aktif')
                                             <button class="btn btn-nonaktif" data-bs-toggle="modal"
                                                 data-bs-target="#nonactiveModal"><i class="fa-solid fa-power-off"
-                                                    style="color: white"></i></button>
+                                                    style="color: #ED374D"></i></button>
                                             <x-confirm-modal modal-id="nonactiveModal" title="Kirim Revisi"
                                                 action-url="/admin/kelola-pengguna/{{ $item->id }}/nonactive"
                                                 message="Apakah anda yakin untuk menonaktifkan akun?"
@@ -136,7 +136,7 @@
                                         @else
                                             <button class="btn btn-aktif" data-bs-toggle="modal"
                                                 data-bs-target="#activeModal"><i class="fa-solid fa-power-off"
-                                                    style="color: red"></i></button>
+                                                    style="color: #54D319"></i></button>
                                             <x-confirm-modal modal-id="activeModal" title="Kirim Revisi"
                                                 action-url="/admin/kelola-pengguna/{{ $item->id }}/active"
                                                 message="Apakah anda yakin untuk mengaktifkan akun?"

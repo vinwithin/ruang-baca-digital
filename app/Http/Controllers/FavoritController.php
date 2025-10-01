@@ -13,9 +13,6 @@ class FavoritController extends Controller
     public function index()
     {
         $data = Favorit::where('user_id', Auth::user()->id)
-            ->whereHas('laporan', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })
             ->with('laporan')
             ->get();
 
