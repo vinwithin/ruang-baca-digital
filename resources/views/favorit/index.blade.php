@@ -61,11 +61,11 @@
                                     <a href="/bookmarks/{{ $item->laporan->uuid }}" class="btn btn-primary">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#bookmarkDelete-{{$item->id}}">
-                                        <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
+                                    <a href="" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#bookmarkDelete-{{ $item->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
                                     </a>
-                                    <x-confirm-action modal-id="bookmarkDelete-{{$item->id}}"
+                                    <x-confirm-action modal-id="bookmarkDelete-{{ $item->id }}"
                                         action-url="/bookmark/hapus/{{ $item->laporan->uuid }}"
                                         title="Anda yakin ingin menghapus dari Favorit?" confirm-text="Hapus" />
 
@@ -76,6 +76,12 @@
 
                     </tbody>
                 </table>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <div class="custom-pagination">
+                    {{ $data->onEachSide(1)->links() }}
+                </div>
+
             </div>
         </div>
     </div>

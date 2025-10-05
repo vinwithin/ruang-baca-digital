@@ -64,7 +64,8 @@
                             </tr>
                             <tr>
                                 <td class="fw-semibold" style="width: 50%;">Petugas Input/Edit</td>
-                                <td style="width: 50%;">Nama Admin</td>
+                                <td style="width: 50%;">
+                                    {{ $data->admin->name ?? 'Admin Ruang Baca Fakultas Sains dan Teknologi' }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold" style="width: 50%;">Tanggal Input</td>
@@ -89,7 +90,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <a href="/dokumen/{{ $data->judul }}" class="btn btn-primary w-100">
-                            Baca Dokumen <i class="bi bi-book"></i>
+                            Baca Dokumen <i class="fa-regular fa-book-open ms-2"></i>
                         </a>
                     </div>
                 </div>

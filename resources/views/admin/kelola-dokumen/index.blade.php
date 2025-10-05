@@ -116,7 +116,7 @@
 
                                         <span class="badge {{ $badgeClass }}">{{ $jenisNama }}</span>
                                     </td>
-                                
+
 
                                     <td>
                                         <a href="/admin/kelola-dokumen/detail/{{ $item->uuid }}"
@@ -134,6 +134,12 @@
 
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="custom-pagination">
+                        {{ $data->onEachSide(1)->links() }}
+                    </div>
+
                 </div>
             </div>
 

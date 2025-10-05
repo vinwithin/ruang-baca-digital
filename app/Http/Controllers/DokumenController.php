@@ -98,6 +98,7 @@ class DokumenController extends Controller
 
         // Simpan ke database
         $validatedData['status'] = 'Diproses';
+        $validatedData['komentar'] = null;
         $validatedData['user_id'] = Auth::user()->id; // Set user_id to the currently authenticated user
 
         $result = LaporanMahasiswa::where('id', $laporanmahasiswa->id)->update(

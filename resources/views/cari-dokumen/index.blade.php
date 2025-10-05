@@ -138,7 +138,12 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-center mt-4">
+            <div class="custom-pagination">
+                {{ $data->onEachSide(1)->links() }}
+            </div>
 
+        </div>
 
     </div>
     {{-- </div> --}}

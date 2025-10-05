@@ -43,7 +43,7 @@
                                         if ($jenisNama === 'Skripsi') {
                                             $badgeClass = 'bg-secondary';
                                         } elseif ($jenisNama === 'Laporan Magang') {
-                                            $badgeClass = 'bg-primary';
+                                            $badgeClass = 'bg-info';
                                         }
                                     @endphp
 
@@ -95,7 +95,7 @@
 
                                     <div class="modal fade" id="modalRevisi-{{ $data->id }}" tabindex="-1"
                                         aria-labelledby="modalRevisiLabel-{{ $data->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-danger"
@@ -126,7 +126,7 @@
                 <div class="container mt-3 pt-5">
                     <a class="btn btn-primary w-100 py-2" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
                         target="_blank">
-                        Baca Dokumen <i class="fa-solid fa-book-open"></i>
+                        Lihat Dokumen <i class="fa-solid fa-book-open ms-2"></i>
                     </a>
                 </div>
 

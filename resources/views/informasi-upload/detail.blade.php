@@ -84,9 +84,9 @@
                                         if ($data->status === 'Diproses') {
                                             $badgeClass = 'bg-warning';
                                         } elseif ($data->status === 'Disetujui') {
-                                            $badgeClass = 'bg-success';
+                                            $badgeClass = 'bg-success-subtle';
                                         } elseif ($data->status === 'Revisi') {
-                                            $badgeClass = 'bg-danger';
+                                            $badgeClass = 'bg-secondary-subtle';
                                         }
                                     @endphp
                                     <span class="badge {{ $badgeClass }}" @if ($data->status === 'Revisi')  @endif>
@@ -102,7 +102,7 @@
                 <div class="row g-2 mt-5">
                     <div class="col-12 col-md-12">
                         <a href="/informasi/dokumen/view/{{$data->file}}" class="btn btn-primary w-100" target="_blank">
-                            Baca Dokumen <i class="bi bi-book"></i>
+                            Baca Dokumen <i class="fa-regular fa-book-open ms-2"></i>
                         </a>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <i class="fa-solid fa-circle-arrow-left me-2"></i> Kembali
                     </a>
                     @if ($data->status === 'Revisi')
-                        <a href="/dokumen/edit/{{ $data->uuid }}" class="btn btn-outline-warning">
+                        <a href="/informasi/dokumen/edit/{{ $data->uuid }}" class="btn btn-outline-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                     @elseif($data->status === 'Disetujui')

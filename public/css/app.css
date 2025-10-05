@@ -201,6 +201,53 @@ h5,
 h6 {
     font-size: 0.875rem;
 }
+
+.custom-pagination nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.custom-pagination .pagination {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border: none;
+}
+
+.custom-pagination .page-item .page-link {
+    color: #002b7f; /* biru tua */
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    padding: 6px 14px;
+    transition: all 0.2s ease;
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: #002b7f;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+.custom-pagination .page-item.disabled .page-link {
+    color: #aaa;
+    background: transparent;
+    pointer-events: none;
+}
+
+.custom-pagination .page-item:first-child .page-link::before {
+    content: "Kembali";
+}
+
+.custom-pagination .page-item:last-child .page-link::after {
+    content: "Selanjutnya";
+}
+
 p {
     margin-bottom: 1rem;
     margin-top: 0;
@@ -6876,8 +6923,13 @@ fieldset:disabled .btn {
 }
 .bg-secondary {
     --bs-bg-opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #cc3c14;
-    background-color: rgba(255, 237, 222, 1) !important;
+    background-color: #fff5ed !important;
+    width: 110px;
+    height: 30px;
     padding: 8px 30px;
 }
 .bg-success {
@@ -6889,16 +6941,24 @@ fieldset:disabled .btn {
 }
 .bg-info {
     --bs-bg-opacity: 1;
-    background-color: #a2d2ff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
+    background-color: #f2f7ff !important;
     color: black;
     padding: 8px 30px;
 }
 .bg-warning {
     --bs-bg-opacity: 1;
-    background-color: rgba(
-        var(--bs-warning-rgb),
-        var(--bs-bg-opacity)
-    ) !important;
+    background-color: #fffae6 !important;
+    color: #d9a600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
     padding: 8px 30px;
 }
 .bg-danger {
@@ -6977,13 +7037,23 @@ fieldset:disabled .btn {
     background-color: var(--bs-primary-bg-subtle) !important;
 }
 .bg-secondary-subtle {
-    background-color: #ffcece !important;
-    color: #ed374d;
+    background-color: #ffebee !important;
+    color: #c62828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
     padding: 8px 30px;
 }
 .bg-success-subtle {
-    background-color: #ecfae5 !important;
-    color: #9cdc7e;
+    background-color: #e8f5e9 !important;
+    color: #2e7d32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
     padding: 8px 30px;
 }
 .bg-info-subtle {

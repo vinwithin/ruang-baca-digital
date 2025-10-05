@@ -35,7 +35,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 {{-- {{dd($item->laporan)}} --}}
-                                <td style="text-align: center;"><i class="fa-solid fa-star"></i></td>
+                                <td style="text-align: center;"><i class="fa-regular fa-star"></i></td>
                                 <td style="max-width: 300px;">
                                     {{ $item->judul }}
                                 </td>

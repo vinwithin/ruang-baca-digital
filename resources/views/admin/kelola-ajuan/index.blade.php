@@ -149,15 +149,16 @@
 
                                         <div class="modal fade" id="modalRevisi-{{ $item->id }}" tabindex="-1"
                                             aria-labelledby="modalRevisiLabel-{{ $item->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
+                                            <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalRevisiLabel-{{ $item->id }}">
-                                                            Catatan Revisi</h5>
+                                                        <h5 class="modal-title text-danger"
+                                                            id="modalRevisiLabel-{{ $item->id }}">
+                                                            Komentar Revisi</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Tutup"></button>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body border border-danger m-4 rounded">
                                                         {{ $item->komentar ?? 'Tidak ada catatan revisi.' }}
                                                     </div>
                                                     <div class="modal-footer">
@@ -179,7 +180,12 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $data->links() }}
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="custom-pagination">
+                        {{ $data->onEachSide(1)->links() }}
+                    </div>
+
+                </div>
             </div>
 
         </div>

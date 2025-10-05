@@ -22,8 +22,11 @@ return new class extends Migration
             $table->string('tahun');
             $table->string('judul');
             $table->string('kata-kunci');
+            $table->string('qr_code')->nullable();
             $table->string('file-path');
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
+            $table->string('view_count');
+            $table->date('approved_at');
             $table->timestamps();
         });
 

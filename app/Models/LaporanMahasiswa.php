@@ -23,8 +23,11 @@ class LaporanMahasiswa extends Model
         'kata_kunci',
         'file',
         'status',
+        'approved_by',
         'komentar',
         'view_count',
+        'qr_code',
+        'approved_at'
     ];
     public function getRouteKeyName(): string
     {
@@ -37,10 +40,20 @@ class LaporanMahasiswa extends Model
             $model->uuid = Str::uuid()->toString();
         });
     }
+    protected function casts(): array
+    {
+        return [
+            'approved_at' => 'datetime',
+        ];
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'approved_by', 'id');
     }
     public function dosen1()
     {
@@ -50,7 +63,7 @@ class LaporanMahasiswa extends Model
     {
         return $this->belongsTo(User::class, 'dospem2', 'id');
     }
-   
+
     public function program_studi()
     {
         return $this->belongsTo(ProgramStudi::class, 'program_studi_id');

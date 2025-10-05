@@ -35,7 +35,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 {{-- {{dd($item->laporan)}} --}}
-                                <td style="text-align: center;"><i class="fa-solid fa-star"></i></td>
+                                <td style="text-align: center;"><i class="fa-regular fa-star"></i></td>
                                 <td style="max-width: 300px;">
                                     {{ $item->judul }}
                                 </td>
@@ -59,8 +59,8 @@
                                     {{ $item->tahun }}
                                 </td>
                                 <td>
-                                    
-                                    <a href="/dashboard/{{$item->uuid}}" class="btn btn-primary">
+
+                                    <a href="/dashboard/{{ $item->uuid }}" class="btn btn-primary">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                 </td>

@@ -14,6 +14,9 @@
                         <div class="input-group">
                             <input type="password" class="form-control @error('old_password') is-invalid @enderror"
                                 id="old_password" name="old_password" placeholder="Masukkan Kata Sandi" required>
+                            <span class="input-group-text bg-white" id="togglePasswordOld" style="cursor: pointer;">
+                                <i class="fa-solid fa-eye" style="color: green;"></i>
+                            </span>
                         </div>
                     </div>
                     @error('identifier')
@@ -25,8 +28,9 @@
                         <div class="input-group">
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 id="password" name="password" placeholder="Masukkan Kata Sandi" required>
-                            <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
-                                <i class="fa-solid fa-eye"></i>
+                            <span class="input-group-text bg-white" id="togglePassword" style="cursor: pointer;">
+                                <i class="fa-solid fa-eye" style="color: green;"></i>
+
                             </span>
                         </div>
                     </div>
@@ -40,8 +44,9 @@
                             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                                 id="password_confirmation" name="password_confirmation"
                                 placeholder="Masukkan Konfirmasi Kata Sandi" required>
-                            <span class="input-group-text" id="togglePasswordConfirmation" style="cursor: pointer;">
-                                <i class="fa-solid fa-eye"></i>
+                            <span class="input-group-text bg-white" id="togglePasswordConfirmation"
+                                style="cursor: pointer;">
+                                <i class="fa-solid fa-eye" style="color: green;"></i>
                             </span>
                         </div>
                     </div>
@@ -51,7 +56,8 @@
 
                     <div class="d-flex justify-content-end align-items-center gap-2 pt-3">
                         <a href="/profil" class="btn btn-outline-info me-2">Batal <i class="fa-solid fa-xmark ms-2"></i></a>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">Simpan <i
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#confirmModal">Simpan <i
                                 class="fa-solid fa-circle-arrow-right ms-2"></i></button>
 
                     </div>
@@ -84,6 +90,19 @@
 
 
     <script>
+        // Toggle password lama
+        const togglePasswordOld = document.querySelector('#togglePasswordOld');
+        const passwordOld = document.querySelector('#old_password');
+        togglePasswordOld.addEventListener('click', function() {
+            // ubah type input
+            const type = passwordOld.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordOld.setAttribute('type', type);
+
+            // ganti icon
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
         // Toggle password utama
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');

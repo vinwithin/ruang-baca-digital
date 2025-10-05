@@ -61,36 +61,11 @@
                                             $badgeClass = 'bg-secondary-subtle';
                                         }
                                     @endphp
-                                    <span class="badge {{ $badgeClass }}"
-                                        @if ($item->status === 'Revisi') data-bs-toggle="modal" 
-                                            data-bs-target="#modalRevisi-{{ $item->id }}"
-                                            style="cursor: pointer" @endif>
+                                    <span class="badge {{ $badgeClass }}">
                                         {{ $item->status }}
-                                        @if ($item->status === 'Revisi')
-                                            <i class="fa-solid fa-circle-info"></i>
-                                        @endif
                                     </span>
 
-                                    <div class="modal fade" id="modalRevisi-{{ $item->id }}" tabindex="-1"
-                                        aria-labelledby="modalRevisiLabel-{{ $item->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalRevisiLabel-{{ $item->id }}">
-                                                        Catatan Revisi</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Tutup"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    {{ $item->komentar ?? 'Tidak ada catatan revisi.' }}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
 
                                 </td>
@@ -99,10 +74,11 @@
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     @if ($item->status === 'Disetujui')
-                                        <a class="btn btn-info" href="/pdf/generate/{{ $item->uuid }}" target="_blank"><i
-                                                class="fa-solid fa-print"></i></a>
+                                        <a class="btn btn-outline-success" href="/pdf/generate/{{ $item->uuid }}"
+                                            target="_blank"><i class="fa-solid fa-print"></i></a>
                                     @elseif($item->status === 'Revisi')
-                                        <a href="/informasi/dokumen/edit/{{ $item->uuid }}" class="btn btn-outline-warning">
+                                        <a href="/informasi/dokumen/edit/{{ $item->uuid }}"
+                                            class="btn btn-outline-warning">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     @endif
@@ -113,7 +89,12 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center mt-4">
+                <div class="custom-pagination">
+                    {{ $data->onEachSide(1)->links() }}
+                </div>
 
+            </div>
         </div>
     </div>
 

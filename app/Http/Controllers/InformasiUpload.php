@@ -11,7 +11,7 @@ class InformasiUpload extends Controller
     public function index()
     {
         return view('informasi-upload.index', [
-            'data' => LaporanMahasiswa::where('identifier', Auth::user()->identifier)->latest()->get()
+            'data' => LaporanMahasiswa::where('identifier', Auth::user()->identifier)->latest()->paginate(10)
         ]);
     }
     public function detail(LaporanMahasiswa $laporanmahasiswa){

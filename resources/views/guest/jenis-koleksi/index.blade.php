@@ -65,7 +65,7 @@
                                     if ($jenisNama === 'Skripsi') {
                                         $badgeClass = 'bg-secondary';
                                     } elseif ($jenisNama === 'Laporan Magang') {
-                                        $badgeClass = 'bg-primary';
+                                        $badgeClass = 'bg-info';
                                     }
                                 @endphp
 

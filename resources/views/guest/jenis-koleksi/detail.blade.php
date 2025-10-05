@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td class="fw-semibold">Petugas Input/Edit</td>
-                            <td>Nama Admin</td>
+                            <td>{{$data->admin->name ?? "Admin Ruang Baca Fakultas Sains dan Teknologi"}}</td>
                         </tr>
                         <tr>
                             <td class="fw-semibold">Tanggal Input</td>

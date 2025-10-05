@@ -19,23 +19,23 @@
                 </h4>
 
                 <div class="table-responsive rounded-4 border overflow-hidden">
-                    <table class="table table-bordered mb-0">
+                    <table class="table table-bordered mb-0" style="width: 100%;">
                         <tbody>
                             <tr>
-                                <td class="fw-semibold">Nama Mahasiswa</td>
-                                <td>{{ $data->nama }}</td>
+                                <td class="fw-semibold" style="width: 50%;">Nama Mahasiswa</td>
+                                <td style="width: 50%;">{{ $data->nama }}</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">NIM</td>
-                                <td>{{ $data->identifier }}</td>
+                                <td class="fw-semibold" style="width: 50%;">NIM</td>
+                                <td style="width: 50%;">{{ $data->identifier }}</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Nama Dosen Pembimbing</td>
-                                <td>{{ $data->dospem1 }}</td>
+                                <td class="fw-semibold" style="width: 50%;">Nama Dosen Pembimbing</td>
+                                <td style="width: 50%;">{{ $data->dospem1 }}</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Jenis Koleksi</td>
-                                <td>
+                                <td class="fw-semibold" style="width: 50%;">Jenis Koleksi</td>
+                                <td style="width: 50%;">
                                     @php
                                         $jenisNama = $data->jenis_dokumen->nama;
                                         $badgeClass = 'bg-info'; // default
@@ -51,27 +51,27 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Program Studi</td>
-                                <td>{{ $data->program_studi->nama }}</td>
+                                <td class="fw-semibold" style="width: 50%;">Program Studi</td>
+                                <td style="width: 50%;">{{ $data->program_studi->nama }}</td>
                             </tr>
                             <tr>
-                                <td class="fw-semibold">Tahun</td>
-                                <td>{{ $data->tahun }}</td>
-                            </tr>
-
-                            <tr>
-                                <td class="fw-semibold">Kata Kunci</td>
-                                <td>{{ $data->kata_kunci }}</td>
+                                <td class="fw-semibold" style="width: 50%;">Tahun</td>
+                                <td style="width: 50%;">{{ $data->tahun }}</td>
                             </tr>
 
                             <tr>
-                                <td class="fw-semibold">Tanggal Upload</td>
-                                <td>{{ $data->created_at->format('d/m/Y') }}</td>
+                                <td class="fw-semibold" style="width: 50%;">Kata Kunci</td>
+                                <td style="width: 50%;">{{ $data->kata_kunci }}</td>
                             </tr>
 
                             <tr>
-                                <td class="fw-semibold">Status</td>
-                                <td>
+                                <td class="fw-semibold" style="width: 50%;">Tanggal Upload</td>
+                                <td style="width: 50%;">{{ $data->created_at->format('d/m/Y') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-semibold" style="width: 50%;">Status</td>
+                                <td style="width: 50%;">
                                     @php
                                         $badgeClass = 'bg-secondary'; // default
 
@@ -119,7 +119,7 @@
                     </table>
                 </div>
 
-                <div class="container mt-3 pt-5">
+                <div class="container mt-3 pt-5 mb-0">
                     <a class="btn btn-primary w-100" href="{{ url('/admin/dokumen/view/' . $data->file) }}"
                         target="_blank">
                         Baca Dokumen <i class="fa-solid fa-book-open"></i>
@@ -129,7 +129,7 @@
 
                 @if ($data->created_at->eq($data->updated_at))
                 @else
-                    <small class="text-warning fst-italic">
+                    <small class="text-warning fst-italic ">
                         *Dokumen ini terakhir diedit pada
                         {{ $data->updated_at->translatedFormat('d F Y') }}
                     </small>

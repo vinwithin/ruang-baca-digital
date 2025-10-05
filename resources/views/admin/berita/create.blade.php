@@ -84,7 +84,7 @@
                     <!-- Tanggal Berakhir -->
                     <div class="d-flex justify-content-end align-items-center gap-2 pt-3">
 
-                        <a href="/admin/berita" class="btn btn-outline-info me-2">Batalkan <i
+                        <a href="/admin/berita" class="btn btn-outline-info me-2">Batal <i
                                 class="fa-solid fa-xmark ms-2"></i></a>
                         <button type="submit" class="btn btn-primary">Simpan <i
                                 class="fa-solid fa-circle-arrow-right ms-2"></i></button>

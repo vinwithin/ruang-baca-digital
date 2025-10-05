@@ -252,7 +252,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
-                                <input type="text" class="form-control" id="dospem1" name="dospem1">
+                                <input type="text" class="form-control" id="dospem1" name="dospem1" placeholder="Masukkkan Nama Dosen Pembimbing 1">
                                 @error('dospem1')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -275,7 +275,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="dospem2" class="form-label">Dosen Pembimbing 2</label>
-                                <input type="text" class="form-control" id="dospem2" name="dospem2">
+                                <input type="text" class="form-control" id="dospem2" name="dospem2" placeholder="Masukkkan Nama Dosen Pembimbing 2">
                                 @error('dospem2')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -314,7 +314,7 @@
                             <div class="mb-3">
                                 <label for="kataKunci" class="form-label">Kata Kunci</label>
                                 <input type="text" class="form-control @error('kata_kunci') is-invalid @enderror"
-                                    id="kata_kunci" name="kata_kunci" value="{{ old('kata_kunci') }}">
+                                    id="kata_kunci" name="kata_kunci" value="{{ old('kata_kunci') }}" placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda">
                                 @error('kata_kunci')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

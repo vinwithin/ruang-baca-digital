@@ -19,14 +19,14 @@
 
 
         <ul class="sidebar-nav">
-            <div class="border-top border-bottom">
-                <div class="d-flex justify-content-around mx-3 my-3  ">
+            <div class="border-top border-bottom" style="background:#F2F7FF;">
+                <div class="d-flex justify-content-around mx-3 my-3">
                     <a href="/profil" class="sidebar-baseline text-dark"><i class="me-2"
                             data-feather="settings"></i><span>Pengaturan</span></a>
                     <!-- Tombol Sidebar -->
-                    <a href="#" class="sidebar-baseline text-dark" data-bs-toggle="modal"
+                    <a href="#" class="sidebar-baseline text-primary fw-bold" data-bs-toggle="modal"
                         data-bs-target="#logoutModal">
-                        <i class="me-2" data-feather="log-out"></i><span>Keluar</span>
+                        <i class="me-2" data-feather="log-out" style="color: blue;"></i><span>Logout</span>
                     </a>
 
 

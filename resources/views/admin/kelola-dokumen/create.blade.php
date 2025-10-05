@@ -235,7 +235,7 @@
                             <div class="mb-3">
                                 <label for="nimMahasiswa" class="form-label">NIM Mahasiswa</label>
                                 <input type="text" class="form-control" id="nimMahasiswa" name="identifier"
-                                    value="{{ old('identifier) ') }}">
+                                    value="{{ old('identifier) ') }}" placeholder="Masukkan Nim Anda">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -263,7 +263,7 @@
 
                             <div class="mb-3">
                                 <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
-                                <input type="text" class="form-control" id="dospem1" name="dospem1">
+                                <input type="text" class="form-control" id="dospem1" name="dospem1" placeholder="Masukkan Nama Dosen Pembimbing 1">
                                 @error('dospem1')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -287,7 +287,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="dospem2" class="form-label">Dosen Pembimbing 2</label>
-                                <input type="text" class="form-control" id="dospem2" name="dospem2">
+                                <input type="text" class="form-control" id="dospem2" name="dospem2" placeholder="Masukkan Nama Dosen Pembimbing 2">
                                 @error('dospem2')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

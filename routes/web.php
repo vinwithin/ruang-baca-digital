@@ -14,6 +14,7 @@ use App\Http\Controllers\InformasiUpload;
 use App\Http\Controllers\KelolaAjuanController;
 use App\Http\Controllers\KelolaDokumenController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\LaporanValidasiController;
 use App\Http\Controllers\MasterDataController;
 use App\Http\Controllers\PanduanController;
 use App\Http\Controllers\PDFController;
@@ -34,6 +35,8 @@ Route::get('/hasil-pencarian', [GuestCariDokumenController::class, 'index'])->na
 Route::get('/koleksi/{jenisdokumen}', [KoleksiController::class, 'index'])->name('koleksi');
 Route::get('/koleksi/detail/{laporanmahasiswa}', [KoleksiController::class, 'show'])->name('koleksi-detail');
 Route::get('/koleksi/program-studi/{programstudi}', [KoleksiController::class, 'koleksi'])->name('koleksi-program-studi');
+Route::get('/laporan/{uuid}/verify/', [LaporanValidasiController::class, 'index'])->name('laporan.verify');
+
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

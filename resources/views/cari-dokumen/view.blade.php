@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Times New Roman', Times, serif;
             background: #043471;
             min-height: 100vh;
             display: flex;
@@ -102,7 +102,6 @@
         .book-cover p {
             font-size: 1.2em;
             opacity: 0.9;
-            font-style: italic;
         }
 
         .book-pages {
@@ -409,7 +408,6 @@
             padding: 15px 30px;
             border-radius: 10px;
             font-size: 13px;
-            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: inherit;
@@ -777,14 +775,14 @@
 
         <div class="controls" id="controls" style="display: none;">
             <button class="btn" id="prev-page">
-                ← Halaman Sebelumnya
+                <i class="fa-solid fa-circle-arrow-left me-2"></i> Halaman Sebelumnya
             </button>
 
             <button class="btn" id="close-book">
                 Tutup Buku
             </button>
             <button class="btn" id="next-page">
-                Halaman Selanjutnya →
+                Halaman Selanjutnya <i class="fa-solid fa-circle-arrow-right ms-2"></i>
             </button>
             <button class="btn fullscreen-btn" id="fullscreen-btn">
                 <span id="fullscreen-btn-icon">⛶</span> <span id="fullscreen-btn-text">Fullscreen</span>

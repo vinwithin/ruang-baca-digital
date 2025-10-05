@@ -14,7 +14,7 @@ class FavoritController extends Controller
     {
         $data = Favorit::where('user_id', Auth::user()->id)
             ->with('laporan')
-            ->get();
+            ->paginate(10);
 
 
         return view('favorit.index', [

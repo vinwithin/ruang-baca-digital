@@ -122,7 +122,8 @@
                                         </div>
                                     </td> --}}
                                     <td>
-                                        <a class="btn btn-outline-warning" href="/admin/kelola-pengguna/{{ $item->id }}/edit">
+                                        <a class="btn btn-outline-warning"
+                                            href="/admin/kelola-pengguna/{{ $item->id }}/edit">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         @if ($item->status === 'Aktif')
@@ -139,8 +140,7 @@
                                                     style="color: #54D319"></i></button>
                                             <x-confirm-modal modal-id="activeModal" title="Kirim Revisi"
                                                 action-url="/admin/kelola-pengguna/{{ $item->id }}/active"
-                                                message="Apakah anda yakin untuk mengaktifkan akun?"
-                                                confirm-text="Yakin" />
+                                                message="Apakah anda yakin untuk mengaktifkan akun?" confirm-text="Yakin" />
                                         @endif
 
                                     </td>
@@ -150,8 +150,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center align-items-center py-4">
-                    {{ $data->links() }}
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="custom-pagination">
+                        {{ $data->onEachSide(1)->links() }}
+                    </div>
 
                 </div>
             </div>

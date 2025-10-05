@@ -45,7 +45,7 @@ class CariDokumenController extends Controller
         $title = $judul ? $judul : 'Daftar skripsi dan laporan magang terbaru di Fakultas Sains dan Teknologi';
 
         // Eksekusi query
-        $data = $query->latest()->get();
+        $data = $query->latest()->paginate(10);
         return view('cari-dokumen.index', [
             'data' => $data,
             'title' => $title,

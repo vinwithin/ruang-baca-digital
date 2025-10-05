@@ -104,7 +104,10 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $data->links() }}
+                    <div class="custom-pagination">
+                        {{ $data->onEachSide(1)->links() }}
+                    </div>
+
                 </div>
             </div>
 
