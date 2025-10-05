@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaporanMahasiswa;
-use Spatie\LaravelPdf\Facades\Pdf;
-use Spatie\LaravelPdf\Enums\Format;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
+
 
 class PDFController extends Controller
 {
@@ -46,10 +46,10 @@ class PDFController extends Controller
 
         ];
 
-        $pdf = Pdf::view('pdf.laporan', ['data' => $data])
-            ->format(Format::A4);
+        $pdf = Pdf::loadView('pdf.laporan', ['data' => $data])
+            ->setPaper('a4', 'portrait');
 
 
-        return $pdf;
+        return $pdf->download('surat.pdf');
     }
 }

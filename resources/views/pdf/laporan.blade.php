@@ -8,8 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
-            padding: 40px 0;
+            background-color: white;
+            /* padding: 40px 0; */
             font-family: 'Times New Roman', Times, serif;
         }
 
@@ -17,7 +17,9 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 2rem 4rem 4rem 6rem !important;
+            padding-top: 0 !important;
+            padding-left: 4rem !important;
+            /* padding: 2rem 4rem 4rem 6rem !important; */
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
