@@ -250,9 +250,9 @@
     <div class="w-100 ">
         <div class="card p-5">
             <div class="row">
-                <div class="col-md-2">
-                    <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('img/avatars/avatar-2.jpg') }}" class=mb-2" alt="Foto Profil"
-                        style="width: 150px; height:150px; border-radius: 50% !important; border: 1px solid black;">
+                <div class="col-md-2 text-center">
+                    <img class="img-thumbnail" src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('img/avatars/avatar-2.jpg') }}" class=mb-2" alt="Foto Profil"
+                        style="width: 8.5rem; height: 8.5rem; border-radius: 50% !important; border: 1px solid black;">
                     <!-- Tombol Ganti Foto -->
                 </div>
                 <div class="col-md-9">
