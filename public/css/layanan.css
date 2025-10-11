@@ -23,6 +23,11 @@
     border-radius: 5px;
     filter: brightness(60%);
 }
+.img-layanan {
+    width: 100%;
+    height: auto;
+   
+}
 #layanan p {
     color: #000;
     text-align: justify;

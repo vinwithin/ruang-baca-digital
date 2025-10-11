@@ -12,9 +12,9 @@ html {
 .wrapper {
     background: url("/assets/hero-login.png") no-repeat center center/cover;
     min-height: 100vh;
-    position: relative; /* ← Tambahkan ini */
-    padding-bottom:8rem;
-    overflow:hidden;
+    position: relative;
+    padding-bottom: 8rem;
+    overflow: hidden;
 }
 
 .overlay-img {
@@ -50,12 +50,17 @@ html {
 }
 
 .card {
-    width: 733px;
-    height: 562px;
-    background: rgba(255, 255, 255, 1);
+    width: 100%;
+    max-width: 733px; /* batas maksimal di layar besar */
+    background: #fff;
     border-radius: 20px;
+    margin: 0 auto; /* biar selalu di tengah */
 }
 
+.card-body {
+    width: 100%;
+    height: auto;
+}
 .form-control {
     background: rgba(240, 240, 240, 1);
     border: Mixed solid rgba(0, 0, 0, 1);
@@ -65,9 +70,28 @@ html {
     background: rgba(6, 77, 63, 1);
     color: white;
 }
-.btn-custom{
+.btn-custom {
     background: rgba(2, 62, 138, 1);
     height: 2rem;
-    border-radius:10px;
-    color:white;
+    border-radius: 10px;
+    color: white;
+}
+@media (max-width: 992px) {
+    /* tablet */
+    .title-login {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* HP sedang */
+    .title-login {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .title-login {
+        font-size: 20px;
+    }
 }

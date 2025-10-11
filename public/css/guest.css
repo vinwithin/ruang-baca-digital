@@ -442,7 +442,8 @@ footer {
         /* margin: 14px 0 40px; */
     }
     #koleksi {
-        height: 100vh;
+        min-height: 100vh;
+        max-height: 500vvh;
     }
     .wrapper h1 {
         font-size: 15px;

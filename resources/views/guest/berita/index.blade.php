@@ -4,14 +4,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        .title {
-            color: #043471;
-            font-family: "Plus Jakarta Sans";
-            font-size: 25px;
-            font-weight: 500;
-            line-height: 24px;
+        @media (max-width: 767px) {
+            #berita {
+                /* min-height: 520vh !important; */
+                min-height: 530dvh;
+
+                /* padding: 1.5rem 4%; */
+            }
         }
     </style>
+
     <section id="berita" class="">
         <h2 class="title text-center mt-4 mb-5">BERITA</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 g-4">

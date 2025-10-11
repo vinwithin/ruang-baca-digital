@@ -29,6 +29,8 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        
     </style>
     <section id="berita">
         <h2 class="text-center fw-bold mb-5 mt-4">{{ $data->title }}</h2>

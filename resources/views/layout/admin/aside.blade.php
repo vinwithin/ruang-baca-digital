@@ -45,7 +45,7 @@
             @role('admin')
                 <li class="sidebar-item {{ Request::is('admin/dokumen*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="/admin/dokumen">
-                        <i class="fa-regular fa-clipboard-check"></i> <span class="align-middle">Validasi Dokumen</span>
+                        <i class="fa-regular fa-file-circle-check"></i> <span class="align-middle">Validasi Dokumen</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ Request::is('admin/kelola-dokumen*') ? 'active' : '' }}">

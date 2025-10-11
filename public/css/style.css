@@ -13,7 +13,8 @@ html {
 }
 
 .wrap {
-    background: url("/assets/Property 1=Default.png") no-repeat center center/cover;
+    background: url("/assets/Property 1=Default.png") no-repeat center
+        center/cover;
 }
 
 #navigasi {
@@ -531,16 +532,16 @@ html {
     font-weight: 500;
     line-height: 18px; /* 150% */
 }
-#lokasi{
+#lokasi {
     padding: 1.5rem 8%;
     overflow: hidden;
 }
-#card-lokasi{
-    height:400px;
+#card-lokasi {
+    height: 400px;
 }
-#card-lokasi iframe{
-    width:100%;
-    height:100%;
+#card-lokasi iframe {
+    width: 100%;
+    height: 100%;
 }
 footer {
     padding: 1.5rem 8%;
@@ -861,18 +862,14 @@ footer {
         transition: transform 0.3s ease, writing-mode 0.3s ease;
     }
 
+    .kategori-box:hover img {
+        all: unset; /* menonaktifkan semua style hover */
+        display: block;
+    }
     /* Hover effect */
     .kategori-box:hover {
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: center;
-        width: 200px;
-        height: 140px;
-        overflow: hidden;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        all: unset; /* menonaktifkan semua style hover */
+        display: block; /* atur tampilan kembali seperti default */
     }
     .kategori-subtitle {
         display: none !important;
@@ -1114,6 +1111,14 @@ footer {
         width: 100%;
         display: flex;
         flex-direction: column;
+    }
+    .kategori-box:hover {
+        all: unset; /* menonaktifkan semua style hover */
+        display: block; /* atur tampilan kembali seperti default */
+    }
+    .kategori-box:hover img {
+        all: unset; /* menonaktifkan semua style hover */
+        display: block;
     }
 }
 

@@ -4,7 +4,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        
         .card-list {
             max-width: 350px;
             height: 220px;
@@ -53,10 +52,35 @@
             text-align: center;
             /* margin: 14px 0 40px; */
         }
+
+        @media (min-width: 992px) {
+            #berita {
+                min-height: 100vh;
+                /* padding: 1.5rem 8%; */
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) and (max-width: 991px) {
+            #berita {
+                min-height: auto;
+                /* padding: 1.5rem 6%; */
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            #berita {
+                /* min-height: 520vh !important; */
+                min-height: 530dvh;
+
+                /* padding: 1.5rem 4%; */
+            }
+        }
     </style>
     <section id="berita" class="">
         <h2 class="title text-center mt-4 mb-5">PROGRAM STUDI</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
             @foreach ($data as $item)
                 <div class="col">
                     <div class="card card-list flex-shrink-0"
@@ -69,8 +93,6 @@
                 </div>
             @endforeach
         </div>
+
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 @endsection

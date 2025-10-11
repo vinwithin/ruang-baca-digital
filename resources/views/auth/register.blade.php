@@ -16,14 +16,14 @@
 
         <div class="container d-flex flex-column justify-content-center align-items-center mt-5 pt-5 gap-5">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <h1>
+                <h1 class="title-login">
                     RUANG BACA DIGITAL
                 </h1>
-                <h1>
+                <h1 class="title-login">
                     FAKULTAS SAINS DAN TEKNOLOGI
                 </h1>
             </div>
-            <div class="card shadow-lg p-5 " style="border-radius: 20px;">
+            <div class="card shadow-lg p-3 " style="border-radius: 20px;">
                 @if (session()->has('error'))
                     <div class="alert alert-danger" role="alert">
                         {{ session('error') }}
@@ -39,7 +39,7 @@
                     <form method="POST" class="pt-4 px-4 mx-auto w-100" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="name" class="form-label">Nama Lengkap</label>
+                            <label for="name" class="form-label">Nama</label>
                             <div class="input-group">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name') }}"

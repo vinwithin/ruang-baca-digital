@@ -14,19 +14,19 @@
 </head>
 
 <body>
-    <div class="wrapper  d-flex flex-column  align-items-center">
+    <div class="wrapper d-flex flex-column justify-content-center  align-items-center">
 
         <div class="container d-flex flex-column justify-content-center align-items-center mt-5 pt-5 gap-5">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <h1>
+                <h1 class="title-login">
                     RUANG BACA DIGITAL
                 </h1>
-                <h1>
+                <h1 class="title-login">
                     FAKULTAS SAINS DAN TEKNOLOGI
                 </h1>
             </div>
 
-            <div class="card shadow-lg p-5" style="border-radius: 20px; padding-bottom:8rem;">
+            <div class="card shadow-lg p-3" style="border-radius: 20px; padding-bottom:8rem;">
                 @if (session()->has('error'))
                     <div class="alert alert-danger" role="alert">
                         {{ session('error') }}
@@ -43,7 +43,7 @@
                         @csrf
                         <!-- Email Input -->
                         <div class="form-group mb-3">
-                            <label for="identifier" class="form-label">Nama Pengguna/NIP</label>
+                            <label for="identifier" class="form-label">Nama Pengguna atau NIM</label>
                             <div class="input-group">
                                 <input type="text" class="form-control @error('identifier') is-invalid @enderror"
                                     id="identifier" name="identifier" value="{{ old('identifier') }}"
