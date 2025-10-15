@@ -204,7 +204,7 @@
                             <div class="mb-3">
                                 <label for="programStudi" class="form-label">Program Studi</label>
                                 <select class="form-select @error('program_studi_id') is-invalid @enderror"
-                                    id="programStudi" name="program_studi_id">
+                                    id="programStudi" name="program_studi_id" required>
                                     <option value="">Pilih Program Studi</option>
                                     @foreach ($prodi as $item)
                                         <option value="{{ $item->id }}"
@@ -252,7 +252,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
-                                <input type="text" class="form-control" id="dospem1" name="dospem1" placeholder="Masukkkan Nama Dosen Pembimbing 1">
+                                <input type="text" class="form-control" id="dospem1" name="dospem1" placeholder="Masukkkan Nama Dosen Pembimbing 1" required>
                                 @error('dospem1')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -263,7 +263,7 @@
                                 <label for="tahun" class="form-label">Tahun</label>
                                 <input type="number" class="form-control @error('tahun') is-invalid @enderror"
                                     id="tahun" name="tahun" value="{{ old('tahun', 2025) }}" min="2020"
-                                    max="2030">
+                                    max="2030" required>
                                 @error('tahun')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

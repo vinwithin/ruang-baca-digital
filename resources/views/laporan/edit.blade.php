@@ -215,7 +215,7 @@
                             <div class="mb-3">
                                 <label for="programStudi" class="form-label">Program Studi</label>
                                 <select class="form-select @error('program_studi_id') is-invalid @enderror"
-                                    id="programStudi" name="program_studi_id">
+                                    id="programStudi" name="program_studi_id" required>
                                     <option value="">Pilih Program Studi</option>
                                     @foreach ($prodi as $item)
                                         <option value="{{ $item->id }}"
@@ -243,7 +243,7 @@
                             <div class="mb-3">
                                 <label for="jenisDokumen" class="form-label">Jenis Dokumen</label>
                                 <select class="form-select @error('jenis_dokumen_id') is-invalid @enderror"
-                                    id="jenisDokumen" name="jenis_dokumen_id">
+                                    id="jenisDokumen" name="jenis_dokumen_id" required>
                                     <option value="">Pilih Jenis Dokumen Anda</option>
                                     @foreach ($jenis_dokumen as $item)
                                         <option value="{{ $item->id }}"
@@ -264,7 +264,7 @@
                             <div class="mb-3">
                                 <label for="dospem1" class="form-label">Dosen Pembimbing 1</label>
                                 <input type="text" class="form-control" id="dospem1" name="dospem1"
-                                    value="{{ $data->dospem1 }}">
+                                    value="{{ $data->dospem1 }}" required>
 
                                 @error('dospem1')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -276,7 +276,7 @@
                                 <label for="tahun" class="form-label">Tahun</label>
                                 <input type="number" class="form-control @error('tahun') is-invalid @enderror"
                                     id="tahun" name="tahun" value="{{ $data->tahun }}" min="2020"
-                                    max="2030">
+                                    max="2030" required>
                                 @error('tahun')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -301,7 +301,7 @@
                                 <label for="judul" class="form-label">Judul</label>
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror"
                                     id="judul" name="judul" placeholder="Masukkan Judul Anda"
-                                    value="{{ $data->judul }}">
+                                    value="{{ $data->judul }}" required>
                                 @error('judul')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -314,7 +314,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Unggah File</label>
                                 <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                    id="fileInput" name="file" accept=".pdf">
+                                    id="fileInput" name="file" accept=".pdf" required>
                                 @error('file')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -329,7 +329,7 @@
                             <div class="mb-3">
                                 <label for="kataKunci" class="form-label">Kata Kunci</label>
                                 <textarea class="form-control @error('kata_kunci') is-invalid @enderror" id="kataKunci" name="kata_kunci"
-                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda">{{ $data->kata_kunci }}</textarea>
+                                    placeholder="Masukkan Beberapa Kata Kunci Dokumen Anda" required>{{ $data->kata_kunci }}</textarea>
                                 @error('kata_kunci')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
